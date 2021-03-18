@@ -17,6 +17,10 @@
   padding: 1rem 0;
   border-bottom: 1px solid rgba(0,0,0,.9);
 }
+.beasiswa-item a {
+  text-decoration: none;
+  color: #000;
+}
 .beasiswa-item:hover {
   background-color: rgba(0,0,0,.1);
   cursor: pointer;

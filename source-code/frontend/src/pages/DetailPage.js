@@ -8,7 +8,7 @@ const DetailPage = () => {
 
   useEffect(() => {
   	setLoading(true);
-  	fetch('http://localhost:1337/beasiswas/'+id)
+  	fetch('https://geratisin-backend.herokuapp.com/beasiswas/'+id)
   	  .then(res => res.json())
   	  .then(res => {
   	  	console.log(res);

@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/list">
+          <Route path="/">
             <ListPage />
           </Route>
           <Route path="/detail/:id">

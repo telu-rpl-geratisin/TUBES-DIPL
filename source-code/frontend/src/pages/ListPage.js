@@ -7,7 +7,7 @@ const ListPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:1337/beasiswas')
+    fetch('https://geratisin-backend.herokuapp.com/beasiswas')
       .then(res => res.json())
       .then(res => {
         console.log(res);
@@ -29,6 +29,7 @@ const ListPage = () => {
                   <ul>
                     <li>{beasiswa.namaBeasiswa}</li>
                     <li>{beasiswa.tanggalBerakhir}</li>
+                    <li>{ beasiswa.deskripsi }</li>
                     <li><a href={beasiswa.link}>Buka Link</a></li>
                   </ul>
                 </Link>
