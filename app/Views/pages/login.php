@@ -1,41 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login | GERATISIN</title>
-	<link rel="stylesheet" href="<?= base_url(); ?>/public/css/style.css" />
-</head>
-<body>
-	<div class="login-page">
-		<div class="card center">
-			<h2 class="title">Login</h2>
-			<form class="login-form">
-				<div class="form-section__wrapper">
-					<div class="form-section__label">Tipe Pengguna :</div>
-					<div class="form-section__input">
-						<input type="radio" id="input-public" name="user-type" value="public">
-		  				<label for="public">Publik</label><br>
-		  				<input type="radio" id="input-company" name="user-type" value="company">
-		  				<label for="input-company">Perusahaan</label><br>
-		  				<input type="radio" id="input-admin" name="user-type" value="admin">
-		  				<label for="input-admin">Admin</label><br>
-		  			</div>
-		  		</div>
-		  		<div class="form-section__wrapper">
-		  			<div class="form-section__label">Username :</div>
-		  			<div class="form-section__input">
-		  				<input type="text" id="input-username" name="username">
-		  			</div>
-		  		</div>
-		  		<div class="form-section__wrapper">
-		  			<div class="form-section__label">Password :</div>
-		  			<div class="form-section__input">
-		  				<input type="password" id="input-password" name="password">
-		  			</div>
-		  		</div>
-		  		<button class="form-section__button" type="submit">Login</button>
-			</form>
+<div class="login-card-wrapper">
+  <div class="card horizontal login-form-card">
+    <div class="card-image">
+      <img src="<?= base_url(); ?>/public/img/background01.jpg">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <h4>Login</h4>
+        <form>
+          <div class="input-field">
+            <select>
+              <option value="publik">Publik</option>
+              <option value="perusahaan">Perusahaan</option>
+              <option value="admin">Admin</option>
+            </select>
+            <label>Tipe Pengguna</label>
+          </div>
+          <div class="input-field">
+            <input id="username" type="text" class="validate">
+            <label for="username">Username</label>
+          </div>
+          <div class="input-field">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+          <button type="submit" class="login-btn waves-effect waves-light btn-small">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-		</div>
-	</div>
-</body>
-</html>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  });
+</script>

@@ -7,12 +7,12 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 
-class Login extends Controller {
+class Test extends Controller {
 	public function index() {
 		$data['title'] = 'Login';
 
 		echo view('templates/header', $data);
-		echo view('pages/login');
+		echo view('pages/test');
 		echo view('templates/footer');
 	}
 }

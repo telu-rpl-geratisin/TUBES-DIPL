@@ -1,64 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 body {
-	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	color: rgba(0,0,0,.9);
 }
 
-button {
-	padding: .25rem 1rem;
-}
-
-/*card*/
-.card {
-	background-color: #ffffff;
-	padding: 2rem;
-	display: inline-block;
-}
-.card.center {
+.login-card-wrapper {
+	width: 100%;
+	max-width: 600px;
 	position: absolute;
-	left: 50%;
 	top: 50%;
-	transform: translate(-50%, -50%);
-}
-.card .title {
-	text-align: center;
-	margin-bottom: 2rem;
+	left: 50%;
+	transform: translate(-50%,-50%);
 }
 
-/*form*/
-.login-form {
-	width: 350px;
-}
-.form-section__wrapper {
-	display: flex;
-	flex-direction: row;
-	margin: .5rem 0;
-}
-.form-section__label {
-	text-align: right;
-	margin-right: 1rem;
-	width: calc(5/12 * 100%)
-}
-.form-section__input { 
-	width: calc(7/12 * 100%) 
-}
-.form-section__button {
-	display: block;
-	margin: 1rem auto 0 auto;
+.card.login-form-card {
+	padding: 0;
+	height: 400px;
 }
 
+.card.login-form-card .card-image>img {
+	height: 100%;
+	object-fit: cover;
+}
 
-/*login page*/
-.login-page {
-	width: 100vw;
-	height: 100vh;
-	background-color: #3D6F8B;
+.card.login-form-card .card-content form {
+	margin-top: 2.5rem;
+}
+
+.card.login-form-card .card-content .login-btn {
+	width: 100%;
 }
