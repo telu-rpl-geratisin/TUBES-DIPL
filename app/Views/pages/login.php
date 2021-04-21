@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Login | GERATISIN</title>
-	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="<?= base_url(); ?>/public/css/style.css" />
 </head>
 <body>
 	<div class="login-page">
