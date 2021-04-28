@@ -6,10 +6,16 @@ use CodeIgniter\Model;
 
 class PenggunaModel extends Model
 {
-  protected $table = 'publik';
-
-  public function getPublik()
+  protected $table = 'pengguna';
+  protected $allowedFields = ['username', 'password'];
+  
+  public function verifyLogin($data)
 	{
-    return $this->findAll();
+    return $this->asArray()
+                ->where([
+                	'username' => $data['username'], 
+                	'password' => $data['password']
+                ])
+                ->first();
 	}
 }

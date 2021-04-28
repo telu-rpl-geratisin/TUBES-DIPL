@@ -18,7 +18,7 @@
       <div class="card-stacked">
         <div class="card-content">
           <h4>Login</h4>
-          <form>
+          <form action="<?= base_url()."/login/verify"; ?>" method="post">
             <div class="input-field">
               <select>
                 <option value="publik">Publik</option>
