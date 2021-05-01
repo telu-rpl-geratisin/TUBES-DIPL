@@ -18,9 +18,9 @@
       <div class="card-stacked">
         <div class="card-content">
           <h4>Login</h4>
-          <form action="<?= base_url()."/login/verify"; ?>" method="post">
+          <form action="login/verify" method="post">
             <div class="input-field">
-              <select>
+              <select name="tipe_pengguna">
                 <option value="publik">Publik</option>
                 <option value="perusahaan">Perusahaan</option>
                 <option value="admin">Admin</option>
@@ -28,11 +28,11 @@
               <label>Tipe Pengguna</label>
             </div>
             <div class="input-field">
-              <input id="username" type="text" class="validate">
+              <input name="username" id="username" type="text" class="validate">
               <label for="username">Username</label>
             </div>
             <div class="input-field">
-              <input id="password" type="password" class="validate">
+              <input name="password" id="password" type="password" class="validate">
               <label for="password">Password</label>
             </div>
             <button type="submit" class="login-btn waves-effect waves-light btn-small">Login</button>

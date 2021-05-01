@@ -32,11 +32,15 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->match(['get', 'post'], 'login/verify', 'Login::verify');
-
 $routes->get('/', 'Login::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/admin', 'Admin::index');
+
+// form handler routes
+$routes->post('/login/verify', 'Login::verify');
+
+// test routes
+$routes->get('/test', 'Test::index');
 
 // == public routes ==
 // ...

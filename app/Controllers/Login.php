@@ -2,10 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Models\PenggunaModel;
+use App\Models\PenggunaAdminModel;
+// use App\Models\PenggunaPublikModel;
+// use App\Models\PenggunaPerusahaanModel;
 use CodeIgniter\Controller;
 
-class Login extends Controller {
+class Login extends BaseController {
 	public function index() {
 		$data['title'] = 'Login';
 
@@ -13,20 +15,37 @@ class Login extends Controller {
 	}
 
 	public function verify() {
-		$model = new PenggunaModel();
-
 		if ($this->request->getMethod() === 'post') {
 			$post_data = [
+				'tipe_pengguna' => $this->request->getPost('tipe_pengguna'),
 				'username' => $this->request->getPost('username'),
-				'password' => $this->request->getPost('password')
+				'user_password' => $this->request->getPost('password')
 			];
 
-			$res = $model->verifyLogin($post_data);
+			switch ($post_data['tipe_pengguna']) {
+				case 'admin':
+					$model = new PenggunaAdminModel();
+					break;
+				// case 'perusahaan':
+				// 	$model = new PenggunaPerusahaanModel();
+				// 	break;
+				// case 'publik':
+				// 	$model = new PenggunaPublikModel();
+				// 	break;
+				default:
+					echo "failed login: tipe_pengguna not match";
+					// var_dump($post_data);
+					exit();
+			}
 			
-			if( boolval($res) ) {
-				// redirect to admin
-				return redirect()->to('/admin');
-			}	
+			$user = $model->getByUsername($post_data['username']);
+			
+			if( $user['user_password'] == $post_data['user_password'] ) {
+				$this->session->set('username', $post_data['username']);
+				echo "success login, ".$this->session->get('username');
+			}	else {
+				echo "failed login";
+			}
 		}
 	}
 }
