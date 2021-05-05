@@ -25,23 +25,16 @@
 </head>
 <body>
 	<main class="form-login">
-		<form>
-			<h1 class="text-center mb-5">GERATISIN</h1>
+		<form action="<?= base_url('admin/login/verify') ?>" method="post">
+			<h1 class="text-center">GERATISIN</h1>
+			<h5 class="text-center mb-5 fw-normal">ADMIN</h5>
 			<div class="mb-3">
 			  <label for="username" class="form-label">Username</label>
-			  <input type="text" class="form-control" id="username" placeholder="">
-			</div>
-			<div class="mb-3">
-			  <label for="password" class="form-label">Password</label>
-			  <input type="password" class="form-control" id="password" placeholder="">
+			  <input type="text" class="form-control" id="username" name="username" placeholder="">
 			</div>
 			<div class="mb-4">
-				<label for="user-type" class="form-label">Tipe Pengguna:</label>
-				<select class="form-select" id="user-type" aria-label="Default select example">
-				  <option selected>Pilih</option>
-				  <option value="1">Publik</option>
-				  <option value="2">Perusahaan</option>
-				</select>
+			  <label for="user_password" class="form-label">Password</label>
+			  <input type="password" class="form-control" id="user_password" name="user_password">
 			</div>
 			<button type="submit" class="btn btn-primary w-100">Login</button>
 			<p class="mt-5 mb-3 text-muted text-center">© 2021</p>

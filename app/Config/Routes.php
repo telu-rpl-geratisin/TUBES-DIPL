@@ -37,8 +37,11 @@ $routes->get('/login', 'Login::index');
 $routes->get('/logout', 'Login::logout');
 
 // admin routes
+$routes->get('/admin/login', 'Admin::login');
 $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/dashboard', 'Admin::dashboard');
+$routes->post('/admin/login/verify', 'Admin::verify'); // handle login form
+$routes->get('/admin/logout', 'Admin::logout');
 
 // form handler routes
 $routes->post('/login/verify', 'Login::verify');

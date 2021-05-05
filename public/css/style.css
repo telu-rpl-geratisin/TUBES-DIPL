@@ -3,7 +3,8 @@ body {
 	color: rgba(0,0,0,.9);
 }
 
-.login-card-wrapper {
+/*materialize custom css*/
+/*.login-card-wrapper {
 	width: 100%;
 	max-width: 600px;
 	position: absolute;
@@ -24,10 +25,10 @@ body {
 }
 .card.login-form-card .card-content .login-btn {
 	width: 100%;
-}
+}*/
 
 /*admin section*/
-.sidenav .user-view .background img {
+/*.sidenav .user-view .background img {
 	object-fit: cover;
 	width: 100%;
 }
@@ -47,4 +48,4 @@ body {
 }
 .main-content {
 	padding: 1rem;
-}
+}*/
