@@ -17,8 +17,7 @@
           <img src="<?= base_url(); ?>/public/img/background03.jpg">
         </div>
         <a href="#user"><img class="circle user-avatar" src="<?= base_url(); ?>/public/img/person01.jpg"></a>
-        <a href="#name"><span class="white-text name">John Doe</span></a>
-        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        <a href="#name"><span class="white-text name"><?= $user_fullname ?></span></a>
       </div>
     </li>
     <li><a class="waves-effect" href="#!"><i class="material-icons">people</i>Pengguna Publik</a></li>

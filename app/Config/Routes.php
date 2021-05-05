@@ -34,7 +34,11 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Login::index');
 $routes->get('/login', 'Login::index');
+$routes->get('/logout', 'Login::logout');
+
+// admin routes
 $routes->get('/admin', 'Admin::index');
+$routes->get('/admin/dashboard', 'Admin::dashboard');
 
 // form handler routes
 $routes->post('/login/verify', 'Login::verify');

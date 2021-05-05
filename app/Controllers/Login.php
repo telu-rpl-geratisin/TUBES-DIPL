@@ -41,11 +41,21 @@ class Login extends BaseController {
 			$user = $model->getByUsername($post_data['username']);
 			
 			if( $user['user_password'] == $post_data['user_password'] ) {
-				$this->session->set('username', $post_data['username']);
-				echo "success login, ".$this->session->get('username');
+				$this->session->set('username', $user['username']);
+				$this->session->set('user_fullname', $user['nama_depan'].' '.$user['nama_belakang']);
+				$this->session->set('auth_login', true);
+
+				// echo "success login, ".$this->session->get('username');
+				return redirect()->to('/admin/dashboard');
 			}	else {
 				echo "failed login";
 			}
 		}
+	}
+
+	public function logout() {
+		$this->session->destroy();
+
+		return redirect()->to('/login');
 	}
 }
