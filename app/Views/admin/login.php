@@ -28,14 +28,27 @@
 		<form action="<?= base_url('admin/login/verify') ?>" method="post">
 			<h1 class="text-center">GERATISIN</h1>
 			<h5 class="text-center mb-5 fw-normal">ADMIN</h5>
-			<div class="mb-3">
+
+      <?= csrf_field() ?>
+      <div class="mb-3">
 			  <label for="username" class="form-label">Username</label>
-			  <input type="text" class="form-control" id="username" name="username" placeholder="">
-			</div>
+			  <input type="text" value="<?= set_value('username'); ?>" class="form-control <?= (isset($errors['username'])) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?= old('username') ?>">
+        <div class="invalid-feedback">
+          <?php if(isset($errors['username'])): ?>
+            <?= $errors['username']; ?>
+          <?php endif; ?>
+        </div>		
+      </div>
 			<div class="mb-4">
 			  <label for="user_password" class="form-label">Password</label>
-			  <input type="password" class="form-control" id="user_password" name="user_password">
-			</div>
+			  <input type="password" value="<?= set_value('user_password'); ?>" class="form-control <?= (isset($errors['user_password'])) ? 'is-invalid' : ''; ?>" id="user_password" name="user_password" value="<?= old('user_password') ?>">
+        <div class="invalid-feedback">
+          <?php if(isset($errors['user_password'])): ?>
+            <?= $errors['user_password']; ?>
+          <?php endif; ?>
+        </div>
+      </div>
+
 			<button type="submit" class="btn btn-primary w-100">Login</button>
 			<p class="mt-5 mb-3 text-muted text-center">© 2021</p>
 		</form>

@@ -31,6 +31,8 @@ class Admin extends BaseController {
 
 
 	public function login() {
+		helper (['form']);
+
 		return view('admin/login');
 	}
 
@@ -49,7 +51,15 @@ class Admin extends BaseController {
 	}
 
 	public function verify() {
+		helper (['form']);
+
 		if ($this->request->getMethod() === 'post') {
+			
+			if ( !$this->validate('adminLogin') ) {
+				$data['errors'] = $this->validator->getErrors();
+				return view('admin/login', $data);
+			}
+
 			$post_data = [
 				'username' => $this->request->getPost('username'),
 				'user_password' => $this->request->getPost('user_password')
@@ -58,16 +68,19 @@ class Admin extends BaseController {
 			$model = new PenggunaAdminModel();			
 			$user = $model->getByUsername($post_data['username']);
 			
-			if( $user['user_password'] == $post_data['user_password'] ) {
-				$this->session->set('username', $user['username']);
-				$this->session->set('user_fullname', $user['nama_depan'].' '.$user['nama_belakang']);
-				$this->session->set('auth_login', true);
-
-				// echo "success login, ".$this->session->get('username');
-				return redirect()->to('/admin/dashboard');
-			}	else {
-				echo "failed login";
+			if( is_null($user) ) {
+				return redirect()->to('/admin/login')->withInput();
 			}
+
+			if( $user['user_password'] != $post_data['user_password'] ) {
+				return redirect()->to('/admin/login')->withInput();		
+			}
+
+			$this->session->set('username', $user['username']);
+			$this->session->set('user_fullname', $user['nama_depan'].' '.$user['nama_belakang']);
+			$this->session->set('auth_login', true);
+
+			return redirect()->to('/admin/dashboard');
 		}
 	}
 
