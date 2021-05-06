@@ -69,10 +69,12 @@ class Admin extends BaseController {
 			$user = $model->getByUsername($post_data['username']);
 			
 			if( is_null($user) ) {
+				$this->session->setFlashdata('login_msg', 'Username atau password salah');
 				return redirect()->to('/admin/login')->withInput();
 			}
 
 			if( $user['user_password'] != $post_data['user_password'] ) {
+				$this->session->setFlashdata('login_msg', 'Username atau password salah');
 				return redirect()->to('/admin/login')->withInput();		
 			}
 

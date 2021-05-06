@@ -28,6 +28,9 @@
 		<form action="<?= base_url('admin/login/verify') ?>" method="post">
 			<h1 class="text-center">GERATISIN</h1>
 			<h5 class="text-center mb-5 fw-normal">ADMIN</h5>
+      <?php if(isset($_SESSION['login_msg'])): ?>
+        <p class="text-danger"><?= $_SESSION['login_msg']; ?></p>
+      <?php endif; ?>
 
       <?= csrf_field() ?>
       <div class="mb-3">
