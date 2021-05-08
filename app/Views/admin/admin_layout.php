@@ -22,7 +22,7 @@
       <div class="h-100">
         <ul class="sidebar-nav">
           <li>
-            <a class="sidebar-nav-link" href="#">
+            <a class="sidebar-nav-link active" href="#">
               <i class="bi bi-speedometer"></i>
               <span>Dashboard</span>
             </a>
@@ -30,7 +30,19 @@
           <li>
             <a class="sidebar-nav-link" href="#">
               <i class="bi bi-people"></i>
+              <span>Beasiswa</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-nav-link" href="#">
+              <i class="bi bi-people"></i>
               <span>Pengguna Publik</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-nav-link" href="#">
+              <i class="bi bi-people"></i>
+              <span>Pengguna Perusahaan</span>
             </a>
           </li>
         </ul>
@@ -41,10 +53,21 @@
     <main>
       <!-- HEADER START -->
       <header>
-        header ...
+        <div class="header-wrapper d-flex justify-content-end">
+          <div class="user-profile">
+            <img src="<?= base_url(); ?>/public/img/person01.jpg" alt="profile-picture">
+            <span class="fw-bold d-block">Andi Prayoga</span>
+          </div>
+        </div>
       </header>
       <!-- HEADER END -->
-      <?= $this->renderSection('main') ?>
+
+      <div class="main-wrapper">
+        <div class="mb-3">
+          <h5 class="fw-bold">Dashboard</h5>
+        </div>
+        <?= $this->renderSection('main') ?>
+      </div>
     </main>
   </div>
 
