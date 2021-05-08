@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <!-- custom css for dashboard -->
     <link rel="stylesheet" href="<?= base_url(); ?>/public/css/admin/dashboard.css" />
+    <!-- css datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
   <div class="wrapper">
@@ -22,25 +24,25 @@
       <div class="h-100">
         <ul class="sidebar-nav">
           <li>
-            <a class="sidebar-nav-link active" href="#">
+            <a class="sidebar-nav-link <?= ($title == 'Dashboard') ? 'active' : ''; ?>" href="dashboard">
               <i class="bi bi-speedometer"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a class="sidebar-nav-link" href="#">
+            <a class="sidebar-nav-link <?= ($title == 'Beasiswa') ? 'active' : ''; ?>" href="beasiswa">
               <i class="bi bi-people"></i>
               <span>Beasiswa</span>
             </a>
           </li>
           <li>
-            <a class="sidebar-nav-link" href="#">
+            <a class="sidebar-nav-link <?= ($title == 'Pengguna Publik') ? 'active' : ''; ?>" href="pengguna-publik">
               <i class="bi bi-people"></i>
               <span>Pengguna Publik</span>
             </a>
           </li>
           <li>
-            <a class="sidebar-nav-link" href="#">
+            <a class="sidebar-nav-link <?= ($title == 'Pengguna Perusahaan') ? 'active' : ''; ?>" href="pengguna-perusahaan">
               <i class="bi bi-people"></i>
               <span>Pengguna Perusahaan</span>
             </a>
@@ -63,9 +65,11 @@
       <!-- HEADER END -->
 
       <div class="main-wrapper">
-        <div class="mb-3">
-          <h5 class="fw-bold">Dashboard</h5>
-        </div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
+          </ol>
+        </nav>
         <?= $this->renderSection('main') ?>
       </div>
     </main>

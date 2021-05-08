@@ -37,11 +37,13 @@ $routes->get('/login', 'Login::index');
 $routes->get('/logout', 'Login::logout');
 
 // admin routes
-$routes->get('/admin/login', 'Admin::login');
-$routes->get('/admin', 'Admin::index');
-$routes->get('/admin/dashboard', 'Admin::dashboard');
-$routes->post('/admin/login/verify', 'Admin::verify'); // handle login form
-$routes->get('/admin/logout', 'Admin::logout');
+$routes->get('/admin/login', 'Admin\AdminController::login');
+$routes->get('/admin', 'Admin\AdminController::index');
+$routes->get('/admin/dashboard', 'Admin\AdminController::dashboard');
+$routes->post('/admin/login/verify', 'Admin\AdminController::verify'); // handle login form
+$routes->get('/admin/logout', 'Admin\AdminController::logout');
+
+$routes->get('/admin/pengguna-publik', 'Admin\PPublikController::index');
 
 // form handler routes
 $routes->post('/login/verify', 'Login::verify');

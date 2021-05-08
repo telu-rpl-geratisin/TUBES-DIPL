@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use CodeIgniter\Controller;
 use App\Models\PenggunaAdminModel;
 
-class Admin extends BaseController {
+class AdminController extends BaseController {
 	public function index() {
 		
 	}
