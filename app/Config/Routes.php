@@ -48,9 +48,9 @@ $routes->get('/admin/pengguna-publik', 'Admin\PPublikController::index');
 // form handler routes
 $routes->post('/login/verify', 'Login::verify');
 
-// test routes
-$routes->get('/test', 'Test::index');
-
+// signin route
+$routes->get('/admin/signin', 'Admin\SignIn::index', ['as' => 'admin.signin.index']);
+$routes->post('/admin/signin', 'Admin\SignIn::signIn', ['as' => 'admin.signin']);
 // == public routes ==
 // ...
 

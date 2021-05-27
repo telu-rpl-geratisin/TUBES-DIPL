@@ -1,60 +1,65 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Login | GERATISIN</title>
-	<!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-  <!-- bootstrap icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-  <!-- custom css for login -->
-  <link rel="stylesheet" href="<?= base_url(); ?>/public/css/admin/login.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign In | GERATISIN</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?= base_url() ?>/public/adminlte3/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="<?= base_url() ?>/public/adminlte3/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?= base_url() ?>/public/adminlte3/dist/css/adminlte.min.css">
 </head>
-<body>
-	<main class="form-login">
-		<form action="<?= base_url('admin/login/verify') ?>" method="post">
-			<h1 class="text-center">GERATISIN</h1>
-			<h5 class="text-center mb-5 fw-normal">ADMIN</h5>
-      <?php if(isset($_SESSION['login_msg'])): ?>
-        <p class="text-danger"><?= $_SESSION['login_msg']; ?></p>
-      <?php endif; ?>
-
-      <?= csrf_field() ?>
-      <div class="mb-3">
-			  <label for="username" class="form-label">Username</label>
-			  <input type="text" value="<?= set_value('username'); ?>" class="form-control <?= (isset($errors['username'])) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?= old('username') ?>">
-        <div class="invalid-feedback">
-          <?php if(isset($errors['username'])): ?>
-            <?= $errors['username']; ?>
-          <?php endif; ?>
-        </div>		
-      </div>
-			<div class="mb-4">
-			  <label for="user_password" class="form-label">Password</label>
-			  <input type="password" value="<?= set_value('user_password'); ?>" class="form-control <?= (isset($errors['user_password'])) ? 'is-invalid' : ''; ?>" id="user_password" name="user_password" value="<?= old('user_password') ?>">
-        <div class="invalid-feedback">
-          <?php if(isset($errors['user_password'])): ?>
-            <?= $errors['user_password']; ?>
-          <?php endif; ?>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <span class="h1"><b>GERATISIN</b>ADMIN</span>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+      <form action="<?= base_url().route_to('admin.signin') ?>" method="post">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
 
-			<button type="submit" class="btn btn-primary w-100">Login</button>
-			<p class="mt-5 mb-3 text-muted text-center">© 2021</p>
-		</form>
-	</main>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
 </body>
 </html>

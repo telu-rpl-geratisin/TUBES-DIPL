@@ -7,6 +7,6 @@ use CodeIgniter\Controller;
 
 class Test extends BaseController {
 	public function index() {
-		return view('admin/login');
+		return view('login/admin');
 	}
 }
