@@ -24,9 +24,11 @@
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
-      <form action="<?= base_url().route_to('admin.signin') ?>" method="post">
+      <p class="text-danger"><?= session('error') ?></p>
+      <form action="<?= base_url().route_to('login.verify') ?>" method="post">
+        <?= csrf_field() ?>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Username">
+          <input name="username" type="text" class="form-control" placeholder="Username" value="<?= old('username') ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +36,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input name="password" type="password" class="form-control" placeholder="Password" value="<?= old('password') ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

@@ -37,7 +37,9 @@ $routes->get('/login', 'Login::index');
 $routes->get('/logout', 'Login::logout');
 
 // admin routes
-$routes->get('/admin/login', 'Admin\AdminController::login');
+$routes->get('/admin/login', 'Admin\LoginController::showLogin', ['as' => 'login.index']);
+$routes->post('/admin/login', 'Admin\LoginController::login', ['as' => 'login.verify']);
+
 $routes->get('/admin', 'Admin\AdminController::index');
 $routes->get('/admin/dashboard', 'Admin\AdminController::dashboard');
 $routes->post('/admin/login/verify', 'Admin\AdminController::verify'); // handle login form
@@ -48,9 +50,7 @@ $routes->get('/admin/pengguna-publik', 'Admin\PPublikController::index');
 // form handler routes
 $routes->post('/login/verify', 'Login::verify');
 
-// signin route
-$routes->get('/admin/signin', 'Admin\SignIn::index', ['as' => 'admin.signin.index']);
-$routes->post('/admin/signin', 'Admin\SignIn::signIn', ['as' => 'admin.signin']);
+
 // == public routes ==
 // ...
 
