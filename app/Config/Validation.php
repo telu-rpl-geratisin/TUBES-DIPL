@@ -40,19 +40,4 @@ class Validation
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------
-
-	public $adminLogin = [
-		'username' => [
-			'rules' => 'required',
-			'errors' => [
-				'required' => 'Anda harus memasukkan username.'
-			]
-		],
-		'user_password' => [
-			'rules' => 'required',
-			'errors' => [
-				'required' => 'Anda harus memasukkan password.'
-			]
-		]
-	];
 }
