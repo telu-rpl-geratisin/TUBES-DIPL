@@ -45,10 +45,10 @@ class Login_Perusahaan extends BaseController
             if ($cek){
                 //jika data cocok 
                 session()->set('log', true);
-                session()->set('id_perusahaan',$cek['id_perusahaan']);
+                // session()->set('id_perusahaan',$cek['id_perusahaan']);
                 session()->set('username',$cek['username']);
-                session()->set('password',$cek['password']);
-                return redirect()->to(base_url('Perusahaan  '));
+                // session()->set('password',$cek['password']);
+                return redirect()->to(base_url('Perusahaan'));
             } else {
                 session()->setFlashdata('pesan', 'Login Gagal,Username atau Password anda salah');
                 return redirect()->to(base_url('Login_Perusahaan/index'));

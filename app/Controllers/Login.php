@@ -45,12 +45,12 @@ class Login extends BaseController
             if ($cek){
                 //jika data cocok 
                 session()->set('log', true);
-                session()->set('id_publik',$cek['id_publik']);
+                // session()->set('id_publik',$cek['id_publik']);
                 session()->set('username',$cek['username']);
-                session()->set('nama_depan',$cek['nama_depan']);
-                session()->set('nama_belakang',$cek['nama_belakang']);
-                session()->set('password',$cek['password']);
-                session()->set('created_at',$cek['created_at']);
+                // session()->set('nama_depan',$cek['nama_depan']);
+                // session()->set('nama_belakang',$cek['nama_belakang']);
+                // session()->set('password',$cek['password']);
+                // session()->set('created_at',$cek['created_at']);
                 return redirect()->to(base_url('home'));
             } else {
                 session()->setFlashdata('pesan', 'Login Gagal,Username atau Password anda salah');

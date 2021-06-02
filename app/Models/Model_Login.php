@@ -8,7 +8,7 @@ class Model_Login extends Model
 {
     public function login($username,$password)
     {
-        return $this->db->table('publik')->where([
+        return $this->db->table('public_user')->where([
              'username' => $username,
             //  'nama_depan' => $nama_depan,
             //  'nama_belakang' => $nama_belakang,

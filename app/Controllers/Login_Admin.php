@@ -45,9 +45,9 @@ class Login_Admin extends BaseController
             if ($cek){
                 //jika data cocok 
                 session()->set('log', true);
-                session()->set('id_admin',$cek['id_admin']);
+                // session()->set('id_admin',$cek['id_admin']);
                 session()->set('username',$cek['username']);
-                session()->set('password',$cek['password']);
+                // session()->set('password',$cek['password']);
                 return redirect()->to(base_url('Dashboard'));
             } else {
                 session()->setFlashdata('pesan', 'Login Gagal,Username atau Password anda salah');
