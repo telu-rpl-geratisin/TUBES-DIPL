@@ -37,8 +37,21 @@ $routes->get('/login', 'Login::index');
 $routes->get('/logout', 'Login::logout');
 
 // admin routes
-$routes->get('/admin/login', 'Admin\LoginController::showLogin', ['as' => 'login.index']);
-$routes->post('/admin/login', 'Admin\LoginController::login', ['as' => 'login.verify']);
+$routes->get('/admin/login', 'Admin\LoginController::showLogin', ['as' => 'admin.login.index']);
+$routes->post('/admin/login', 'Admin\LoginController::login', ['as' => 'admin.login.verify']);
+
+$routes->group('admin', function($routes)
+{
+    // manage user
+    $routes->get('public', 'Admin\PublicuserController::index', ['as' => 'admin.public.index']);
+    $routes->get('public/(:num)', 'Admin\PublicuserController::userDetails/$1', ['as' => 'admin.public.details']);
+    $routes->post('public/delete/(:num)', 'Admin\PublicuserController::deleteUser/$1', ['as' => 'admin.public.delete']);
+
+    $routes->get('company', 'Admin\CompanyuserController::index', ['as' => 'admin.company.index']);
+    $routes->get('company/(:num)', 'Admin\CompanyuserController::userDetails/$1', ['as' => 'admin.company.details']);
+    $routes->post('company/delete/(:num)', 'Admin\CompanyuserController::deleteUser/$1', ['as' => 'admin.company.delete']);
+});
+
 
 $routes->get('/admin', 'Admin\AdminController::index');
 $routes->get('/admin/dashboard', 'Admin\AdminController::dashboard');
