@@ -1,0 +1,7 @@
+CRITICAL - 2021-05-27 09:55:50 --> Undefined variable: data
+#0 H:\wamp64\www\TUBES-DIPL\app\Controllers\Login.php(77): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 77, Array)
+#1 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Login->Daftar()
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#3 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}

@@ -19,6 +19,7 @@ class Filters extends BaseConfig
 		'csrf'     => CSRF::class,
 		'toolbar'  => DebugToolbar::class,
 		'honeypot' => Honeypot::class,
+		// 'Filter_Login' => \App\Filters\Filter_Login::class,
 	];
 
 	/**
@@ -27,16 +28,23 @@ class Filters extends BaseConfig
 	 *
 	 * @var array
 	 */
-	public $globals = [
-		'before' => [
-			// 'honeypot',
-			// 'csrf',
-		],
-		'after'  => [
-			'toolbar',
-			// 'honeypot',
-		],
-	];
+	// public $globals = [
+	// 	'before' => [
+	// 		'Filter_Login' =>['except' => [
+	// 			'Login','Login/*',
+	// 			'/'
+	// 		]],
+	// 		// 'honeypot',
+	// 		// 'csrf',
+	// 	],
+	// 	'after'  => [
+	// 			'Filter_Login' =>['except' => [
+	// 				'home','home/*',
+	// 			]],
+	// 		'toolbar',
+	// 		// 'honeypot',
+	// 	],
+	// ];
 
 	/**
 	 * List of filter aliases that works on a

@@ -1,0 +1,154 @@
+CRITICAL - 2021-05-14 12:02:05 --> Class 'App\Controllers\Model_Login_Admin' not found
+#0 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(908): App\Controllers\Login_Admin->__construct()
+#1 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(422): CodeIgniter\CodeIgniter->createController()
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-05-14 12:02:43 --> Class 'App\Controllers\Model_Login_Admin' not found
+#0 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(908): App\Controllers\Login_Admin->__construct()
+#1 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(422): CodeIgniter\CodeIgniter->createController()
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-05-14 12:03:01 --> Class 'App\Controllers\Model_Login_Admin' not found
+#0 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(908): App\Controllers\Login_Admin->__construct()
+#1 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(422): CodeIgniter\CodeIgniter->createController()
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-05-14 12:19:20 --> Undefined index: id_perusahaan
+#0 H:\wamp64\www\TUBES-DIPL\app\Controllers\Login_Admin.php(48): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'H:\\wamp64\\www\\T...', 48, Array)
+#1 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Login_Admin->login()
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login_Admin))
+#3 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-14 12:26:37 --> Undefined property: App\Controllers\Login_Perusahaan::$Model_Login_Admin
+#0 H:\wamp64\www\TUBES-DIPL\app\Controllers\Login_Perusahaan.php(44): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'H:\\wamp64\\www\\T...', 44, Array)
+#1 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Login_Perusahaan->login()
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login_Perusahaan))
+#3 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-14 12:51:46 --> Undefined variable: perusahaan
+#0 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_content.php(2): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 2, Array)
+#1 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#2 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#4 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_wraper.php(5): view('layout_perusaha...')
+#5 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#6 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#8 H:\wamp64\www\TUBES-DIPL\app\Controllers\Perusahaan.php(13): view('layout_perusaha...', Array)
+#9 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Perusahaan->index()
+#10 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Perusahaan))
+#11 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2021-05-14 12:53:24 --> Undefined variable: perusahaan
+#0 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_content.php(2): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 2, Array)
+#1 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#2 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#4 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_wraper.php(5): view('layout_perusaha...')
+#5 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#6 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#8 H:\wamp64\www\TUBES-DIPL\app\Controllers\Perusahaan.php(13): view('layout_perusaha...', Array)
+#9 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Perusahaan->index()
+#10 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Perusahaan))
+#11 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2021-05-14 12:54:14 --> Undefined variable: per
+#0 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_content.php(2): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 2, Array)
+#1 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#2 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#4 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_wraper.php(5): view('layout_perusaha...')
+#5 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#6 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#8 H:\wamp64\www\TUBES-DIPL\app\Controllers\Perusahaan.php(13): view('layout_perusaha...', Array)
+#9 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Perusahaan->index()
+#10 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Perusahaan))
+#11 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2021-05-14 12:55:26 --> Undefined variable: per
+#0 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_content.php(2): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 2, Array)
+#1 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#2 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#4 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_wraper.php(5): view('layout_perusaha...')
+#5 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#6 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#8 H:\wamp64\www\TUBES-DIPL\app\Controllers\Perusahaan.php(13): view('layout_perusaha...', Array)
+#9 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Perusahaan->index()
+#10 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Perusahaan))
+#11 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2021-05-14 12:56:06 --> Undefined variable: per
+#0 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_content.php(2): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 2, Array)
+#1 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#2 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#4 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_wraper.php(5): view('layout_perusaha...')
+#5 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#6 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#8 H:\wamp64\www\TUBES-DIPL\app\Controllers\Perusahaan.php(13): view('layout_perusaha...', Array)
+#9 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Perusahaan->index()
+#10 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Perusahaan))
+#11 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2021-05-14 12:59:26 --> Undefined variable: isi
+#0 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_content.php(2): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 2, Array)
+#1 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#2 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#4 H:\wamp64\www\TUBES-DIPL\app\Views\layout_perusahaan\v_wraper.php(5): view('layout_perusaha...')
+#5 H:\wamp64\www\TUBES-DIPL\system\View\View.php(220): include('H:\\wamp64\\www\\T...')
+#6 H:\wamp64\www\TUBES-DIPL\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 H:\wamp64\www\TUBES-DIPL\system\Common.php(1217): CodeIgniter\View\View->render('layout_perusaha...', Array, true)
+#8 H:\wamp64\www\TUBES-DIPL\app\Controllers\Perusahaan.php(13): view('layout_perusaha...', Array)
+#9 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Perusahaan->index()
+#10 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Perusahaan))
+#11 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2021-05-14 20:55:57 --> Undefined variable: nama_depan
+#0 H:\wamp64\www\TUBES-DIPL\app\Models\Model_Login.php(13): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 13, Array)
+#1 H:\wamp64\www\TUBES-DIPL\app\Controllers\Login.php(44): app\Models\Model_Login->login('yahya', '123')
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Login->login()
+#3 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#4 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-05-14 20:56:35 --> Undefined variable: nama_depan
+#0 H:\wamp64\www\TUBES-DIPL\app\Models\Model_Login.php(13): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 13, Array)
+#1 H:\wamp64\www\TUBES-DIPL\app\Controllers\Login.php(44): app\Models\Model_Login->login('yahya', '123')
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Login->login()
+#3 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#4 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-05-14 20:56:38 --> Undefined variable: nama_depan
+#0 H:\wamp64\www\TUBES-DIPL\app\Models\Model_Login.php(13): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 13, Array)
+#1 H:\wamp64\www\TUBES-DIPL\app\Controllers\Login.php(44): app\Models\Model_Login->login('yahya', '123')
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Login->login()
+#3 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#4 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-05-14 20:56:58 --> Undefined variable: nama_depan
+#0 H:\wamp64\www\TUBES-DIPL\app\Models\Model_Login.php(13): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'H:\\wamp64\\www\\T...', 13, Array)
+#1 H:\wamp64\www\TUBES-DIPL\app\Controllers\Login.php(44): app\Models\Model_Login->login('yahya', '123')
+#2 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(936): App\Controllers\Login->login()
+#3 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#4 H:\wamp64\www\TUBES-DIPL\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 H:\wamp64\www\TUBES-DIPL\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}

@@ -18,11 +18,11 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Login');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(false);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -32,35 +32,11 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Login::index');
-$routes->get('/login', 'Login::index');
-$routes->get('/logout', 'Login::logout');
-
-// admin routes
-$routes->get('/admin/login', 'Admin\AdminController::login');
-$routes->get('/admin', 'Admin\AdminController::index');
-$routes->get('/admin/dashboard', 'Admin\AdminController::dashboard');
-$routes->post('/admin/login/verify', 'Admin\AdminController::verify'); // handle login form
-$routes->get('/admin/logout', 'Admin\AdminController::logout');
-
-$routes->get('/admin/pengguna-publik', 'Admin\PPublikController::index');
-
-// form handler routes
-$routes->post('/login/verify', 'Login::verify');
-
-// test routes
-$routes->get('/test', 'Test::index');
-
-// == public routes ==
-// ...
-
-// == company routes ==
-// ...
-
-// == admin routes ==
-// ...
+$routes->get('/Login', 'Login::index');
 
 
+
+// $routes->get('/admin', 'Admin::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
