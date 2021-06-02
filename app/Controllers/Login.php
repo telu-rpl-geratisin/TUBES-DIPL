@@ -7,6 +7,8 @@ use App\Models\PenggunaAdminModel;
 // use App\Models\PenggunaPerusahaanModel;
 use CodeIgniter\Controller;
 
+// perubahan
+
 class Login extends BaseController {
 	public function index() {
 		$data['title'] = 'Login';
