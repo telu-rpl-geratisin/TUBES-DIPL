@@ -34,9 +34,27 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/Login', 'Login::index');
 
+// ADMIN ROUTES START
 
+$routes->get('/admin/login', 'Admin\LoginController::index', ['as' => 'admin.login.index']);
+$routes->post('/admin/login', 'Admin\LoginController::login', ['as' => 'admin.login.verify']);
+$routes->get('/admin/logout', 'Admin\LoginController::logout', ['as' => 'admin.logout']);
 
-// $routes->get('/admin', 'Admin::index');
+$routes->group('admin', function($routes)
+{
+	$routes->get('dashboard', 'Admin\DashboardController::index', ['as' => 'admin.dashboard']);
+
+    // manage user
+    $routes->get('public', 'Admin\PublicuserController::index', ['as' => 'admin.public.index']);
+    $routes->get('public/(:num)', 'Admin\PublicuserController::userDetails/$1', ['as' => 'admin.public.details']);
+    $routes->post('public/delete/(:num)', 'Admin\PublicuserController::deleteUser/$1', ['as' => 'admin.public.delete']);
+    $routes->get('company', 'Admin\CompanyuserController::index', ['as' => 'admin.company.index']);
+    $routes->get('company/(:num)', 'Admin\CompanyuserController::userDetails/$1', ['as' => 'admin.company.details']);
+    $routes->post('company/delete/(:num)', 'Admin\CompanyuserController::deleteUser/$1', ['as' => 'admin.company.delete']);
+});
+
+// ADMIN ROUTES END
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -40,4 +40,19 @@ class Validation
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------
+
+	public $login = [
+        'username' => [
+        	'rules' => 'required',
+        	'errors' => [
+        		'required' => 'filed username wajib diisi'
+        	]
+        ],
+        'password' => [
+        	'rules' => 'required',
+        	'errors' => [
+        		'required' => 'filed password wajib diisi'
+        	]
+        ]
+    ];
 }

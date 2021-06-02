@@ -28,23 +28,16 @@ class Filters extends BaseConfig
 	 *
 	 * @var array
 	 */
-	// public $globals = [
-	// 	'before' => [
-	// 		'Filter_Login' =>['except' => [
-	// 			'Login','Login/*',
-	// 			'/'
-	// 		]],
-	// 		// 'honeypot',
-	// 		// 'csrf',
-	// 	],
-	// 	'after'  => [
-	// 			'Filter_Login' =>['except' => [
-	// 				'home','home/*',
-	// 			]],
-	// 		'toolbar',
-	// 		// 'honeypot',
-	// 	],
-	// ];
+	public $globals = [
+		'before' => [
+			// 'honeypot',
+			'csrf',
+		],
+		'after'  => [
+			'toolbar',
+			// 'honeypot',
+		],
+	];
 
 	/**
 	 * List of filter aliases that works on a

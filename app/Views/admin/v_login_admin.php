@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Geratisin | Log in</title>
+  <title><?= $title; ?> | GERATISIN</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?= base_url() ?>/public/template/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
+
 <div class="login-box">
   <div class="login-logo">
     <a href="<?= base_url() ?>"><b>GERATISIN ADMIN</b></a>
@@ -22,28 +23,28 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Silakan Login </p>
-    <?php 
-        $errors = session()->getFlashdata('errors');
-        if (!empty($errors)) { ?>
-        <div class="alert alert-danger alert-dismissible">
-        <ul>
-        <?php foreach ($errors as $key => $value) { ?>
-           <li> <?= esc($value) ?> </li>
-        <?php } ?>
-        </ul>
-        </div>
-    <?php } ?>
-    <?php 
-        if (session()->getFlashdata('pesan')){
-            echo '<div class ="alert alert-danger alert-dismissible">';
-            echo session()->getFlashdata('pesan');
-            echo '</div>';
-        }
-    ?>
-    <?php echo form_open('Login_Admin/login') ?>
+        <p class="login-box-msg">Silakan Login </p>
+        <?php 
+            $val_errors = session('val_errors');
+            $data_error = session('data_error');
+        ?>
+        <?php if(!is_null($val_errors)): ?>
+            <div class="alert alert-danger alert-dismissible">
+                <ul>
+                    <?php foreach ($val_errors as $value): ?>
+                       <li> <?= esc($value) ?> </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+        <?php if(!is_null($data_error)): ?>
+            <div class="alert alert-danger alert-dismissible">
+                <?= $data_error; ?>
+            </div>
+        <?php endif; ?>
+    <?= form_open('admin/login') ?>
         <div class="input-group mb-3">
-          <input type="Username" name="username" class="form-control" placeholder="username">
+          <input type="text" name="username" class="form-control" placeholder="username" value="<?= old('username'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -51,7 +52,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="password">
+          <input type="password" name="password" class="form-control" placeholder="password" value="<?= old('password'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -73,7 +74,6 @@
           </div>
           <!-- /.col -->
         </div>
-    <?php echo form_close() ?>
       </form>
 
       <div class="social-auth-links text-center mb-3">
