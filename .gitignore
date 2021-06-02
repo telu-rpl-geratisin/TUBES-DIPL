@@ -125,7 +125,6 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
-
 # Created by https://www.toptal.com/developers/gitignore/api/phpstorm,phpstorm+iml,phpstorm+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=phpstorm,phpstorm+iml,phpstorm+all
 
@@ -344,4 +343,5 @@ modules.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/phpstorm,phpstorm+iml,phpstorm+all
 
-/public/template/*
+public/template/
+documents/
