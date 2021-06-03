@@ -11,7 +11,10 @@ class CompanyuserController extends BaseController
     {
         $users = Companyuser::ins()->findAll();
 
-        dd($users);
+        return view('admin/company', [
+            'title' => 'Pengguna Perusahaan',
+            'users' => $users
+        ]);
     }
 
     public function userDetails($id)

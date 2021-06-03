@@ -11,7 +11,10 @@ class PublicuserController extends BaseController
 	{
 		$users = Publicuser::ins()->findAll();
 
-		dd($users);
+        return view('admin/public', [
+            'title' => 'Pengguna Publik',
+            'users' => $users
+        ]);
 	}
 
 	public function userDetails($id)

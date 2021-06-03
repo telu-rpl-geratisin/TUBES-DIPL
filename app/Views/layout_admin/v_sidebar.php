@@ -13,7 +13,7 @@
           <img src="<?= base_url() ?>/public/template/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a href="#" class="d-block"><?= session('name'); ?></a>
         </div>
       </div>
 
@@ -23,10 +23,34 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url().route_to('admin.dashboard'); ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon ion ion-university"></i>
+              <p>
+                Beasiswa
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url().route_to('admin.company.index'); ?>" class="nav-link">
+              <i class="nav-icon ion ion-home"></i>
+              <p>
+                Pengguna Perusahaan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url().route_to('admin.public.index'); ?>" class="nav-link">
+              <i class="nav-icon ion ion-ios-people"></i>
+              <p>
+                Pengguna Publik
               </p>
             </a>
           </li>

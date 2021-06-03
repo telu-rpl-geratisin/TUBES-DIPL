@@ -9,13 +9,9 @@ class LoginController extends BaseController
 {
     public function index()
 	{
-		helper('form');
-
-		$data = array(
-			'title' => 'Login Admin',
-		);
-
-		return view('admin\v_login',$data);
+		return view('admin\login', [
+            'title' => 'Login Admin'
+        ]);
 	}
 
     public function login()
@@ -47,6 +43,7 @@ class LoginController extends BaseController
 
         $this->session->set('auth_admin', true);
         $this->session->set('username', $user['username']);
+        $this->session->set('name', $user['first_name']);
 
         return redirect('admin.dashboard');
 	}
