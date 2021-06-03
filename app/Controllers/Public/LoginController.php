@@ -4,14 +4,11 @@ namespace App\Controllers\Public;
 
 use App\Controllers\BaseController;
 use App\Models\Publicuser;
-use Config\Validation;
 
 class LoginController extends BaseController
 {
     public function index()
 	{
-		helper('form');
-
 		$data = array(
 			'title' => 'Login',
 		);

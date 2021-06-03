@@ -4,7 +4,6 @@ namespace App\Controllers\Company;
 
 use App\Controllers\BaseController;
 use App\Models\Companyuser;
-use Config\Validation;
 
 class LoginController extends BaseController
 {

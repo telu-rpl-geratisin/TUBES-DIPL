@@ -4,7 +4,6 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\Adminuser;
-use Config\Validation;
 
 class LoginController extends BaseController
 {
