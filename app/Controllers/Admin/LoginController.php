@@ -45,7 +45,7 @@ class LoginController extends BaseController
         	return redirect()->back()->withInput();
         }
 
-        $this->session->set('auth', true);
+        $this->session->set('auth_admin', true);
         $this->session->set('username', $user['username']);
 
         return redirect('admin.dashboard');

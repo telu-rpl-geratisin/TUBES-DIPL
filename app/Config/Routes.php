@@ -18,11 +18,11 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Login');
+$routes->setDefaultController('Public\LoginController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -40,7 +40,7 @@ $routes->get('/admin/login', 'Admin\LoginController::index', ['as' => 'admin.log
 $routes->post('/admin/login', 'Admin\LoginController::login', ['as' => 'admin.login.verify']);
 $routes->get('/admin/logout', 'Admin\LoginController::logout', ['as' => 'admin.logout']);
 
-$routes->group('admin', function($routes)
+$routes->group('admin', ['filter' => 'loginCheck'], function($routes)
 {
 	$routes->get('dashboard', 'Admin\DashboardController::index', ['as' => 'admin.dashboard']);
 
@@ -58,10 +58,13 @@ $routes->group('admin', function($routes)
 
 // PUBLIC ROUTES START
 
-$routes->get('/login', 'Public\LoginController::index', ['as' => 'public.login.index']);
-$routes->post('/login', 'Public\LoginController::login', ['as' => 'public.login.verify']);
-$routes->get('/logout', 'Public\LoginController::logout', ['as' => 'public.logout']);
-$routes->get('/home', 'Public\HomeController::index', ['as' => 'public.home.index']);
+$routes->get('/pub/login', 'Public\LoginController::index', ['as' => 'public.login.index']);
+$routes->post('/pub/login', 'Public\LoginController::login', ['as' => 'public.login.verify']);
+$routes->get('/pub/logout', 'Public\LoginController::logout', ['as' => 'public.logout']);
+$routes->group('pub', ['filter' => 'loginCheck'], function($routes)
+{
+    $routes->get('home', 'Public\HomeController::index', ['as' => 'public.home.index']);
+});
 
 // PUBLIC ROUTES END
 
@@ -72,7 +75,7 @@ $routes->get('/company/login', 'Company\LoginController::index', ['as' => 'compa
 $routes->post('/company/login', 'Company\LoginController::login', ['as' => 'company.login.verify']);
 $routes->get('/company/logout', 'Company\LoginController::logout', ['as' => 'company.logout']);
 
-$routes->group('company', function($routes)
+$routes->group('company', ['filter' => 'loginCheck'], function($routes)
 {
     $routes->get('home', 'Company\HomeController::index', ['as' => 'company.home.index']);
 });

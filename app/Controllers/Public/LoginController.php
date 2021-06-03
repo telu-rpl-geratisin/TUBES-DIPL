@@ -42,7 +42,7 @@ class LoginController extends BaseController
         	return redirect()->back()->withInput();
         }
 
-        $this->session->set('auth', true);
+        $this->session->set('auth_pub', true);
         $this->session->set('username', $user['username']);
 
         return redirect('public.home.index');
