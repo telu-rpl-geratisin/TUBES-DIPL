@@ -23,27 +23,27 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Silakan Login </p>
-    <?php 
-        $errors = session()->getFlashdata('errors');
-        if (!empty($errors)) { ?>
-        <div class="alert alert-danger alert-dismissible">
-        <ul>
-        <?php foreach ($errors as $key => $value) { ?>
-           <li> <?= esc($value) ?> </li>
-        <?php } ?>
-        </ul>
-        </div>
-    <?php } ?>
-    <?php 
-        if (session()->getFlashdata('pesan')){
-            echo '<div class ="alert alert-danger alert-dismissible">';
-            echo session()->getFlashdata('pesan');
-            echo '</div>';
-        }
-    ?>
-    <?php echo form_open('Login/login') ?>
+        <?php 
+            $val_errors = session('val_errors');
+            $data_error = session('data_error');
+        ?>
+        <?php if(!is_null($val_errors)): ?>
+            <div class="alert alert-danger alert-dismissible">
+                <ul>
+                    <?php foreach ($val_errors as $value): ?>
+                       <li> <?= esc($value) ?> </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+        <?php if(!is_null($data_error)): ?>
+            <div class="alert alert-danger alert-dismissible">
+                <?= $data_error; ?>
+            </div>
+        <?php endif; ?>
+    <?= form_open('/login') ?>
         <div class="input-group mb-3">
-          <input type="Username" name="username" class="form-control" placeholder="username">
+          <input type="text" name="username" class="form-control" placeholder="username" value="<?= old('username'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="password">
+          <input type="password" name="password" class="form-control" placeholder="password" value="<?= old('password'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -73,7 +73,6 @@
           </div>
           <!-- /.col -->
         </div>
-    <?php echo form_close() ?>
       </form>
       <p class="mb-1">
         <a href="forgot-password.html">I forgot my password</a>

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\Public;
 
 use App\Controllers\BaseController;
-use App\Models\Adminuser;
+use App\Models\Publicuser;
 use Config\Validation;
 
 class LoginController extends BaseController
@@ -13,10 +13,9 @@ class LoginController extends BaseController
 		helper('form');
 
 		$data = array(
-			'title' => 'Login Admin',
+			'title' => 'Login',
 		);
-
-		return view('admin\v_login_admin',$data);
+		return view('pengguna\v_login',$data);
 	}
 
     public function login()
@@ -32,7 +31,7 @@ class LoginController extends BaseController
 			return redirect()->back()->withInput();
         }
 
-        $user = Adminuser::ins()->where('username', $data['username'])->first();
+        $user = Publicuser::ins()->where('username', $data['username'])->first();
 
         if(is_null($user))
         {
@@ -49,13 +48,13 @@ class LoginController extends BaseController
         $this->session->set('auth', true);
         $this->session->set('username', $user['username']);
 
-        return redirect('admin.dashboard');
+        return redirect('public.home.index');
 	}
 
     public function logout()
     {
         $this->session->destroy();
         
-        return redirect('admin.login.index');
+        return redirect('public.login.index');
     }
 }

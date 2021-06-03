@@ -55,6 +55,30 @@ $routes->group('admin', function($routes)
 
 // ADMIN ROUTES END
 
+
+// PUBLIC ROUTES START
+
+$routes->get('/login', 'Public\LoginController::index', ['as' => 'public.login.index']);
+$routes->post('/login', 'Public\LoginController::login', ['as' => 'public.login.verify']);
+$routes->get('/logout', 'Public\LoginController::logout', ['as' => 'public.logout']);
+$routes->get('/home', 'Public\HomeController::index', ['as' => 'public.home.index']);
+
+// PUBLIC ROUTES END
+
+
+// COMPANY ROUTES START
+
+$routes->get('/company/login', 'Company\LoginController::index', ['as' => 'company.login.index']);
+$routes->post('/company/login', 'Company\LoginController::login', ['as' => 'company.login.verify']);
+$routes->get('/company/logout', 'Company\LoginController::logout', ['as' => 'company.logout']);
+
+$routes->group('company', function($routes)
+{
+    $routes->get('home', 'Company\HomeController::index', ['as' => 'company.home.index']);
+});
+
+// COMPANY ROUTES END
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
