@@ -1,63 +1,76 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Model_Login;
 
-use App\Models\PenggunaAdminModel;
-// use App\Models\PenggunaPublikModel;
-// use App\Models\PenggunaPerusahaanModel;
-use CodeIgniter\Controller;
-
-// perubahan
-
-class Login extends BaseController {
-	public function index() {
-		$data['title'] = 'Login';
-
-		return view('login/index', $data);
+class Login extends BaseController
+{
+	
+    public function __construct()
+	{
+		helper('form');
+        $this->Model_Login= new Model_Login(); 
+	}
+    public function index()
+	{
+        
+		$data = array(
+			'title' => 'Login',
+		);
+		return view('pengguna\v_login',$data);
 	}
 
-	public function verify() {
-		if ($this->request->getMethod() === 'post') {
-			$post_data = [
-				'tipe_pengguna' => $this->request->getPost('tipe_pengguna'),
-				'username' => $this->request->getPost('username'),
-				'user_password' => $this->request->getPost('password')
-			];
-
-			switch ($post_data['tipe_pengguna']) {
-				case 'admin':
-					$model = new PenggunaAdminModel();
-					break;
-				// case 'perusahaan':
-				// 	$model = new PenggunaPerusahaanModel();
-				// 	break;
-				// case 'publik':
-				// 	$model = new PenggunaPublikModel();
-				// 	break;
-				default:
-					echo "failed login: tipe_pengguna not match";
-					// var_dump($post_data);
-					exit();
-			}
-			
-			$user = $model->getByUsername($post_data['username']);
-			
-			if( $user['user_password'] == $post_data['user_password'] ) {
-				$this->session->set('username', $user['username']);
-				$this->session->set('user_fullname', $user['nama_depan'].' '.$user['nama_belakang']);
-				$this->session->set('auth_login', true);
-
-				// echo "success login, ".$this->session->get('username');
-				return redirect()->to('/admin/dashboard');
-			}	else {
-				echo "failed login";
-			}
-		}
+    public function login()
+	{
+        if($this->validate([
+            'username' => [
+                'label' => 'Username', 
+                'rules' => 'required', 
+                'errors' => [
+                    'required' => '{field} wajib isi !!!'
+                ]
+            ],
+            'password' => [
+                'label' => 'Password', 
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib isi !!!'
+                ]
+            ]
+        ])) {
+            //jika valid
+            $username = $this->request->getPost('username');
+            $password = $this->request->getPost('password');
+            $cek = $this->Model_Login->login($username,$password);
+            if ($cek){
+                //jika data cocok 
+                session()->set('auth', true);
+                session()->set('username',$cek['username']);
+                return redirect()->to(base_url('home'));
+            } else {
+                session()->setFlashdata('pesan', 'Login Gagal,Username atau Password anda salah');
+                return redirect()->to(base_url('Login/index'));
+            }
+        }else{
+            //jika tidak valid 
+            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
+            return redirect()->to(base_url('Login/index'));
+        }
 	}
 
-	public function logout() {
-		$this->session->destroy();
+    public function logout(){
+        session()->destroy();
 
-		return redirect()->to('/login');
-	}
+        return redirect()->to(base_url('/Login/index'));
+    }
+
+    public function Daftar(){
+        $data = array(
+			'title' => 'Daftar Pengguna',
+			'isi' => 'pengguna\v_daftar_pengguna'
+		);
+		return view('layout_polos/v_wraper',$data);
+    }
+
+  
 }

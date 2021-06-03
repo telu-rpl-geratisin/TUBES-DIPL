@@ -3,40 +3,58 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\Admin\UserModel;
+use App\Models\Adminuser;
 
 class LoginController extends BaseController
 {
-	public function showLogin()
+    public function index()
 	{
-		return view('admin/login');
+		helper('form');
+
+		$data = array(
+			'title' => 'Login Admin',
+		);
+
+		return view('admin\v_login_admin',$data);
 	}
 
-	public function login()
+    public function login()
 	{
-		$username = $this->request->getPost('username');
-		$password = $this->request->getPost('password');
+		$data['username'] = $this->request->getPost('username');
+        $data['password'] = $this->request->getPost('password');
 
-		$user = UserModel::ins()->where('username', $username)
-			->first();
+		$valid = $this->validation->run($data, 'login');
 
-		if( !$user ) {
-			$this->session->setFlashdata('error', 'Username tidak terdaftar!');
+        if(!$valid)
+        {
+        	$this->session->setFlashdata('val_errors', $this->validation->getErrors());	
 			return redirect()->back()->withInput();
-		}
+        }
 
-		if( $password !== $user['password'])
-		{
-			$this->session->setFlashdata('error', 'Password salah!');
-			return redirect()->back()->withInput();
-		}
+        $user = Adminuser::ins()->where('username', $data['username'])->first();
 
-		// set session data
-		$this->session->set('username', $user['username']);
-		$this->session->set('user_fullname', $user['first_name'].' '.$user['last_name']);
-		$this->session->set('auth_login', true);
+        if(is_null($user))
+        {
+        	$this->session->setFlashdata('data_error', 'Username salah');
+        	return redirect()->back()->withInput();
+        }
 
-		return 'sucessfully sign in';
+        if($user['password'] !== $data['password'])
+        {
+        	$this->session->setFlashdata('data_error', 'Password salah');
+        	return redirect()->back()->withInput();
+        }
 
+        $this->session->set('auth', true);
+        $this->session->set('username', $user['username']);
+
+        return redirect('admin.dashboard');
 	}
+
+    public function logout()
+    {
+        $this->session->destroy();
+        
+        return redirect('admin.login.index');
+    }
 }

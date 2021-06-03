@@ -18,11 +18,11 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Login');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(false);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -32,47 +32,52 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Login::index');
-$routes->get('/login', 'Login::index');
-$routes->get('/logout', 'Login::logout');
+$routes->get('/Login', 'Login::index');
 
-// admin routes
-$routes->get('/admin/login', 'Admin\LoginController::showLogin', ['as' => 'admin.login.index']);
+// ADMIN ROUTES START
+
+$routes->get('/admin/login', 'Admin\LoginController::index', ['as' => 'admin.login.index']);
 $routes->post('/admin/login', 'Admin\LoginController::login', ['as' => 'admin.login.verify']);
+$routes->get('/admin/logout', 'Admin\LoginController::logout', ['as' => 'admin.logout']);
 
 $routes->group('admin', function($routes)
 {
+	$routes->get('dashboard', 'Admin\DashboardController::index', ['as' => 'admin.dashboard']);
+
     // manage user
     $routes->get('public', 'Admin\PublicuserController::index', ['as' => 'admin.public.index']);
     $routes->get('public/(:num)', 'Admin\PublicuserController::userDetails/$1', ['as' => 'admin.public.details']);
     $routes->post('public/delete/(:num)', 'Admin\PublicuserController::deleteUser/$1', ['as' => 'admin.public.delete']);
-
     $routes->get('company', 'Admin\CompanyuserController::index', ['as' => 'admin.company.index']);
     $routes->get('company/(:num)', 'Admin\CompanyuserController::userDetails/$1', ['as' => 'admin.company.details']);
     $routes->post('company/delete/(:num)', 'Admin\CompanyuserController::deleteUser/$1', ['as' => 'admin.company.delete']);
 });
 
-
-$routes->get('/admin', 'Admin\AdminController::index');
-$routes->get('/admin/dashboard', 'Admin\AdminController::dashboard');
-$routes->post('/admin/login/verify', 'Admin\AdminController::verify'); // handle login form
-$routes->get('/admin/logout', 'Admin\AdminController::logout');
-
-$routes->get('/admin/pengguna-publik', 'Admin\PPublikController::index');
-
-// form handler routes
-$routes->post('/login/verify', 'Login::verify');
+// ADMIN ROUTES END
 
 
-// == public routes ==
-// ...
+// PUBLIC ROUTES START
 
-// == company routes ==
-// ...
+$routes->get('/login', 'Public\LoginController::index', ['as' => 'public.login.index']);
+$routes->post('/login', 'Public\LoginController::login', ['as' => 'public.login.verify']);
+$routes->get('/logout', 'Public\LoginController::logout', ['as' => 'public.logout']);
+$routes->get('/home', 'Public\HomeController::index', ['as' => 'public.home.index']);
 
-// == admin routes ==
-// ...
+// PUBLIC ROUTES END
 
+
+// COMPANY ROUTES START
+
+$routes->get('/company/login', 'Company\LoginController::index', ['as' => 'company.login.index']);
+$routes->post('/company/login', 'Company\LoginController::login', ['as' => 'company.login.verify']);
+$routes->get('/company/logout', 'Company\LoginController::logout', ['as' => 'company.logout']);
+
+$routes->group('company', function($routes)
+{
+    $routes->get('home', 'Company\HomeController::index', ['as' => 'company.home.index']);
+});
+
+// COMPANY ROUTES END
 
 /*
  * --------------------------------------------------------------------
