@@ -10,9 +10,9 @@ class DashboardController extends BaseController
 	{
 		$data = array(
 			'title' => 'Home',
-			'admin' => 'admin/v_admin'
+			'content' => 'admin/v_dashboard'
 		);
 		
-		return view('layout_admin/v_wraper',$data);
+		return view('layout_admin/v_wrapper',$data);
 	}
 }

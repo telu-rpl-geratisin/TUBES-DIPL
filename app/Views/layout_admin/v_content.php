@@ -1,4 +1,4 @@
 <?php 
-if ($admin){
-    echo view ($admin);
+if ($content){
+    echo view ($content);
 }

@@ -15,7 +15,7 @@ class LoginController extends BaseController
 			'title' => 'Login Admin',
 		);
 
-		return view('admin\v_login_admin',$data);
+		return view('admin\v_login',$data);
 	}
 
     public function login()
