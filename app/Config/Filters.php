@@ -31,7 +31,7 @@ class Filters extends BaseConfig
 	public $globals = [
 		'before' => [
 			// 'honeypot',
-			'csrf',
+			'csrf' =>  ['except' => ['admin/public/ajax_fetch_all']]
 		],
 		'after'  => [
 			'toolbar',

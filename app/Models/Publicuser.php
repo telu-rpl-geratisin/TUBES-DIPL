@@ -76,4 +76,12 @@ class Publicuser extends Model
 
         return self::$instance;
     }
+
+    public function noticeFunction()
+    {
+        $builder = $this->db->table('public_user');
+
+        return $builder;
+    }
+
 }

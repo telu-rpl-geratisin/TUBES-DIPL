@@ -5,8 +5,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="<?= base_url('public/template/plugins/fontawesome-free/css/all.min.css') ?>">
-<!-- Ionicons -->
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- DataTables -->
 <link rel="stylesheet" href="<?= base_url('public/template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('public/template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
@@ -22,7 +20,7 @@
   </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <table id="example1" class="table table-bordered table-striped">
+    <table id="public-table" class="table table-bordered table-striped">
       <thead>
       <tr>
         <th>Username</th>
@@ -33,25 +31,7 @@
       </tr>
       </thead>
       <tbody>
-        <?php foreach ($users as $user): ?>
-          <tr>
-            <td><?= $user['username'] ?></td>
-            <td><?= $user['email'] ?></td>
-            <td><?= $user['first_name'].$user['last_name'] ?></td>
-            <td><?= $user['phone'] ?></td>
-            <td><?= $user['address'] ?></td>
-          </tr>
-        <?php endforeach; ?>
       </tbody>
-      <tfoot>
-      <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Nama Lengkap</th>
-        <th>No HP</th>
-        <th>Alamat</th>
-      </tr>
-      </tfoot>
     </table>
   </div>
   <!-- /.card-body -->
@@ -82,10 +62,16 @@
 
 <?= $this->section('custom_script') ?>
 <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true
-    });
-  });
+$( document ).ready(function() {
+	$("#public-table").DataTable({
+		processing: true,
+	    serverSide: true,
+	    responsive: true,
+	    ajax: {
+          url:"<?= base_url('admin/public/ajax_fetch_all') ?>",
+          type: "POST"
+        }
+	});
+});
 </script>
 <?= $this->endSection() ?>

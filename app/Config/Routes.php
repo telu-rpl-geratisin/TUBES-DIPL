@@ -48,10 +48,13 @@ $routes->group('admin', ['filter' => 'loginCheck'], function($routes)
     $routes->get('public', 'Admin\PublicuserController::index', ['as' => 'admin.public.index']);
     $routes->get('public/(:num)', 'Admin\PublicuserController::userDetails/$1', ['as' => 'admin.public.details']);
     $routes->post('public/delete/(:num)', 'Admin\PublicuserController::deleteUser/$1', ['as' => 'admin.public.delete']);
+
     $routes->get('company', 'Admin\CompanyuserController::index', ['as' => 'admin.company.index']);
     $routes->get('company/(:num)', 'Admin\CompanyuserController::userDetails/$1', ['as' => 'admin.company.details']);
     $routes->post('company/delete/(:num)', 'Admin\CompanyuserController::deleteUser/$1', ['as' => 'admin.company.delete']);
 });
+
+$routes->post('admin/public/ajax_fetch_all', 'Admin\PublicuserController::ajaxFetchAll');
 
 // ADMIN ROUTES END
 
