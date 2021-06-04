@@ -77,11 +77,30 @@ class Publicuser extends Model
         return self::$instance;
     }
 
-    public function noticeFunction()
+    public function noticeTable()
     {
-        $builder = $this->db->table('public_user');
+        $builder = $this->db->table($this->table);
 
         return $builder;
     }
+
+    // public function initTable()
+    // {
+    //     $builder = $this->db->table($this->table);
+    //     $settings = [
+    //         'setTable' => $builder,
+    //         'setSearch' => ['username', 'email', 'first_name', 'phone', 'address'],
+    //         'setOrder' => ['username', 'email', 'first_name', 'phone', 'address', null],
+    //         'setOutput' => [
+    //             'username', 'email', 'first_name', 'phone', 'address',
+    //             function($row)
+    //             {
+    //                 return '<button class="btn btn-primary">{$row["id"]}</button>';
+    //             }
+    //         ]
+    //     ];
+
+    //     return $setting;
+    // }
 
 }

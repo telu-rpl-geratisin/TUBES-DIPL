@@ -28,10 +28,9 @@
         <th>Nama Lengkap</th>
         <th>No HP</th>
         <th>Alamat</th>
+        <th>Aksi</th>
       </tr>
       </thead>
-      <tbody>
-      </tbody>
     </table>
   </div>
   <!-- /.card-body -->
@@ -64,6 +63,11 @@
 <script>
 $( document ).ready(function() {
 	$("#public-table").DataTable({
+        aoColumnDefs: [{ 
+            bSortable: false,
+            aTargets: [ 5 ] 
+        }],
+        order: [],
 		processing: true,
 	    serverSide: true,
 	    responsive: true,

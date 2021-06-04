@@ -17,16 +17,22 @@ class PublicuserController extends BaseController
 
     public function ajaxFetchAll()
     {
-        $publicModel = new Publicuser();
-        $data_table = new TablesIgniter();
+        $model = new Publicuser();
+        $table = new TablesIgniter();
 
-        $data_table->setTable($publicModel->noticeFunction())
+        $table->setTable($model->noticeTable())
             ->setDefaultOrder('username', 'DESC')
             ->setSearch(['username', 'email', 'first_name', 'phone', 'address'])
-            ->setOrder(['username', 'email', 'first_name', 'phone', 'address'])
-            ->setOutput(['username', 'email', 'first_name', 'phone', 'address']);
+            ->setOrder(['username', 'email', 'first_name', 'phone', 'address', null])
+            ->setOutput([
+                'username', 'email', 'first_name', 'phone', 'address', 
+                function($row)
+                {
+                    return '<button class="btn btn-outline-info">'.$row["id"].'</button>';
+                }
+            ]);
 
-        return $data_table->getDatatable();
+        return $table->getDatatable();
     }
 
 	public function userDetails($id)
