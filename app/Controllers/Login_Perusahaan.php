@@ -48,6 +48,13 @@ class Login_Perusahaan extends BaseController
                 session()->set('id_perusahaan',$cek['id_perusahaan']);
                 session()->set('username',$cek['username']);
                 session()->set('password',$cek['password']);
+                session()->set('nama_perusahaan',$cek['nama_perusahaan']);
+                session()->set('deskripsi',$cek['deskripsi']);
+                session()->set('kode_pos',$cek['kode_pos']);
+                session()->set('contact_person',$cek['contact_person']);
+                session()->set('rating',$cek['rating']);
+                session()->set('alamat',$cek['alamat']);
+                session()->set('created_at',$cek['created_at']);
                 return redirect()->to(base_url('Perusahaan  '));
             } else {
                 session()->setFlashdata('pesan', 'Login Gagal,Username atau Password anda salah');
@@ -66,7 +73,7 @@ class Login_Perusahaan extends BaseController
         session()->remove('username');
 
         session()->setFlashdata('pesan', 'anda telah logout');
-        return redirect()->to(base_url('/Login_Perusahaan/index'));
+        return redirect()->to(base_url('Login_Pengguna'));
     }
 
   
