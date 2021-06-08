@@ -4,30 +4,36 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\Companyuser;
+use monken\TablesIgniter;
 
 class CompanyuserController extends BaseController
 {
     public function index()
     {
-        $users = Companyuser::ins()->findAll();
-
         return view('admin/company', [
-            'title' => 'Pengguna Perusahaan',
-            'users' => $users
+            'title' => 'Pengguna Perusahaan'
         ]);
     }
 
-    public function userDetails($id)
+    public function ajaxFetchAll()
     {
-        $user = Companyuser::ins()->find($id);
+        $model = new Companyuser();
+        $table = new TablesIgniter();
 
-        dd($user);
-    }
+        $table->setTable($model->noticeTable())
+            ->setDefaultOrder('username', 'DESC')
+            ->setSearch(['username', 'email', 'company_name', 'contact'])
+            ->setOrder(['username', 'email', 'company_name'])
+            ->setOutput([
+                'username', 'email', 'company_name', 'contact', 
+                function($row)
+                {
+                    $buttonInfo = '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#companyInfoModal" data-company-id="'.$row["id"].'"><i class="fas fa-info-circle"></i> Info</button>';
+                    $buttonDel = '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmModal" data-company-id="'.$row["id"].'" data-username="'.$row["username"].'"><i class="fas fa-trash"></i> Delete</button>';
+                    return  $buttonInfo.' '.$buttonDel;
+                }
+            ]);
 
-    public function deleteUser($id)
-    {
-        $res = Companyuser::ins()->delete($id);
-
-        dd($res);
+        return $table->getDatatable();
     }
 }

@@ -55,6 +55,7 @@ $routes->group('admin', ['filter' => 'loginCheck'], function($routes)
 });
 
 $routes->post('admin/public/ajax_fetch_all', 'Admin\PublicuserController::ajaxFetchAll');
+$routes->post('admin/company/ajax_fetch_all', 'Admin\CompanyuserController::ajaxFetchAll');
 
 // ADMIN ROUTES END
 
@@ -90,6 +91,10 @@ $routes->group('company', ['filter' => 'loginCheck'], function($routes)
 $routes->get('api/public_user', 'Resource\PublicUser::index');
 $routes->get('api/public_user/(:num)', 'Resource\PublicUser::show/$1');
 $routes->delete('api/public_user/(:num)', 'Resource\PublicUser::delete/$1');
+
+$routes->get('api/company_user', 'Resource\CompanyUser::index');
+$routes->get('api/company_user/(:num)', 'Resource\CompanyUser::show/$1');
+$routes->delete('api/company_user/(:num)', 'Resource\CompanyUser::delete/$1');
 
 /*
  * --------------------------------------------------------------------

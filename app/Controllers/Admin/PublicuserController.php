@@ -23,7 +23,7 @@ class PublicuserController extends BaseController
         $table->setTable($model->noticeTable())
             ->setDefaultOrder('username', 'DESC')
             ->setSearch(['username', 'email', 'first_name', 'last_name', 'phone'])
-            ->setOrder(['username', 'email', 'first_name', 'last_name', 'phone', null])
+            ->setOrder(['username', 'email', 'first_name', 'last_name', null, null])
             ->setOutput([
                 'username', 'email',
                 function($row)
@@ -40,19 +40,5 @@ class PublicuserController extends BaseController
             ]);
 
         return $table->getDatatable();
-    }
-
-	public function userDetails($id)
-    {
-        $user = Publicuser::ins()->find($id);
-
-        dd($user);
-    }
-
-    public function deleteUser($id)
-    {
-        $res = Publicuser::ins()->delete($id);
-
-        dd($res);
     }
 }

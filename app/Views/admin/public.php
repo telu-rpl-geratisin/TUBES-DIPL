@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="<?= base_url('public/template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('public/template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('public/template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>">
-<!-- Toastr -->
-<link rel="stylesheet" href="<?= base_url('public/template/plugins/toastr/toastr.min.css') ?>">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?= base_url('public/template/dist/css/adminlte.min.css') ?>">
 <?= $this->endSection() ?>
@@ -51,9 +49,6 @@
 <div id="userInfoModal" class="modal fade" tabindex="-1" aria-labelledby="userInfoModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-        <div class="overlay d-flex justify-content-center align-items-center" style="visibility: hidden">
-            <i class="fas fa-2x fa-sync fa-spin"></i>
-        </div>
         <div class="modal-header">
             <h5 class="modal-title" id="userInfoModalLabel">Detail Pengguna</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -93,9 +88,6 @@
 <div id="deleteConfirmModal" class="modal fade" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-        <div class="overlay d-flex justify-content-center align-items-center" style="visibility: hidden">
-            <i class="fas fa-2x fa-sync fa-spin"></i>
-        </div>
         <div class="modal-header">
             <h5 class="modal-title" id="deleteConfirmModalLabel">Konfirmasi</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -103,7 +95,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <p>Apakah anda yakin ingin menghapus pengguna dengan username <span id="dc-username">USERNAME</span>?</p>
+            <p>Apakah anda yakin ingin menghapus pengguna <span id="dc-username">USERNAME</span>?</p>
         </div>
         <div class="modal-footer">
             <button id="cancel-delete" type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
@@ -143,7 +135,7 @@ $( document ).ready(function() {
     const table = $("#public-table").DataTable({
         aoColumnDefs: [{ 
             bSortable: false,
-            aTargets: [ 4 ] 
+            aTargets: [ 3, 4 ] 
         }],
         order: [],
         processing: true,

@@ -15,6 +15,16 @@
 <link rel="stylesheet" href="<?= base_url('public/template/dist/css/adminlte.min.css') ?>">
 <?= $this->endSection() ?>
 
+<?= $this->section('custom_style') ?>
+<style type="text/css">
+    #company-detail-table th,
+    #company-detail-table td {
+        padding: .5rem;
+    }
+
+</style>
+<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
 <div class="card">
   <div class="card-header">
@@ -22,39 +32,79 @@
   </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <table id="example1" class="table table-bordered table-striped">
+    <table id="company-table" class="table table-bordered table-striped">
       <thead>
       <tr>
         <th>Username</th>
         <th>Email</th>
         <th>Nama Perusahaan</th>
         <th>Kontak</th>
-        <th>Alamat</th>
+        <th>Aksi</th>
       </tr>
       </thead>
-      <tbody>
-        <?php foreach ($users as $user): ?>
-          <tr>
-            <td><?= $user['username'] ?></td>
-            <td><?= $user['email'] ?></td>
-            <td><?= $user['company_name'] ?></td>
-            <td><?= $user['contact'] ?></td>
-            <td><?= $user['address'] ?></td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-      <tfoot>
-      <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Nama Lengkap</th>
-        <th>No HP</th>
-        <th>Alamat</th>
-      </tr>
-      </tfoot>
     </table>
   </div>
   <!-- /.card-body -->
+</div>
+
+<!-- Modals -->
+<div id="companyInfoModal" class="modal fade" tabindex="-1" aria-labelledby="companyInfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="companyInfoModalLabel">Detail Pengguna</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <table id="company-detail-table">
+                <tr>
+                    <th>Username</th>
+                    <td id="cd-username"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td id="cd-email"></td>
+                </tr>
+                <tr>
+                    <th>Nama Perusahaan</th>
+                    <td id="cd-name"></td>
+                </tr>
+                <tr>
+                    <th>Kontak</th>
+                    <td id="cd-contact"></td>
+                </tr>
+                <tr>
+                    <th>Alamat</th>
+                    <td id="cd-address"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        </div>
+    </div>
+  </div>
+</div>
+<div id="deleteConfirmModal" class="modal fade" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="deleteConfirmModalLabel">Konfirmasi</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Apakah anda yakin ingin menghapus perusahaan <span id="dc-username">USERNAME</span>?</p>
+        </div>
+        <div class="modal-footer">
+            <button id="cancel-delete" type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
+            <button id="confirm-delete" type="button" class="btn btn-danger" data-dismiss="modal">Ya</button>
+        </div>
+    </div>
+  </div>
 </div>
 <?= $this->endSection() ?>
 
@@ -82,10 +132,71 @@
 
 <?= $this->section('custom_script') ?>
 <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true
+$( document ).ready(function() {
+
+    const table = $("#company-table").DataTable({
+        aoColumnDefs: [{ 
+            bSortable: false,
+            aTargets: [ 3, 4 ] 
+        }],
+        order: [],
+        processing: true,
+        serverSide: true,
+        responsive: true,
+        ajax: {
+          url:"<?= base_url('admin/company/ajax_fetch_all') ?>",
+          type: "POST"
+        }
     });
-  });
+    
+    $('#companyInfoModal').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget) // Button that triggered the modal
+        let companyId = button.data('company-id') // Extract info from data-* attributes
+        let modal = $(this);
+
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        $.ajax({
+            async: false,
+            url: "<?= base_url() ?>"+"/api/company_user/"+companyId, 
+            success: function(result){
+                let companyData = result;
+                modal.find('.modal-body #cd-username').text(companyData.username);
+                modal.find('.modal-body #cd-email').text(companyData.email);
+                modal.find('.modal-body #cd-name').text(companyData.company_name);
+                modal.find('.modal-body #cd-contact').text(companyData.contact);
+                modal.find('.modal-body #cd-address').text(companyData.address);
+                console.log(result);
+            }    
+        });
+    });
+
+    $('#deleteConfirmModal').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget) // Button that triggered the modal
+        let companyId = button.data('company-id') // Extract info from data-* attributes
+        let username = button.data('username');
+
+        let modal = $(this);
+        modal.find('.modal-body #dc-username').text(username);
+
+        modal.find('.modal-footer #confirm-delete').click(function(){
+            $.ajax({
+                async: false,
+                url: "<?= base_url() ?>"+"/api/company_user/"+companyId,
+                type: "DELETE",
+                success: function(result){
+                    console.log(result);
+                }    
+            });
+            $(document).Toasts('create', {
+                class: 'bg-success', 
+                title: 'Pesan',
+                body: 'Hapus data telah berhasil.',
+                autohide: true,
+                delay: 5000,
+            });
+            table.ajax.reload();
+        });
+    });
+});
 </script>
 <?= $this->endSection() ?>

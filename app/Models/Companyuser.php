@@ -38,4 +38,11 @@ class Companyuser extends Model
 
         return self::$instance;
     }
+
+    public function noticeTable()
+    {
+        $builder = $this->db->table($this->table);
+
+        return $builder;
+    }
 }

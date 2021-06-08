@@ -32,7 +32,7 @@ class Filters extends BaseConfig
 		'before' => [
 			// 'honeypot',
 			'csrf' =>  ['except' => [
-										'admin/public/ajax_fetch_all',
+										'admin/*/ajax_fetch_all',
 										'api/*'
 									]]
 		],
