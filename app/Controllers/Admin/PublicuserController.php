@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\Publicuser;
+use App\Models\User;
 use monken\TablesIgniter;
 
 class PublicuserController extends BaseController
@@ -17,24 +17,22 @@ class PublicuserController extends BaseController
 
     public function ajaxFetchAll()
     {
-        $model = new Publicuser();
+        $model = new User();
         $table = new TablesIgniter();
 
-        $table->setTable($model->noticeTable())
+        $table->setTable(
+                $model->noticeTable()
+                    ->where('type', 'public')
+            )
             ->setDefaultOrder('username', 'DESC')
-            ->setSearch(['username', 'email', 'first_name', 'last_name', 'phone'])
-            ->setOrder(['username', 'email', 'first_name', 'last_name', null, null])
+            ->setSearch(['username', 'email', 'name', 'contact'])
+            ->setOrder(['username', 'email', 'name'])
             ->setOutput([
-                'username', 'email',
-                function($row)
-                {
-                    return $row["first_name"]." ".$row["last_name"];
-                }
-                , 'phone', 
+                'username', 'email', 'name', 'contact', 
                 function($row)
                 {
                     $buttonInfo = '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#userInfoModal" data-user-id="'.$row["id"].'"><i class="fas fa-info-circle"></i> Info</button>';
-                    $buttonDel = '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmModal" data-user-id="'.$row["id"].'" data-username="'.$row["username"].'"><i class="fas fa-trash"></i> Delete</button>';
+                    $buttonDel = '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmModal" data-user-id="'.$row["id"].'" data-name="'.$row["name"].'"><i class="fas fa-trash"></i> Delete</button>';
                     return  $buttonInfo.' '.$buttonDel;
                 }
             ]);

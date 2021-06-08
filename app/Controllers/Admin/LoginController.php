@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\Adminuser;
+use App\Models\User;
 
 class LoginController extends BaseController
 {
@@ -27,7 +27,10 @@ class LoginController extends BaseController
 			return redirect()->back()->withInput();
         }
 
-        $user = Adminuser::ins()->where('username', $data['username'])->first();
+        $user = User::ins()
+            ->where('type', 'admin')
+            ->where('username', $data['username'])
+            ->first();
 
         if(is_null($user))
         {
@@ -43,7 +46,7 @@ class LoginController extends BaseController
 
         $this->session->set('auth_admin', true);
         $this->session->set('username', $user['username']);
-        $this->session->set('name', $user['first_name']);
+        $this->session->set('name', $user['name']);
 
         return redirect('admin.dashboard');
 	}

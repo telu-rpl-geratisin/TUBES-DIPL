@@ -36,7 +36,7 @@
         <th>Username</th>
         <th>Email</th>
         <th>Nama Lengkap</th>
-        <th>No HP</th>
+        <th>Kontak</th>
         <th>Aksi</th>
       </tr>
       </thead>
@@ -70,8 +70,8 @@
                     <td id="ud-fullname"></td>
                 </tr>
                 <tr>
-                    <th>No HP</th>
-                    <td id="ud-phone"></td>
+                    <th>Kontak</th>
+                    <td id="ud-contact"></td>
                 </tr>
                 <tr>
                     <th>Alamat</th>
@@ -95,7 +95,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <p>Apakah anda yakin ingin menghapus pengguna <span id="dc-username">USERNAME</span>?</p>
+            <p>Apakah anda yakin ingin menghapus pengguna <span id="dc-name">NAME</span>?</p>
         </div>
         <div class="modal-footer">
             <button id="cancel-delete" type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
@@ -155,13 +155,13 @@ $( document ).ready(function() {
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         $.ajax({
             async: false,
-            url: "<?= base_url() ?>"+"/api/public_user/"+userId, 
+            url: "<?= base_url() ?>"+"/api/user/"+userId, 
             success: function(result){
                 let userData = result;
                 modal.find('.modal-body #ud-username').text(userData.username);
                 modal.find('.modal-body #ud-email').text(userData.email);
-                modal.find('.modal-body #ud-fullname').text(userData.first_name+' '+userData.last_name);
-                modal.find('.modal-body #ud-phone').text(userData.phone);
+                modal.find('.modal-body #ud-fullname').text(userData.name);
+                modal.find('.modal-body #ud-contact').text(userData.contact);
                 modal.find('.modal-body #ud-address').text(userData.address);
                 console.log(result);
             }    
@@ -171,15 +171,15 @@ $( document ).ready(function() {
     $('#deleteConfirmModal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget) // Button that triggered the modal
         let userId = button.data('user-id') // Extract info from data-* attributes
-        let username = button.data('username');
+        let name = button.data('name');
 
         let modal = $(this);
-        modal.find('.modal-body #dc-username').text(username);
+        modal.find('.modal-body #dc-name').text(name);
 
         modal.find('.modal-footer #confirm-delete').click(function(){
             $.ajax({
                 async: false,
-                url: "<?= base_url() ?>"+"/api/public_user/"+userId,
+                url: "<?= base_url() ?>"+"/api/user/"+userId,
                 type: "DELETE",
                 success: function(result){
                     console.log(result);

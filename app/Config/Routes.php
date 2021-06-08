@@ -88,13 +88,11 @@ $routes->group('company', ['filter' => 'loginCheck'], function($routes)
 
 // api routes
 
-$routes->get('api/public_user', 'Resource\PublicUser::index');
-$routes->get('api/public_user/(:num)', 'Resource\PublicUser::show/$1');
-$routes->delete('api/public_user/(:num)', 'Resource\PublicUser::delete/$1');
+$routes->get('api/user/public', 'Resource\User::getPublic');
+$routes->get('api/user/company', 'Resource\User::getCompany');
 
-$routes->get('api/company_user', 'Resource\CompanyUser::index');
-$routes->get('api/company_user/(:num)', 'Resource\CompanyUser::show/$1');
-$routes->delete('api/company_user/(:num)', 'Resource\CompanyUser::delete/$1');
+$routes->get('api/user/(:num)', 'Resource\User::show/$1');
+$routes->delete('api/user/(:num)', 'Resource\User::delete/$1');
 
 /*
  * --------------------------------------------------------------------

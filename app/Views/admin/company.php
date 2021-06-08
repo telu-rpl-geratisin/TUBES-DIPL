@@ -97,7 +97,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <p>Apakah anda yakin ingin menghapus perusahaan <span id="dc-username">USERNAME</span>?</p>
+            <p>Apakah anda yakin ingin menghapus perusahaan <span id="dc-name">NAME</span>?</p>
         </div>
         <div class="modal-footer">
             <button id="cancel-delete" type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
@@ -157,12 +157,12 @@ $( document ).ready(function() {
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         $.ajax({
             async: false,
-            url: "<?= base_url() ?>"+"/api/company_user/"+companyId, 
+            url: "<?= base_url() ?>"+"/api/user/"+companyId, 
             success: function(result){
                 let companyData = result;
                 modal.find('.modal-body #cd-username').text(companyData.username);
                 modal.find('.modal-body #cd-email').text(companyData.email);
-                modal.find('.modal-body #cd-name').text(companyData.company_name);
+                modal.find('.modal-body #cd-name').text(companyData.name);
                 modal.find('.modal-body #cd-contact').text(companyData.contact);
                 modal.find('.modal-body #cd-address').text(companyData.address);
                 console.log(result);
@@ -173,15 +173,15 @@ $( document ).ready(function() {
     $('#deleteConfirmModal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget) // Button that triggered the modal
         let companyId = button.data('company-id') // Extract info from data-* attributes
-        let username = button.data('username');
+        let name = button.data('name');
 
         let modal = $(this);
-        modal.find('.modal-body #dc-username').text(username);
+        modal.find('.modal-body #dc-name').text(name);
 
         modal.find('.modal-footer #confirm-delete').click(function(){
             $.ajax({
                 async: false,
-                url: "<?= base_url() ?>"+"/api/company_user/"+companyId,
+                url: "<?= base_url() ?>"+"/api/user/"+companyId,
                 type: "DELETE",
                 success: function(result){
                     console.log(result);

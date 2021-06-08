@@ -4,17 +4,21 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddPublicUser extends Migration
+class User extends Migration
 {
 	public function up()
 	{
-        $this->forge->addField([
+		$this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true
             ],
+            'type' => [
+                'type'           => 'ENUM',
+                'constraint'     => ['admin', 'public', 'company']
+        	],
             'username' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255'
@@ -27,15 +31,11 @@ class AddPublicUser extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255'
             ],
-            'first_name' => [
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255'
             ],
-            'last_name' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255'
-            ],
-            'phone' => [
+            'contact' => [
                 'type' => 'INT',
                 'constraint' => '15',
                 'null' => true
@@ -44,6 +44,10 @@ class AddPublicUser extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => true
+            ],
+            'postal_code' => [
+                'type' => 'INT',
+                'constraint' => '10'
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -56,11 +60,11 @@ class AddPublicUser extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('public_user');
+        $this->forge->createTable('user');
 	}
 
 	public function down()
 	{
-        $this->forge->dropTable('public_user');
+		$this->forge->dropTable('user');
 	}
 }

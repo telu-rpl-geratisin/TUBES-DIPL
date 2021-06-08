@@ -4,14 +4,19 @@ namespace App\Controllers\Resource;
 
 use CodeIgniter\RESTful\ResourceController;
 
-class PublicUser extends ResourceController
+class User extends ResourceController
 {
-    protected $modelName = 'App\Models\Publicuser';
+    protected $modelName = 'App\Models\User';
     protected $format    = 'json';
 
-    public function index()
+    public function getPublic()
     {
-        return $this->respond($this->model->findAll());
+        return $this->respond($this->model->where('type', 'public')->findAll());
+    }
+
+    public function getCompany()
+    {
+        return $this->respond($this->model->where('type', 'company')->findAll());
     }
 
     public function show($id = null)

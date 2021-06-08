@@ -13,8 +13,12 @@ class DashboardController extends BaseController
 		$db = Database::connect();
 
 		// $scholarship_count = $db->table('scholarship')->countAll();
-		$public_count = $db->table('public_user')->countAll();
-		$company_count = $db->table('company_user')->countAll();
+		$public_count = $db->table('user')
+			->where('type', 'public')
+			->countAllResults();
+		$company_count = $db->table('user')
+			->where('type', 'company')
+			->countAllResults();
 		
 		return view('admin/dashboard', [
 			'title' => 'Dashboard',

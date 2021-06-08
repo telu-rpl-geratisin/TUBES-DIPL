@@ -4,43 +4,34 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddCompanyUser extends Migration
+class AddScholarship extends Migration
 {
 	public function up()
 	{
-        $this->forge->addField([
+		$this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true
             ],
-            'username' => [
+            'user_id' => [
+                'type'       => 'INT',
+                'unsigned' => true
+            ],
+            'name' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255'
             ],
-            'email' => [
+            'description' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
+            'end_date' => [
+                'type'       => 'DATE'
+            ],
+            'link' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255'
-            ],
-            'password' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255'
-            ],
-            'company_name' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255'
-            ],
-            'address' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255'
-            ],
-            'postal_code' => [
-                'type' => 'INT',
-                'constraint' => '10'
-            ],
-            'contact' => [
-                'type' => 'VARCHAR',
                 'constraint' => '255'
             ],
             'created_at' => [
@@ -54,11 +45,12 @@ class AddCompanyUser extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('company_user');
+        $this->forge->addForeignKey('user_id', 'user', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('scholarship');
 	}
 
 	public function down()
 	{
-        $this->forge->dropTable('company_user');
+		$this->forge->dropTable('scholarship');
 	}
 }

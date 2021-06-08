@@ -4,19 +4,19 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Publicuser extends Model
+class User extends Model
 {
     private static $instance = null;
 
     protected $DBGroup              = 'default';
-    protected $table                = 'public_user';
+    protected $table                = 'user';
     protected $primaryKey           = 'id';
     protected $useAutoIncrement     = true;
     protected $insertID             = 0;
     protected $returnType           = 'array';
     protected $useSoftDelete        = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['username', 'email', 'password', 'first_name', 'last_name', 'phone', 'address'];
+    protected $allowedFields        = ['type', 'username', 'email', 'password', 'name', 'contact', 'address', 'postal_code'];
 
     // Dates
     protected $useTimestamps        = true;
@@ -30,9 +30,7 @@ class Publicuser extends Model
         'email'        => 'required|valid_email|is_unique[admin_user.email]',
         'password'     => 'required|min_length[8]',
         'pass_confirm' => 'required_with[password]|matches[password]',
-        'first_name'   => 'required|alpha',
-        'last_name'    => 'required|alpha',
-        'phone' 	   => 'numeric'
+        'name'   => 'required|alpha'
     ];
     protected $validationMessages   = [
         'username' => [
@@ -53,16 +51,9 @@ class Publicuser extends Model
             'required_with' => 'field password harus diisi',
             'matches' => 'input harus sama dengan field password'
         ],
-        'first_name' => [
-            'required' => 'field nama depan harus diisi',
+        'name' => [
+            'required' => 'field nama harus diisi',
             'alpha' => 'hanya boleh menggunakan huruf'
-        ],
-        'last_name' => [
-            'required' => 'field nama belakang harus diisi',
-            'alpha' => 'hanya boleh menggunakan huruf'
-        ],
-        'phone' => [
-            'numeric' => 'no hp hanya boleh menggunakan angka'
         ]
     ];
     protected $skipValidation = false;
@@ -71,7 +62,7 @@ class Publicuser extends Model
     {
         if (self::$instance == null)
         {
-            self::$instance = new Publicuser();
+            self::$instance = new User();
         }
 
         return self::$instance;
@@ -83,24 +74,4 @@ class Publicuser extends Model
 
         return $builder;
     }
-
-    // public function initTable()
-    // {
-    //     $builder = $this->db->table($this->table);
-    //     $settings = [
-    //         'setTable' => $builder,
-    //         'setSearch' => ['username', 'email', 'first_name', 'phone', 'address'],
-    //         'setOrder' => ['username', 'email', 'first_name', 'phone', 'address', null],
-    //         'setOutput' => [
-    //             'username', 'email', 'first_name', 'phone', 'address',
-    //             function($row)
-    //             {
-    //                 return '<button class="btn btn-primary">{$row["id"]}</button>';
-    //             }
-    //         ]
-    //     ];
-
-    //     return $setting;
-    // }
-
 }
