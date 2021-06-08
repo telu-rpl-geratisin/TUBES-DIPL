@@ -32,7 +32,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon ion ion-university"></i>
+              <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
                 Beasiswa
               </p>
@@ -40,7 +40,7 @@
           </li>
           <li class="nav-item">
             <a href="<?= base_url().route_to('admin.company.index'); ?>" class="nav-link">
-              <i class="nav-icon ion ion-home"></i>
+              <i class="nav-icon fas fa-building"></i>
               <p>
                 Pengguna Perusahaan
               </p>
@@ -48,7 +48,7 @@
           </li>
           <li class="nav-item">
             <a href="<?= base_url().route_to('admin.public.index'); ?>" class="nav-link">
-              <i class="nav-icon ion ion-ios-people"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                 Pengguna Publik
               </p>

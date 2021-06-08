@@ -85,6 +85,12 @@ $routes->group('company', ['filter' => 'loginCheck'], function($routes)
 
 // COMPANY ROUTES END
 
+// api routes
+
+$routes->get('api/public_user', 'Resource\PublicUser::index');
+$routes->get('api/public_user/(:num)', 'Resource\PublicUser::show/$1');
+$routes->delete('api/public_user/(:num)', 'Resource\PublicUser::delete/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
