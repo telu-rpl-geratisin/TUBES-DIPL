@@ -46,6 +46,9 @@ $routes->group('admin', ['filter' => 'loginCheck'], function($routes)
 
     // manage beasiswa
     $routes->get('scholarship', 'Admin\ScholarshipController::index', ['as' => 'admin.scholarship.index']);
+    $routes->get('verify_scholarship', 'Admin\ScholarshipController::showVerifyPage', ['as' => 'admin.scholarship.verify']);
+    $routes->get('download_verification_doc/(:num)', 'Admin\ScholarshipController::downloadVerificationDoc/$1', ['as' => 'admin.scholarship.downVerDoc']);
+    $routes->post('verify_scholarship/(:num)', 'Admin\ScholarshipController::verifyScholarship/$1');
 
     // manage user
     $routes->get('public', 'Admin\PublicuserController::index', ['as' => 'admin.public.index']);
@@ -60,6 +63,7 @@ $routes->group('admin', ['filter' => 'loginCheck'], function($routes)
 $routes->post('admin/public/ajax_fetch_all', 'Admin\PublicuserController::ajaxFetchAll');
 $routes->post('admin/company/ajax_fetch_all', 'Admin\CompanyuserController::ajaxFetchAll');
 $routes->post('admin/scholarship/ajax_fetch_all', 'Admin\ScholarshipController::ajaxFetchAll');
+$routes->post('admin/scholarship/ajax_fetch_unverified', 'Admin\ScholarshipController::ajaxFetchUnverified');
 
 // ADMIN ROUTES END
 
@@ -104,7 +108,10 @@ $routes->delete('api/scholarship/(:num)', 'Resource\Scholarship::delete/$1');
 
 
 // test routes 
-$routes->get('test', 'TestController::index');
+$routes->get('/test', 'TestController::index');
+$routes->get('/upload', 'TestController::uploadPage');
+$routes->post('/upload', 'TestController::upload');
+$routes->get('/view', 'TestController::view');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

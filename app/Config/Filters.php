@@ -33,6 +33,7 @@ class Filters extends BaseConfig
 			// 'honeypot',
 			'csrf' =>  ['except' => [
 										'admin/*/ajax_fetch_all',
+										'admin/*/ajax_fetch_unverified',
 										'api/*'
 									]]
 		],

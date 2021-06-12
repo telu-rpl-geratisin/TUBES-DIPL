@@ -21,11 +21,13 @@ class User extends Migration
         	],
             'username' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255'
+                'constraint' => '255',
+                'unique' => true
             ],
             'email' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255'
+                'constraint' => '255',
+                'unique' => true
             ],
             'password' => [
                 'type' => 'VARCHAR',
@@ -34,6 +36,10 @@ class User extends Migration
             'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255'
+            ],
+            'photo' => [
+                'type' => 'TEXT',
+                'null' => true
             ],
             'contact' => [
                 'type' => 'INT',

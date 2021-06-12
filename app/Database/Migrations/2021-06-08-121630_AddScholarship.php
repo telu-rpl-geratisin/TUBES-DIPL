@@ -23,16 +23,19 @@ class AddScholarship extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255'
             ],
+            'photo' => [
+                'type' => 'TEXT',
+                'null' => true
+            ],
             'description' => [
                 'type' => 'TEXT',
-                'null' => true,
+                'null' => true
             ],
             'end_date' => [
-                'type'       => 'DATE'
+                'type' => 'DATE'
             ],
             'link' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255'
+                'type' => 'TEXT'
             ],
             'is_verified' => [
                 'type' => 'CHAR',

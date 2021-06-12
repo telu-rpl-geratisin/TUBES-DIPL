@@ -31,20 +31,50 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url().route_to('admin.scholarship.index'); ?>" class="nav-link">
+            <a class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
                 Beasiswa
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url().route_to('admin.scholarship.index'); ?>" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>List Beasiswa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url().route_to('admin.scholarship.verify'); ?>" class="nav-link">
+                  <i class="nav-icon fas fa-clipboard-check"></i>
+                  <p>Verifikasi Beasiswa</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url().route_to('admin.company.index'); ?>" class="nav-link">
+            <a class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
                 Pengguna Perusahaan
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url().route_to('admin.company.index'); ?>" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>List Perusahaan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-clipboard-check"></i>
+                  <p>Verifikasi Perusahaan</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="<?= base_url().route_to('admin.public.index'); ?>" class="nav-link">
