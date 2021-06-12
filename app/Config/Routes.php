@@ -44,6 +44,9 @@ $routes->group('admin', ['filter' => 'loginCheck'], function($routes)
 {
 	$routes->get('dashboard', 'Admin\DashboardController::index', ['as' => 'admin.dashboard']);
 
+    // manage beasiswa
+    $routes->get('scholarship', 'Admin\ScholarshipController::index', ['as' => 'admin.scholarship.index']);
+
     // manage user
     $routes->get('public', 'Admin\PublicuserController::index', ['as' => 'admin.public.index']);
     $routes->get('public/(:num)', 'Admin\PublicuserController::userDetails/$1', ['as' => 'admin.public.details']);
@@ -56,6 +59,7 @@ $routes->group('admin', ['filter' => 'loginCheck'], function($routes)
 
 $routes->post('admin/public/ajax_fetch_all', 'Admin\PublicuserController::ajaxFetchAll');
 $routes->post('admin/company/ajax_fetch_all', 'Admin\CompanyuserController::ajaxFetchAll');
+$routes->post('admin/scholarship/ajax_fetch_all', 'Admin\ScholarshipController::ajaxFetchAll');
 
 // ADMIN ROUTES END
 
@@ -90,10 +94,17 @@ $routes->group('company', ['filter' => 'loginCheck'], function($routes)
 
 $routes->get('api/user/public', 'Resource\User::getPublic');
 $routes->get('api/user/company', 'Resource\User::getCompany');
+$routes->get('api/scholarship', 'Resource\Scholarship::getAll');
 
 $routes->get('api/user/(:num)', 'Resource\User::show/$1');
-$routes->delete('api/user/(:num)', 'Resource\User::delete/$1');
+$routes->get('api/scholarship/(:num)', 'Resource\Scholarship::show/$1');
 
+$routes->delete('api/user/(:num)', 'Resource\User::delete/$1');
+$routes->delete('api/scholarship/(:num)', 'Resource\Scholarship::delete/$1');
+
+
+// test routes 
+$routes->get('test', 'TestController::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

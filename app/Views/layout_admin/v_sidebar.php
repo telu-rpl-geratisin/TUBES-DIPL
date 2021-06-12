@@ -31,7 +31,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url().route_to('admin.scholarship.index'); ?>" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
                 Beasiswa

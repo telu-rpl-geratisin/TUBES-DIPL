@@ -6,7 +6,7 @@ use CodeIgniter\Database\Seeder;
 
 class AddUsers extends Seeder
 {
-	 public function run()
+	public function run()
     {
         $this->db->table('user')->insert([
         	'type' => 'admin',

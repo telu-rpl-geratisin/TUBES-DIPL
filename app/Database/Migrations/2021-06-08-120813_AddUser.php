@@ -49,6 +49,11 @@ class User extends Migration
                 'type' => 'INT',
                 'constraint' => '10'
             ],
+            'is_verified' => [
+                'type' => 'CHAR',
+                'constraint' => 1,
+                'default' => 'N'
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

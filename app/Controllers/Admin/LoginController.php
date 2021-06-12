@@ -51,6 +51,59 @@ class LoginController extends BaseController
         return redirect('admin.dashboard');
 	}
 
+    public function verifyUserTest($username, $password)
+    {
+        $result = ['status' => 'success'];
+
+        $data['username'] = $username;
+        $data['password'] = $password;
+
+        $valid = \Config\Services::validation()->run($data, 'login');
+
+        if(!$valid)
+        {
+            $result = [
+                'status' => 'failed',
+                'message' => \Config\Services::validation()->getErrors()
+            ];
+            return $result;
+        }
+
+        $user = User::ins()
+            ->where('type', 'admin')
+            ->where('username', $data['username'])
+            ->first();
+
+        if(is_null($user))
+        {
+            $result = [
+                'status' => 'failed',
+                'message' => 'Username salah'
+            ];
+
+            return $result;
+        }
+
+        if($user['password'] !== $data['password'])
+        {
+            $result = [
+                'status' => 'failed',
+                'message' => 'Password salah'
+            ];
+
+            return $result;
+        }
+
+        return $result;
+    }
+
+    public function verifyUser($username, $password){
+        return [
+            'status' => 'failed', 
+            'message' => 'login success'
+        ];
+    }
+
     public function logout()
     {
         $this->session->destroy();

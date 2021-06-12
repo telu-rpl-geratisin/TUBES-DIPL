@@ -17,8 +17,8 @@
 
 <?= $this->section('custom_style') ?>
 <style type="text/css">
-    #company-detail-table th,
-    #company-detail-table td {
+    #scholarship-detail-table th,
+    #scholarship-detail-table td {
         padding: .5rem;
     }
 
@@ -28,17 +28,18 @@
 <?= $this->section('content') ?>
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">List Pengguna Perusahaan</h3>
+    <h3 class="card-title">List Beasiswa</h3>
   </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <table id="company-table" class="table table-bordered table-striped">
+    <table id="scholarship-table" class="table table-bordered table-striped">
       <thead>
       <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Nama Perusahaan</th>
-        <th>Kontak</th>
+        <th>Nama</th>
+        <th>Dibuat Oleh</th>
+        <th>Tanggal Berakhir</th>
+        <th>Rating</th>
+        <th>Link</th>
         <th>Status</th>
         <th>Aksi</th>
       </tr>
@@ -49,40 +50,44 @@
 </div>
 
 <!-- Modals -->
-<div id="companyInfoModal" class="modal fade" tabindex="-1" aria-labelledby="companyInfoModalLabel" aria-hidden="true">
+<div id="scholarshipInfoModal" class="modal fade" tabindex="-1" aria-labelledby="scholarshipInfoModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="companyInfoModalLabel">Detail Pengguna</h5>
+            <h5 class="modal-title" id="scholarshipInfoModalLabel">Detail Beasiswa</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <table id="company-detail-table">
+            <table id="scholarship-detail-table">
                 <tr>
-                    <th>Username</th>
-                    <td id="cd-username"></td>
+                    <th>Nama</th>
+                    <td id="sd-name"></td>
                 </tr>
                 <tr>
-                    <th>Email</th>
-                    <td id="cd-email"></td>
+                    <th>Dibuat Oleh</th>
+                    <td id="sd-user"></td>
                 </tr>
                 <tr>
-                    <th>Nama Perusahaan</th>
-                    <td id="cd-name"></td>
+                    <th>Tanggal Berakhir</th>
+                    <td id="sd-end-date"></td>
                 </tr>
                 <tr>
-                    <th>Kontak</th>
-                    <td id="cd-contact"></td>
+                    <th>Rating</th>
+                    <td id="sd-rating"></td>
                 </tr>
                 <tr>
-                    <th>Alamat</th>
-                    <td id="cd-address"></td>
+                    <th>Link</th>
+                    <td id="sd-link"></td>
                 </tr>
                 <tr>
                     <th>Status</th>
-                    <td id="cd-status"></td>
+                    <td id="sd-status"></td>
+                </tr>
+                <tr>
+                    <th>Deskripsi</th>
+                    <td id="sd-description"></td>
                 </tr>
             </table>
         </div>
@@ -102,7 +107,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <p>Apakah anda yakin ingin menghapus perusahaan <span id="dc-name">NAME</span>?</p>
+            <p>Apakah anda yakin ingin menghapus beasiswa <span id="dc-name">NAME</span>?</p>
         </div>
         <div class="modal-footer">
             <button id="cancel-delete" type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
@@ -139,40 +144,41 @@
 <script>
 $( document ).ready(function() {
 
-    const table = $("#company-table").DataTable({
+    const table = $("#scholarship-table").DataTable({
         aoColumnDefs: [{ 
             bSortable: false,
-            aTargets: [ 3, 5 ] 
+            aTargets: [ 4, 6 ] 
         }],
         order: [],
         processing: true,
         serverSide: true,
         responsive: true,
         ajax: {
-          url:"<?= base_url('admin/company/ajax_fetch_all') ?>",
+          url:"<?= base_url('admin/scholarship/ajax_fetch_all') ?>",
           type: "POST"
         }
     });
     
-    $('#companyInfoModal').on('show.bs.modal', function (event) {
+    $('#scholarshipInfoModal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget) // Button that triggered the modal
-        let companyId = button.data('company-id') // Extract info from data-* attributes
+        let scholarshipId = button.data('scholarship-id') // Extract info from data-* attributes
         let modal = $(this);
 
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         $.ajax({
             async: false,
-            url: "<?= base_url() ?>"+"/api/user/"+companyId, 
+            url: "<?= base_url() ?>"+"/api/scholarship/"+scholarshipId, 
             success: function(result){
-                let companyData = result;
-                modal.find('.modal-body #cd-username').text(companyData.username);
-                modal.find('.modal-body #cd-email').text(companyData.email);
-                modal.find('.modal-body #cd-name').text(companyData.name);
-                modal.find('.modal-body #cd-contact').text(companyData.contact);
-                modal.find('.modal-body #cd-address').text(companyData.address);
-                modal.find('.modal-body #cd-status').text(
-                    (companyData.is_verified == 'Y') ? 'Terverifikasi' : 'Belum Terverifikasi'
+                let scholarshipData = result;
+                modal.find('.modal-body #sd-name').text(scholarshipData.name);
+                modal.find('.modal-body #sd-user').text(scholarshipData.user_name);
+                modal.find('.modal-body #sd-end-date').text(scholarshipData.end_date);
+                modal.find('.modal-body #sd-rating').text(scholarshipData.rating);
+                modal.find('.modal-body #sd-link').text(scholarshipData.link);
+                modal.find('.modal-body #sd-status').text(
+                    (scholarshipData.is_verified == 'Y') ? 'Terverifikasi' : 'Belum Terverifikasi'
                 );
+                modal.find('.modal-body #sd-description').text(scholarshipData.description);
                 console.log(result);
             }    
         });
@@ -180,7 +186,7 @@ $( document ).ready(function() {
 
     $('#deleteConfirmModal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget) // Button that triggered the modal
-        let companyId = button.data('company-id') // Extract info from data-* attributes
+        let scholarshipId = button.data('scholarship-id') // Extract info from data-* attributes
         let name = button.data('name');
 
         let modal = $(this);
@@ -189,7 +195,7 @@ $( document ).ready(function() {
         modal.find('.modal-footer #confirm-delete').click(function(){
             $.ajax({
                 async: false,
-                url: "<?= base_url() ?>"+"/api/user/"+companyId,
+                url: "<?= base_url() ?>"+"/api/scholarship/"+scholarshipId,
                 type: "DELETE",
                 success: function(result){
                     console.log(result);

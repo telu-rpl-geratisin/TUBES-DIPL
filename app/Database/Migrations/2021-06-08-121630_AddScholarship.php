@@ -34,6 +34,11 @@ class AddScholarship extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255'
             ],
+            'is_verified' => [
+                'type' => 'CHAR',
+                'constraint' => 1,
+                'default' => 'N'
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

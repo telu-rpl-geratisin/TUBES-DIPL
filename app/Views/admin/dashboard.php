@@ -26,37 +26,59 @@
 <?= $this->section('content') ?>
   <!-- Small boxes (Stat box) -->
   <div class="row">
-    <div class="col-lg-3 col-6">
+    <div class="col-lg-4 col-6">
       <!-- small box -->
-      <div class="small-box bg-info">
+      <div class="small-box bg-success">
         <div class="inner">
-          <h3>NULL</h3>
+          <h3><?= $scholarship_count; ?></h3>
 
           <p>Beasiswa</p>
         </div>
         <div class="icon">
-          <i class="ion ion-university"></i>
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <a href="<?= base_url().route_to('admin.scholarship.index'); ?>" class="small-box-footer">Lihat Detail <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3><?= $scholarship_unverified_count; ?></h3>
+
+          <p>Beasiswa Belum Diverifikasi</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-clipboard-check"></i>
         </div>
         <a href="#" class="small-box-footer">Lihat Detail <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-6">
+    <div class="col-lg-4 col-6">
       <!-- small box -->
-      <div class="small-box bg-warning">
+      <div class="small-box bg-success">
         <div class="inner">
           <h3><?= $company_count; ?></h3>
 
           <p>Pengguna Perusahaan</p>
         </div>
         <div class="icon">
-          <i class="ion ion-home"></i>
+          <i class="fas fa-building"></i>
         </div>
         <a href="<?= base_url().route_to('admin.company.index'); ?>" class="small-box-footer">Lihat Detail <i class="fas fa-arrow-circle-right"></i></a>
       </div>
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3><?= $company_unverified_count; ?></h3>
+
+          <p>Perusahaan Belum Diverifikasi</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-clipboard-check"></i>
+        </div>
+        <a href="#" class="small-box-footer">Lihat Detail <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-6">
+    <div class="col-lg-4 col-6">
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
@@ -65,7 +87,7 @@
           <p>Pengguna Publik</p>
         </div>
         <div class="icon">
-          <i class="ion ion-ios-people"></i>
+          <i class="fas fa-users"></i>
         </div>
         <a href="<?= base_url().route_to('admin.public.index'); ?>" class="small-box-footer">Lihat Detail <i class="fas fa-arrow-circle-right"></i></a>
       </div>
