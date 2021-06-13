@@ -34,6 +34,7 @@ class Filters extends BaseConfig
 			'csrf' =>  ['except' => [
 										'admin/*/ajax_fetch_all',
 										'admin/*/ajax_fetch_unverified',
+										'admin/verify_scholarship/*',
 										'api/*'
 									]]
 		],

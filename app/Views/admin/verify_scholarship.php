@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="<?= base_url('public/template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('public/template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('public/template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>">
+<!-- Toastr -->
+<link rel="stylesheet" href="<?= base_url('public/template/plugins/toastr/toastr.min.css'); ?>">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?= base_url('public/template/dist/css/adminlte.min.css') ?>">
 <?= $this->endSection() ?>
@@ -89,6 +91,8 @@
 <script src="<?= base_url('public/template/plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
 <script src="<?= base_url('public/template/plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
 <script src="<?= base_url('public/template/plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
+<!-- Toastr -->
+<script src="<?= base_url('public/template/plugins/toastr/toastr.min.js'); ?>"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url('public/template/dist/js/adminlte.min.js') ?>"></script>
 <?= $this->endSection() ?>
@@ -111,33 +115,50 @@ $( document ).ready(function() {
         }
     });
 
+    let scholarshipId = 0;
+
     $('#verifyScholarshipModal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget) // Button that triggered the modal
-        let scholarshipId = button.data('id') // Extract info from data-* attributes
+        scholarshipId = button.data('id') // Extract info from data-* attributes
         let name = button.data('name');
 
         let modal = $(this);
         modal.find('.modal-body #ds-name').text(name);
+    });
 
-        modal.find('.modal-footer #acceptBtn').click(function(){
-            $.ajax({
-                async: false,
-                url: "<?= base_url() ?>"+"/api/scholarship/verify/"+scholarshipId,
-                type: "POST",
-                data: 'status=accept',
-                success: function(result){
-                    console.log(result);
-                }    
-            });
-            $(document).Toasts('create', {
-                class: 'bg-success', 
-                title: 'Pesan',
-                body: 'Verifikasi beasiswa telah berhasil. Beasiswa telah diterima',
-                autohide: true,
-                delay: 5000,
-            });
-            table.ajax.reload();
+    $('#acceptBtn').click(function(){
+        $.ajax({
+            async: false,
+            url: "<?= base_url() ?>"+"/admin/verify_scholarship/"+scholarshipId,
+            type: "POST",
+            data: 'status=accept',
+            success: function(result){
+                console.log(result);
+            }    
         });
+        toastr.success('Verifikasi beasiswa telah berhasil, Beasiswa telah diterima.');
+        // $(document).Toasts('create', {
+        //     class: 'bg-success', 
+        //     title: 'Pesan',
+        //     body: 'Verifikasi beasiswa telah berhasil, Beasiswa telah diterima',
+        //     autohide: true,
+        //     delay: 5000,
+        // });
+        table.ajax.reload();
+    });
+
+    $('#deniedBtn').click(function(){
+        $.ajax({
+            async: false,
+            url: "<?= base_url() ?>"+"/admin/verify_scholarship/"+scholarshipId,
+            type: "POST",
+            data: 'status=denied',
+            success: function(result){
+                console.log(result);
+            }    
+        });
+        toastr.warning('Beasiswa telah ditolak, Beasiswa telah dihapus secara otomatis.');
+        table.ajax.reload();
     });
 });
 </script>

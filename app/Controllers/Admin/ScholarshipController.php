@@ -85,20 +85,21 @@ class ScholarshipController extends BaseController
     public function verifyScholarship($id)
     {
         $status = $this->request->getPost('status');
+        $res = null;
 
         switch ($status) {
             case 'accept':
-                    
+                $res = Scholarship::ins()->update($id, [ 'is_verified' => 'Y' ]);
                 break;
             case 'denied':
-
+                $res = Scholarship::ins()->delete($id);
                 break;
             default:
                 break;
         }
 
         return json_encode([
-            'status' => 'success'
+            'status' => $res ? 'success' : 'error'
         ]);
     }
 }

@@ -48,8 +48,7 @@ $routes->group('admin', ['filter' => 'loginCheck'], function($routes)
     $routes->get('scholarship', 'Admin\ScholarshipController::index', ['as' => 'admin.scholarship.index']);
     $routes->get('verify_scholarship', 'Admin\ScholarshipController::showVerifyPage', ['as' => 'admin.scholarship.verify']);
     $routes->get('download_verification_doc/(:num)', 'Admin\ScholarshipController::downloadVerificationDoc/$1', ['as' => 'admin.scholarship.downVerDoc']);
-    $routes->post('verify_scholarship/(:num)', 'Admin\ScholarshipController::verifyScholarship/$1');
-
+    
     // manage user
     $routes->get('public', 'Admin\PublicuserController::index', ['as' => 'admin.public.index']);
     $routes->get('public/(:num)', 'Admin\PublicuserController::userDetails/$1', ['as' => 'admin.public.details']);
@@ -65,6 +64,7 @@ $routes->post('admin/company/ajax_fetch_all', 'Admin\CompanyuserController::ajax
 $routes->post('admin/scholarship/ajax_fetch_all', 'Admin\ScholarshipController::ajaxFetchAll');
 $routes->post('admin/scholarship/ajax_fetch_unverified', 'Admin\ScholarshipController::ajaxFetchUnverified');
 
+$routes->post('admin/verify_scholarship/(:num)', 'Admin\ScholarshipController::verifyScholarship/$1');
 // ADMIN ROUTES END
 
 
