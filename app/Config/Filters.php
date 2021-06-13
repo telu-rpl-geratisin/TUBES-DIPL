@@ -35,6 +35,7 @@ class Filters extends BaseConfig
 										'admin/*/ajax_fetch_all',
 										'admin/*/ajax_fetch_unverified',
 										'admin/verify_scholarship/*',
+										'admin/verify_company/*',
 										'api/*'
 									]]
 		],

@@ -16,7 +16,7 @@ class Scholarship extends Model
 	protected $returnType           = 'array';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['user_id', 'name', 'description', 'end_date', 'link', 'is_verified'];
+	protected $allowedFields        = ['user_id', 'name', 'description', 'end_date', 'link', 'status'];
 
 	// Dates
 	protected $useTimestamps        = false;

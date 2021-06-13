@@ -47,24 +47,30 @@ $routes->group('admin', ['filter' => 'loginCheck'], function($routes)
     // manage beasiswa
     $routes->get('scholarship', 'Admin\ScholarshipController::index', ['as' => 'admin.scholarship.index']);
     $routes->get('verify_scholarship', 'Admin\ScholarshipController::showVerifyPage', ['as' => 'admin.scholarship.verify']);
-    $routes->get('download_verification_doc/(:num)', 'Admin\ScholarshipController::downloadVerificationDoc/$1', ['as' => 'admin.scholarship.downVerDoc']);
+    $routes->get('download_scholarsip_verification_doc/(:num)', 'Admin\ScholarshipController::downloadVerificationDoc/$1', ['as' => 'admin.scholarship.downVerDoc']);
     
-    // manage user
+    // manage public user
     $routes->get('public', 'Admin\PublicuserController::index', ['as' => 'admin.public.index']);
     $routes->get('public/(:num)', 'Admin\PublicuserController::userDetails/$1', ['as' => 'admin.public.details']);
     $routes->post('public/delete/(:num)', 'Admin\PublicuserController::deleteUser/$1', ['as' => 'admin.public.delete']);
 
+    // manage company user
     $routes->get('company', 'Admin\CompanyuserController::index', ['as' => 'admin.company.index']);
     $routes->get('company/(:num)', 'Admin\CompanyuserController::userDetails/$1', ['as' => 'admin.company.details']);
     $routes->post('company/delete/(:num)', 'Admin\CompanyuserController::deleteUser/$1', ['as' => 'admin.company.delete']);
+    $routes->get('verify_company', 'Admin\CompanyuserController::showVerifyPage', ['as' => 'admin.company.verify']);
+    $routes->get('download_company_verification_doc/(:num)', 'Admin\CompanyuserController::downloadVerificationDoc/$1', ['as' => 'admin.company.downVerDoc']);
 });
 
 $routes->post('admin/public/ajax_fetch_all', 'Admin\PublicuserController::ajaxFetchAll');
 $routes->post('admin/company/ajax_fetch_all', 'Admin\CompanyuserController::ajaxFetchAll');
+$routes->post('admin/company/ajax_fetch_unverified', 'Admin\CompanyuserController::ajaxFetchUnverified');
 $routes->post('admin/scholarship/ajax_fetch_all', 'Admin\ScholarshipController::ajaxFetchAll');
 $routes->post('admin/scholarship/ajax_fetch_unverified', 'Admin\ScholarshipController::ajaxFetchUnverified');
 
 $routes->post('admin/verify_scholarship/(:num)', 'Admin\ScholarshipController::verifyScholarship/$1');
+$routes->post('admin/verify_company/(:num)', 'Admin\CompanyuserController::verifyCompany/$1');
+
 // ADMIN ROUTES END
 
 

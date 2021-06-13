@@ -74,7 +74,7 @@
         <div class="icon">
           <i class="fas fa-clipboard-check"></i>
         </div>
-        <a href="#" class="small-box-footer">Lihat Detail <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="<?= base_url().route_to('admin.company.verify'); ?>" class="small-box-footer">Lihat Detail <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->

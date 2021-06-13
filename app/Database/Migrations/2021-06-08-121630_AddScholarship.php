@@ -24,7 +24,9 @@ class AddScholarship extends Migration
                 'constraint' => '255'
             ],
             'photo' => [
-                'type' => 'TEXT',
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'default' => 'scholarship_default_photo.jpg',
                 'null' => true
             ],
             'description' => [
@@ -37,10 +39,10 @@ class AddScholarship extends Migration
             'link' => [
                 'type' => 'TEXT'
             ],
-            'is_verified' => [
-                'type' => 'CHAR',
-                'constraint' => 1,
-                'default' => 'N'
+            'status' => [
+                'type'           => 'ENUM',
+                'constraint'     => ['verified', 'unverified', 'denied'],
+                'default' => 'unverified'
             ],
             'created_at' => [
                 'type' => 'DATETIME',

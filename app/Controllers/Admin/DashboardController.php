@@ -14,7 +14,7 @@ class DashboardController extends BaseController
 
 		$scholarship_count = $db->table('scholarship')->countAll();
 		$scholarship_unverified_count = $db->table('scholarship')
-			->where('is_verified', 'N')
+			->where('status', 'unverified')
 			->countAllResults();
 
 		$public_count = $db->table('user')
@@ -26,7 +26,7 @@ class DashboardController extends BaseController
 			->countAllResults();
 		$company_unverified_count = $db->table('user')
 			->where('type', 'company')
-			->where('is_verified', 'N')
+			->where('status', 'unverified')
 			->countAllResults();
 
 		return view('admin/dashboard', [

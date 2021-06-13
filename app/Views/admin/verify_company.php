@@ -18,24 +18,17 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('custom_style') ?>
-<style type="text/css">
-    #scholarship-detail-table th,
-    #scholarship-detail-table td {
-        padding: .5rem;
-    }
-
-</style>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <div class="card">
   <!-- /.card-header -->
   <div class="card-body">
-    <table id="scholarship-table" class="table table-bordered table-striped">
+    <table id="company-table" class="table table-bordered table-striped">
       <thead>
       <tr>
         <th>Nama</th>
-        <th>Dibuat Oleh</th>
+        <th>Email</th>
         <th>Dokumen Verifikasi</th>
         <th>Aksi</th>
       </tr>
@@ -46,17 +39,17 @@
 </div>
 
 <!-- Modals -->
-<div id="verifyScholarshipModal" class="modal fade" tabindex="-1" aria-labelledby="verifyScholarshipModalLabel" aria-hidden="true">
+<div id="verifyCompanyModal" class="modal fade" tabindex="-1" aria-labelledby="verifyCompanyModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="verifyScholarshipModalLabel">Verifikasi Beasiswa</h5>
+            <h5 class="modal-title" id="verifyCompanyModalLabel">Verifikasi Perusahaan</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <p>Pilih aksi untuk beasiswa <span id="ds-name">NAME</span></p>
+            <p>Pilih aksi untuk perusahaan <span id="dc-name">NAME</span></p>
         </div>
         <div class="modal-footer">
             <div class="row w-100">
@@ -100,7 +93,7 @@
 <?= $this->section('custom_script') ?>
 <script>
 $( document ).ready(function() {
-    const table = $("#scholarship-table").DataTable({
+    const table = $("#company-table").DataTable({
         aoColumnDefs: [{ 
             bSortable: false,
             aTargets: [1,2] 
@@ -110,54 +103,47 @@ $( document ).ready(function() {
         serverSide: true,
         responsive: true,
         ajax: {
-          url:"<?= base_url('admin/scholarship/ajax_fetch_unverified') ?>",
+          url:"<?= base_url('admin/company/ajax_fetch_unverified') ?>",
           type: "POST"
         }
     });
 
-    let scholarshipId = 0;
+    let companyId = 0;
 
-    $('#verifyScholarshipModal').on('show.bs.modal', function (event) {
+    $('#verifyCompanyModal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget) // Button that triggered the modal
-        scholarshipId = button.data('id') // Extract info from data-* attributes
+        companyId = button.data('id') // Extract info from data-* attributes
         let name = button.data('name');
 
         let modal = $(this);
-        modal.find('.modal-body #ds-name').text(name);
+        modal.find('.modal-body #dc-name').text(name);
     });
 
     $('#acceptBtn').click(function(){
         $.ajax({
             async: false,
-            url: "<?= base_url() ?>"+"/admin/verify_scholarship/"+scholarshipId,
+            url: "<?= base_url() ?>"+"/admin/verify_company/"+companyId,
             type: "POST",
             data: 'status=accept',
             success: function(result){
                 console.log(result);
             }    
         });
-        toastr.success('Verifikasi beasiswa telah berhasil, Beasiswa telah diterima.');
-        // $(document).Toasts('create', {
-        //     class: 'bg-success', 
-        //     title: 'Pesan',
-        //     body: 'Verifikasi beasiswa telah berhasil, Beasiswa telah diterima',
-        //     autohide: true,
-        //     delay: 5000,
-        // });
+        toastr.success('Verifikasi perusahaan telah berhasil, Perusahaan telah diterima.');
         table.ajax.reload();
     });
 
     $('#deniedBtn').click(function(){
         $.ajax({
             async: false,
-            url: "<?= base_url() ?>"+"/admin/verify_scholarship/"+scholarshipId,
+            url: "<?= base_url() ?>"+"/admin/verify_company/"+companyId,
             type: "POST",
             data: 'status=denied',
             success: function(result){
                 console.log(result);
             }    
         });
-        toastr.warning('Verifikasi beasiswa telah ditolak.');
+        toastr.warning('Perusahaan telah ditolak.');
         table.ajax.reload();
     });
 });

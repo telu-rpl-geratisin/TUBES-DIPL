@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class ScholarshipVerificationDoc extends Migration
+class CompanyVerificationDoc extends Migration
 {
 	public function up()
 	{
@@ -15,7 +15,7 @@ class ScholarshipVerificationDoc extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true
             ],
-            'scholarship_id' => [
+            'company_user_id' => [
                 'type' => 'INT',
                 'unsigned' => true
             ],
@@ -35,12 +35,12 @@ class ScholarshipVerificationDoc extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('scholarship_id', 'scholarship', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('scholarship_verification_doc');
+        $this->forge->addForeignKey('company_user_id', 'user', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('company_verification_doc');
 	}
 
 	public function down()
 	{
-		$this->forge->dropTable('scholarship_verification_doc');
+		$this->forge->dropTable('company_verification_doc');
 	}
 }

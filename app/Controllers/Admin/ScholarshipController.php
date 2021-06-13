@@ -31,12 +31,26 @@ class ScholarshipController extends BaseController
         $table->setTable($model->noticeTable())
             ->setDefaultOrder('name', 'DESC')
             ->setSearch(['name', 'user_name', 'end_date', 'rating'])
-            ->setOrder(['name', 'user_name', 'end_date', 'rating', null, 'is_verified', null])
+            ->setOrder(['name', 'user_name', 'end_date', 'rating', null, 'status', null])
             ->setOutput([
                 'name', 'user_name', 'end_date', 'rating',
                 function($row) { return '<a href="'.$row['link'].'" target="_blank">'.$row['link'].'</a>'; },
                 function($row) {
-                    return ($row['is_verified'] === 'Y') ? '<span class="badge badge-success">Terverifikasi</span>' : '<span class="badge badge-danger">Belum<br>Terverifikasi</span>';
+                    $badge = '';
+                    switch ($row['status']) {
+                        case 'unverified':
+                            $badge = '<span class="badge badge-secondary">Belum<br>Terverifikasi</span>';
+                            break;
+                        case 'verified':
+                            $badge = '<span class="badge badge-success">Terverifikasi</span>';
+                            break;
+                        case 'denied':
+                            $badge = '<span class="badge badge-danger">Verifikasi<br>Ditolak</span>';
+                            break;
+                        default:
+                            break;
+                    }
+                    return $badge;
                 },
                 function($row)
                 {
@@ -56,7 +70,7 @@ class ScholarshipController extends BaseController
 
         $table->setTable(
                 $model->noticeTable()
-                    ->where('scholarship.is_verified', 'N')
+                    ->where('scholarship.status', 'unverified')
             )
             ->setDefaultOrder('name', 'DESC')
             ->setSearch(['name', 'user_name'])
@@ -89,10 +103,10 @@ class ScholarshipController extends BaseController
 
         switch ($status) {
             case 'accept':
-                $res = Scholarship::ins()->update($id, [ 'is_verified' => 'Y' ]);
+                $res = Scholarship::ins()->update($id, [ 'status' => 'verified' ]);
                 break;
             case 'denied':
-                $res = Scholarship::ins()->delete($id);
+                $res = Scholarship::ins()->update($id, [ 'status' => 'denied' ]);
                 break;
             default:
                 break;

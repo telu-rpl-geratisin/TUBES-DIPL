@@ -33,11 +33,11 @@ class TestController extends BaseController
 		helper('text');
 
 		$doc = $this->request->getFile('document');
-		$name = str_replace(" ", "_", 'Beasiswa Telkom Cerdas');
+		$name = str_replace(" ", "_", 'Telkom');
 		$name = strtolower($name);
 		$new_name = $name.'_verification_'.random_string('numeric', 16).'.pdf';
 
-		$data['scholarship_id'] = $this->request->getPost('scholarship_id');
+		$data['company_user_id'] = $this->request->getPost('company_user_id');
 		$data['document'] = $new_name;
 
 		$doc->move(ROOTPATH.'storage/document', $new_name);
@@ -46,7 +46,7 @@ class TestController extends BaseController
 
 		$db = Database::connect();
 		try {
-			$db->table('scholarship_verification_doc')
+			$db->table('company_verification_doc')
 				->insert($data);
 			echo 'success';
 		}
@@ -58,7 +58,7 @@ class TestController extends BaseController
 	public function view()
 	{
 		$db = Database::connect();
-		$doc = $db->table('scholarship_verification_doc')
+		$doc = $db->table('company_verification_doc')
 			->get()
 			->getResultArray()[0]['document'];
 

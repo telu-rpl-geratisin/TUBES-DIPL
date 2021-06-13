@@ -172,9 +172,23 @@ $( document ).ready(function() {
                 modal.find('.modal-body #sd-end-date').text(scholarshipData.end_date);
                 modal.find('.modal-body #sd-rating').text(scholarshipData.rating);
                 modal.find('.modal-body #sd-link').text(scholarshipData.link);
-                modal.find('.modal-body #sd-status').text(
-                    (scholarshipData.is_verified == 'Y') ? 'Terverifikasi' : 'Belum Terverifikasi'
-                );
+
+                let text = '';
+                switch(scholarshipData.status) {
+                    case 'unverified':
+                        text = 'Belum Terverifikasi';
+                        break;
+                    case 'verified':
+                        text = 'Terverifikasi';
+                        break;
+                    case 'denied':
+                        text = 'Verifikasi Ditolak';
+                        break;
+                    default:
+                        break;
+                }
+                modal.find('.modal-body #sd-status').text(text);
+                
                 modal.find('.modal-body #sd-description').text(scholarshipData.description);
                 console.log(result);
             }    
