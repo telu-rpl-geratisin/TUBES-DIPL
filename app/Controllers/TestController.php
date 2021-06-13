@@ -23,6 +23,52 @@ class TestController extends BaseController
 		dd($query);
 	}
 
+	public function createUserPage()
+	{
+		return view('test_create_user');
+	}
+
+	public function createUser()
+	{
+		$pp = $this->request->getFile('profile_picture');
+		$pp_mimetype = $pp->getMimeType();
+		$pp_bin = addslashes(file_get_contents($pp));
+
+		$data['profile_picture'] = $pp_bin;
+		$data['pp_mime_type'] = $pp_mimetype;
+		$data['type'] = $this->request->getPost('type');
+		$data['username'] = $this->request->getPost('username');
+		$data['email'] = $this->request->getPost('email');
+		$data['password'] = $this->request->getPost('password');
+		$data['name'] = $this->request->getPost('name');
+
+		//dd($data);
+
+		$db = Database::connect();
+		try {
+			$db->table('user')
+				->insert($data);
+			echo 'success';
+		}
+		catch(Exception $e) {
+		  echo $e->getMessage();
+		}
+	}
+
+	public function viewUser()
+	{
+		// $db = Database::connect();
+		// $user = $db->table('user')
+		// 	->where('id', 4)
+		// 	->get()
+		// 	->getResultArray()[0];
+
+		// dd($user);
+		$text = ROOTPATH;
+		$text = str_replace('\/', '/', $text);
+		echo $text;
+	}
+
 	public function uploadPage()
 	{
 		return view('test_upload');

@@ -88,6 +88,11 @@
                     <th>Deskripsi</th>
                     <td id="sd-description"></td>
                 </tr>
+                <tr>
+                    <td colspan="2">
+                        <button id="btn-brochure" type="button" class="btn btn-info" data-toggle="modal" data-target="#viewBrochureModal" data-photo="" data-name="">Lihat Brosur</button>
+                    </td>
+                </tr>
             </table>
         </div>
         <div class="modal-footer">
@@ -111,6 +116,21 @@
         <div class="modal-footer">
             <button id="cancel-delete" type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
             <button id="confirm-delete" type="button" class="btn btn-danger" data-dismiss="modal">Ya</button>
+        </div>
+    </div>
+  </div>
+</div>
+<div id="viewBrochureModal" class="modal fade" tabindex="-1" aria-labelledby="viewBrochureModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="viewBrochureModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body p-0">
+            <img src="#" alt="brosur beasiswa" class="w-100">
         </div>
     </div>
   </div>
@@ -194,9 +214,23 @@ $( document ).ready(function() {
                 modal.find('.modal-body #sd-status').text(text);
                 
                 modal.find('.modal-body #sd-description').text(scholarshipData.description);
+
+                modal.find('.modal-body #btn-brochure').attr('data-photo', scholarshipData.photo);
+                modal.find('.modal-body #btn-brochure').attr('data-name', scholarshipData.name);
+
                 console.log(result);
             }    
         });
+    });
+
+    $('#viewBrochureModal').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget); // Button that triggered the modal
+        let photo = button.data('photo');
+        let name = button.data('name');
+
+        let modal = $(this);
+        modal.find('.modal-body img').attr('src', '<?= base_url() ?>/storage/image/'+photo);
+        modal.find('.modal-header .modal-title').text('Brosur '+name);
     });
 
     let scholarshipId = 0;

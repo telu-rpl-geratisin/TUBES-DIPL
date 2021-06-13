@@ -55,7 +55,8 @@ class User extends Migration
             ],
             'postal_code' => [
                 'type' => 'INT',
-                'constraint' => '10'
+                'constraint' => '10',
+                'null' => true
             ],
             'status' => [
                 'type'           => 'ENUM',

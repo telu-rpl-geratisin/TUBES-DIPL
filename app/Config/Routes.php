@@ -118,6 +118,10 @@ $routes->get('/test', 'TestController::index');
 $routes->get('/upload', 'TestController::uploadPage');
 $routes->post('/upload', 'TestController::upload');
 $routes->get('/view', 'TestController::view');
+
+$routes->get('/view_user', 'TestController::viewUser');
+$routes->get('/create_user', 'TestController::createUserPage');
+$routes->post('/create_user', 'TestController::createUser');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
