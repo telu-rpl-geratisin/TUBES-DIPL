@@ -85,7 +85,10 @@ $routes->get('/pub/register', 'Public\RegisterController::index', ['as' => 'publ
 $routes->post('/pub/register', 'Public\RegisterController::register');
 $routes->group('pub', ['filter' => 'loginCheck'], function($routes)
 {
-    $routes->get('home', 'Public\HomeController::index', ['as' => 'public.home.index']);
+    $routes->get('home', 'Public\HomeController::index', ['as' => 'public.home']);
+    $routes->get('profile', 'Public\ProfileController::index', ['as' => 'public.profile']);
+    $routes->get('edit_profile', 'Public\ProfileController::showEditProfile', ['as' => 'public.edit_profile']);
+    $routes->post('edit_profile/(:num)', 'Public\ProfileController::editProfile/$1');
 });
 
 // PUBLIC ROUTES END

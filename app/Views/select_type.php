@@ -97,70 +97,70 @@
         </div>
     </section>
     <!-- End Hero Section -->
-<!-- ======= Footer ======= -->
-<footer>
-    <div class="footer-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="footer-content">
-              <div class="footer-head">
-                <div class="footer-logo">
-                  <h2><span>G</span>eratisin</h2>
-                </div>  
-                <div class="footer-icons">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="bi bi-facebook"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="bi bi-twitter"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="bi bi-instagram"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="bi bi-linkedin"></i></a>
-                    </li>
-                  </ul>
+  <!-- ======= Footer ======= -->
+  <footer>
+      <div class="footer-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="footer-content">
+                <div class="footer-head">
+                  <div class="footer-logo">
+                    <h2><span>G</span>eratisin</h2>
+                  </div>  
+                  <div class="footer-icons">
+                    <ul>
+                      <li>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
+            <!-- end single footer -->
+            <div class="col-md-4">
+              <div class="footer-content">
+                <div class="footer-head">
+                  <h4>information</h4>
+                  <p>
+                   Geratisin Tempat Anak Indonesia Mencari Beasiswa.
+                  </p>
+                  <div class="footer-contacts">
+                    <p><span>Tel : </span> +123 456 789</p>
+                    <p><span>Email : </span> contact@geratisin.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end single footer -->
+            <div class="col-md-4">
+            </div>
           </div>
-          <!-- end single footer -->
-          <div class="col-md-4">
-            <div class="footer-content">
-              <div class="footer-head">
-                <h4>information</h4>
+        </div>
+      </div>
+      <div class="footer-area-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="copyright text-center">
                 <p>
-                 Geratisin Tempat Anak Indonesia Mencari Beasiswa.
+                  &copy; Copyright <strong>Geratisin</strong>. All Rights Reserved
                 </p>
-                <div class="footer-contacts">
-                  <p><span>Tel : </span> +123 456 789</p>
-                  <p><span>Email : </span> contact@geratisin.com</p>
-                </div>
               </div>
             </div>
           </div>
-          <!-- end single footer -->
-          <div class="col-md-4">
-          </div>
         </div>
       </div>
-    </div>
-    <div class="footer-area-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="copyright text-center">
-              <p>
-                &copy; Copyright <strong>Geratisin</strong>. All Rights Reserved
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </footer><!-- End  Footer -->
 
   <div id="preloader"></div>
