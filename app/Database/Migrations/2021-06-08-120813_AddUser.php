@@ -44,7 +44,7 @@ class User extends Migration
                 'null' => true
             ],
             'contact' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => '15',
                 'null' => true
             ],

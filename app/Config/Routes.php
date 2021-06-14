@@ -32,7 +32,9 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/Login', 'Login::index');
+$routes->get('/', 'Public\LoginController::index');
+$routes->get('/select_type', 'SelectTypeController::index');
+
 
 // ADMIN ROUTES START
 
@@ -77,8 +79,10 @@ $routes->post('admin/verify_company/(:num)', 'Admin\CompanyuserController::verif
 // PUBLIC ROUTES START
 
 $routes->get('/pub/login', 'Public\LoginController::index', ['as' => 'public.login.index']);
-$routes->post('/pub/login', 'Public\LoginController::login', ['as' => 'public.login.verify']);
+$routes->post('/pub/login', 'Public\LoginController::login');
 $routes->get('/pub/logout', 'Public\LoginController::logout', ['as' => 'public.logout']);
+$routes->get('/pub/register', 'Public\RegisterController::index', ['as' => 'public.register']);
+$routes->post('/pub/register', 'Public\RegisterController::register');
 $routes->group('pub', ['filter' => 'loginCheck'], function($routes)
 {
     $routes->get('home', 'Public\HomeController::index', ['as' => 'public.home.index']);

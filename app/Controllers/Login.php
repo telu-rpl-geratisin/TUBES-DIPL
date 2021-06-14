@@ -69,13 +69,8 @@ class Login extends BaseController
 
     public function logout(){
         session()->destroy();
-
-<<<<<<< HEAD
-        return redirect()->to(base_url('/Login/index'));
-=======
         session()->setFlashdata('pesan', 'anda telah logout');
         return redirect()->to(base_url('Login_Pengguna'));
->>>>>>> yahya
     }
 
 

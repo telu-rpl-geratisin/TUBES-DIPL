@@ -27,10 +27,10 @@ class User extends Model
     // Validation
     protected $validationRules    = [
         'username'     => 'required|alpha_numeric|min_length[3]',
-        'email'        => 'required|valid_email|is_unique[admin_user.email]',
+        'email'        => 'required|valid_email|is_unique[user.email]',
         'password'     => 'required|min_length[8]',
-        'pass_confirm' => 'required_with[password]|matches[password]',
-        'name'   => 'required|alpha'
+        // 'pass_confirm' => 'required_with[password]|matches[password]',
+        'name'   => 'required|alpha_space'
     ];
     protected $validationMessages   = [
         'username' => [
@@ -47,10 +47,10 @@ class User extends Model
             'required' => 'field password harus diisi',
             'min_length' => 'panjang password minimal 8 karakter'
         ],
-        'pass_confirm' => [
-            'required_with' => 'field password harus diisi',
-            'matches' => 'input harus sama dengan field password'
-        ],
+        // 'pass_confirm' => [
+        //     'required_with' => 'field password harus diisi',
+        //     'matches' => 'input harus sama dengan field password'
+        // ],
         'name' => [
             'required' => 'field nama harus diisi',
             'alpha' => 'hanya boleh menggunakan huruf'

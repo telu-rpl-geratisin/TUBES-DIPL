@@ -3,16 +3,15 @@
 namespace App\Controllers\Public;
 
 use App\Controllers\BaseController;
-use App\Models\Publicuser;
+use App\Models\User;
 
 class LoginController extends BaseController
 {
     public function index()
 	{
-		$data = array(
-			'title' => 'Login',
-		);
-		return view('pengguna\v_login',$data);
+		return view('public\login', [
+            'title' => 'Login'
+        ]);
 	}
 
     public function login()
@@ -28,7 +27,10 @@ class LoginController extends BaseController
 			return redirect()->back()->withInput();
         }
 
-        $user = Publicuser::ins()->where('username', $data['username'])->first();
+        $user = User::ins()
+            ->where('type', 'public')
+            ->where('username', $data['username'])
+            ->first();
 
         if(is_null($user))
         {
@@ -45,6 +47,8 @@ class LoginController extends BaseController
         $this->session->set('auth_pub', true);
         $this->session->set('username', $user['username']);
 
+        return 'sukses login';
+        
         return redirect('public.home.index');
 	}
 
