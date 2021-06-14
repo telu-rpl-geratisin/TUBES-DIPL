@@ -8,9 +8,9 @@ class Profile_Pengguna extends BaseController
 	{
 		$data = array(
 			'title' => 'Profile Pengguna',
-			'isi' => 'pengguna\v_profile'
+			'pengguna' => 'pengguna\v_profile'
 		);
-		return view('layout/v_wraper',$data);
+		return view('layout_pengguna/v_wraper',$data);
 	}
 
 	public function coba2()

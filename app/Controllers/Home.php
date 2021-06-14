@@ -8,13 +8,8 @@ class Home extends BaseController
 	{
 		$data = array(
 			'title' => 'Home',
-			'isi' => 'pengguna\v_home'
+			'isi' => 'home\v_home'
 		);
 		return view('layout/v_wraper',$data);
-	}
-
-	public function coba2()
-	{
-		echo 'hahahhahaha';
 	}
 }

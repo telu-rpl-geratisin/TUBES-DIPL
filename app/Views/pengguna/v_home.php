@@ -23,7 +23,7 @@
               <div class="inner">
                 <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                <p>Beasiswa</p>
+                <p>Peusahaan</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>

@@ -128,3 +128,7 @@ nb-configuration.xml
 public/template/
 documents/
 storage/
+
+/public/template/*
+/public/template2/*
+/public/template3/*
