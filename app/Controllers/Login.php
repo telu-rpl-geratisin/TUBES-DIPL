@@ -46,7 +46,16 @@ class Login extends BaseController
                 //jika data cocok 
                 session()->set('auth', true);
                 session()->set('username',$cek['username']);
-                return redirect()->to(base_url('home'));
+                session()->set('nama_depan',$cek['nama_depan']);
+                session()->set('nama_belakang',$cek['nama_belakang']);
+                session()->set('jenis_kelamin',$cek['jenis_kelamin']);
+                session()->set('no_hp',$cek['no_hp']);
+                session()->set('password',$cek['password']);
+                session()->set('email',$cek['email']);
+                session()->set('alamat',$cek['alamat']);
+                session()->set('tanggal_lahir',$cek['tanggal_lahir']);
+                session()->set('created_at',$cek['created_at']);
+                return redirect()->to(base_url('pengguna'));
             } else {
                 session()->setFlashdata('pesan', 'Login Gagal,Username atau Password anda salah');
                 return redirect()->to(base_url('Login/index'));
@@ -61,16 +70,14 @@ class Login extends BaseController
     public function logout(){
         session()->destroy();
 
+<<<<<<< HEAD
         return redirect()->to(base_url('/Login/index'));
+=======
+        session()->setFlashdata('pesan', 'anda telah logout');
+        return redirect()->to(base_url('Login_Pengguna'));
+>>>>>>> yahya
     }
 
-    public function Daftar(){
-        $data = array(
-			'title' => 'Daftar Pengguna',
-			'isi' => 'pengguna\v_daftar_pengguna'
-		);
-		return view('layout_polos/v_wraper',$data);
-    }
 
   
 }

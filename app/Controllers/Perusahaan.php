@@ -8,13 +8,9 @@ class Perusahaan extends BaseController
 	{
 		$data = array(
 			'title' => 'Perusahaan',
-			'perusahaan' => 'perusahaan\v_perusahaan'
+			'perusahaan' => 'home\v_home_login'
 		);
 		return view('layout_perusahaan/v_wraper',$data);
 	}
 
-	public function coba2()
-	{
-		echo 'hahahhahaha';
-	}
 }

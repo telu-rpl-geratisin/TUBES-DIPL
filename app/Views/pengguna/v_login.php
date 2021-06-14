@@ -73,12 +73,13 @@
           </div>
           <!-- /.col -->
         </div>
+      <?php echo form_close() ?>
       </form>
       <p class="mb-1">
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="<?= base_url('Login/Daftar') ?>" class="text-center">Register a new membership</a>
+        <a href="<?= base_url('Daftar_Pengguna') ?>" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.login-card-body -->

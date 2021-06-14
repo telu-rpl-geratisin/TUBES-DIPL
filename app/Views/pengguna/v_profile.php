@@ -1,5 +1,58 @@
-<!-- Main content -->
-<section class="content">
+</header><!-- End Header -->
+  <!-- ======= hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(public/template3/assets/img/hero-carousel/1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+                <h2 class="animate__animated animate__fadeInDown">Bersekolah Tidak Harus Mahal </h2>
+                <p class="animate__animated animate__fadeInUp">Kemenangan adalah seuatu hal yang harus kalian rencanakan kawan</p>
+            
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url(public/template3/assets/img/hero-carousel/2.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+                <h2 class="animate__animated animate__fadeInDown">Jika Ada Sesuatu Yang Tidak Hilang Sesuatu Itu Adalah Ilmu </h2>
+                <p class="animate__animated animate__fadeInUp">Membantu tidak membuat apa yang kita memiliki </p>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url(public/template3/assets/img/hero-carousel/3.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+                <h2 class="animate__animated animate__fadeInDown">Jika Ada Kemiskinan Di Situ Pendidikan Tidak Merata</h2>
+                <p class="animate__animated animate__fadeInUp">Yang Pintar Mencurangi Yang Bodoh Begitulah Cara Kerja Dunia Ini</p>
+                   
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+    </section><!-- End Hero Section -->
+    <!-- Main content -->
+    <section class="content" >
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
@@ -18,18 +71,17 @@
                 <p class="text-muted text-center"><?= session()->get('created_at') ?></p>
 
                 <ul class="list-group list-group-unbordered mb-3">
+                  
+            
                   <li class="list-group-item">
-                    <b>Followers</b> <a class="float-right">1,322</a>
+                    <b>Tanggal Lahir</b> <a class="float-right"><?= session()->get('tanggal_lahir') ?></a>
                   </li>
                   <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
+                    <b>Jenis Kelamin</b> <a class="float-right"><?= session()->get('jenis_kelamin') ?></a>
                   </li>
-                  <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
-                  </li>
+                  
                 </ul>
 
-                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
               </div>
               <!-- /.card-body -->
             </div>
@@ -38,39 +90,28 @@
             <!-- About Me Box -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">About Me</h3>
+                <h3 class="card-title">Tentang Anda</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                
+              <hr>
 
-                <p class="text-muted">
-                  B.S. in Computer Science from the University of Tennessee at Knoxville
-                </p>
+              <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-                <hr>
+              <p class="text-muted"><?= session()->get('alamat') ?></p>
 
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+              <hr>
 
-                <p class="text-muted">Malibu, California</p>
+              <strong><i class="fa fa-fw fa-envelope"></i> Email</strong>
 
-                <hr>
+              <p class="text-muted"><?= session()->get('email') ?></p>
 
-                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+              <hr>
 
-                <p class="text-muted">
-                  <span class="tag tag-danger">UI Design</span>
-                  <span class="tag tag-success">Coding</span>
-                  <span class="tag tag-info">Javascript</span>
-                  <span class="tag tag-warning">PHP</span>
-                  <span class="tag tag-primary">Node.js</span>
-                </p>
+              <strong><i class="fa fa-fw fa-location-arrow"></i>NO HP</strong>
 
-                <hr>
-
-                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              <p class="text-muted"><?= session()->get('no_hp') ?></p>
               </div>
               <!-- /.card-body -->
             </div>
@@ -81,9 +122,9 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Aktifitas</a></li>
                   <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Update Data Diri</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -202,7 +243,7 @@
                     <!-- /.post -->
                   </div>
                   <!-- /.tab-pane -->
-                  <div class="tab-pane" id="timeline">
+                  <div id="timeline">
                     <!-- The timeline -->
                     <div class="timeline timeline-inverse">
                       <!-- timeline time label -->
@@ -298,7 +339,7 @@
                   </div>
                   <!-- /.tab-pane -->
 
-                  <div class="tab-pane" id="settings">
+                  <div id="settings">
                     <form class="form-horizontal">
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Nama Depan</label>
@@ -366,3 +407,4 @@
     </section>
     <!-- /.content -->
   </div>
+</main><!-- End #main -->   
