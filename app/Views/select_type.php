@@ -63,8 +63,8 @@
                   <div class="container">
                     <h2 class="animate__animated animate__fadeInDown">Selamat Datang</h2>
                     <p class="animate__animated animate__fadeInUp">Silakan Anda Login Sesuai Dengan Tipe Akun Anda</p>
-                    <a href="<?= base_url() ?>/pub/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Pengguna</a>
-                    <a href="http://localhost/geratisin/login_perusahaan" class="btn-get-started scrollto animate__animated animate__fadeInUp">Perusahaan</a>
+                    <a href="<?= base_url() ?>/pub/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Publik</a>
+                    <a href="<?= base_url() ?>/company/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Perusahaan</a>
                   </div>
                 </div>
               </div>
@@ -74,8 +74,8 @@
                   <div class="container">
                     <h2 class="animate__animated animate__fadeInDown">Selamat Datang</h2>
                     <p class="animate__animated animate__fadeInUp">Silakan Anda Login Sesuai Dengan Akun Anda</p>
-                    <a href="<?= base_url() ?>/pub/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Pengguna</a>
-                    <a href="http://localhost/geratisin/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Perusahaan</a>
+                    <a href="<?= base_url() ?>/pub/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Publik</a>
+                    <a href="<?= base_url() ?>/company/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Perusahaan</a>
                   </div>
                 </div>
               </div>
@@ -85,8 +85,8 @@
                   <div class="container">
                     <h2 class="animate__animated animate__fadeInDown">Selamat Datang</h2>
                     <p class="animate__animated animate__fadeInUp">Silakan Anda Login Sesuai Dengan Akun Anda</p>
-                    <a href="<?= base_url() ?>/pub/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Pengguna</a>
-                    <a href="http://localhost/geratisin/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Perusahaan</a>   
+                    <a href="<?= base_url() ?>/pub/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Publik</a>
+                    <a href="<?= base_url() ?>/company/login" class="btn-get-started scrollto animate__animated animate__fadeInUp">Perusahaan</a>   
                   </div>
                 </div>
               </div>

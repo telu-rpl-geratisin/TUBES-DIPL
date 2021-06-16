@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Public;
+namespace App\Controllers\Company;
 
 use App\Controllers\BaseController;
 use App\Models\User;
@@ -12,9 +12,9 @@ class ProfileController extends BaseController
 		$username = $this->session->get('username');
 		$user = User::ins()->where('username', $username)->get()->getResultArray()[0];
 
-		return view('public/profile', [
+		return view('company/profile', [
 			'user_data' => $user,
-			'title' => 'Profil',
+			'title' => 'Profil Perusahaan',
         	'page_id' => 'profile'
 		]);
 	}
@@ -24,9 +24,9 @@ class ProfileController extends BaseController
 		$username = $this->session->get('username');
 		$user = User::ins()->where('username', $username)->get()->getResultArray()[0];
 
-		return view('public/edit_profile', [
+		return view('company/edit_profile', [
 			'user_data' => $user,
-			'title' => 'Edit Profil',
+			'title' => 'Edit Profil Perusahaan',
         	'page_id' => 'profile'
 		]);
 	}
@@ -65,6 +65,6 @@ class ProfileController extends BaseController
         	return redirect()->back()->withInput();
 		}
 
-		return redirect('public.profile');
+		return redirect('company.profile');
 	}
 }

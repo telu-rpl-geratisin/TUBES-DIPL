@@ -22,7 +22,7 @@ $routes->setDefaultController('Public\LoginController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -104,6 +104,8 @@ $routes->group('pub', ['filter' => 'loginCheck'], function($routes)
     $routes->get('verify_scholarship/(:num)', 'Public\ScholarshipController::showVerify/$1');
     $routes->post('verify_scholarship/(:num)', 'Public\ScholarshipController::verify/$1');
 
+    $routes->get('scholarship_verification_instruction', 'Public\ScholarshipController::showVerificationHelp');
+
 });
 
 // PUBLIC ROUTES END
@@ -114,10 +116,34 @@ $routes->group('pub', ['filter' => 'loginCheck'], function($routes)
 $routes->get('/company/login', 'Company\LoginController::index', ['as' => 'company.login.index']);
 $routes->post('/company/login', 'Company\LoginController::login', ['as' => 'company.login.verify']);
 $routes->get('/company/logout', 'Company\LoginController::logout', ['as' => 'company.logout']);
-
+$routes->get('/company/register', 'Company\RegisterController::index', ['as' => 'company.register']);
+$routes->post('/company/register', 'Company\RegisterController::register');
 $routes->group('company', ['filter' => 'loginCheck'], function($routes)
 {
-    $routes->get('home', 'Company\HomeController::index', ['as' => 'company.home.index']);
+    $routes->get('home', 'Company\HomeController::index', ['as' => 'company.home']);
+    $routes->get('profile', 'Company\ProfileController::index', ['as' => 'company.profile']);
+    $routes->get('edit_profile', 'Company\ProfileController::showEditProfile', ['as' => 'company.edit_profile']);
+    $routes->post('edit_profile/(:num)', 'Company\ProfileController::editProfile/$1');
+
+    $routes->get('scholarship/all/(:num)', 'Company\ScholarshipController::index/$1');
+    $routes->get('scholarship/(:num)', 'Company\ScholarshipController::show/$1', ['as' => 'company.scholarship.show']);
+    $routes->post('scholarship/(:num)/comment', 'Company\ScholarshipController::createComment/$1');
+
+    $routes->get('my_scholarship', 'Company\ScholarshipController::showMyScholarship');
+    $routes->get('create_scholarship', 'Company\ScholarshipController::showCreateScholarship', ['as' => 'company.create_scholarship']);
+    $routes->post('create_scholarship', 'Company\ScholarshipController::create');
+    
+    $routes->get('edit_scholarship/(:num)', 'Company\ScholarshipController::edit/$1');
+    $routes->post('edit_scholarship/(:num)', 'Company\ScholarshipController::update/$1');
+
+    $routes->get('verify_scholarship/(:num)', 'Company\ScholarshipController::showVerify/$1');
+    $routes->post('verify_scholarship/(:num)', 'Company\ScholarshipController::verify/$1');
+
+    $routes->get('verify_company/(:num)', 'Company\CompanyController::showVerifyCompany/$1');
+    $routes->post('verify_company/(:num)', 'Company\CompanyController::verifyCompany/$1');
+
+    $routes->get('company_verification_instruction', 'Company\CompanyController::showVerificationHelp');
+    $routes->get('scholarship_verification_instruction', 'Company\ScholarshipController::showVerificationHelp');
 });
 
 // COMPANY ROUTES END

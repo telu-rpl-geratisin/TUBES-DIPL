@@ -8,10 +8,9 @@ class HomeController extends BaseController
 {
 	public function index()
 	{
-		$data = array(
-			'title' => 'Perusahaan',
-			'perusahaan' => 'perusahaan\v_perusahaan'
-		);
-		return view('layout_perusahaan/v_wraper',$data);
+        return view('company/home', [
+        	'title' => 'Home Perusahaan',
+        	'page_id' => 'home'
+        ]);
 	}
 }

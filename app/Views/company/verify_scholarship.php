@@ -1,4 +1,4 @@
-<?= $this->extend('public/public_layout') ?>
+<?= $this->extend('company/company_layout') ?>
 
 <?= $this->section('custom_style') ?>
 <style type="text/css">
@@ -30,9 +30,9 @@
         <?php endif; ?>
         <h3 class="font-weight-bolder">Form Verifikasi Beasiswa</h3>
         <h5>Untuk <?= $scholarship['name'] ?></h5>
-        <span>Lihat petunjuk terkait dokumen verifikasi beasiswa <a href="<?= base_url() ?>/pub/scholarship_verification_instruction">disini</a></span>
+        <span>Lihat petunjuk terkait dokumen verifikasi beasiswa <a href="<?= base_url() ?>/company/scholarship_verification_instruction">Disini</a>.</span>
 
-        <form class="mt-4" action="<?= base_url() ?>/pub/verify_scholarship/<?= $scholarship['id'] ?>" method="post" enctype="multipart/form-data">
+        <form class="mt-4" action="<?= base_url() ?>/company/verify_scholarship/<?= $scholarship['id'] ?>" method="post" enctype="multipart/form-data">
           <?= csrf_field() ?>
 
           <div class="form-group mb-3">
@@ -42,7 +42,7 @@
 
           <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Ajukan Verifikasi Beasiswa</button>
           
-          <p>Kembali ke <a href="<?= base_url() ?>/pub/my_scholarship">Halaman Beasiswa Saya</a></p>
+          <p>Kembali ke <a href="<?= base_url() ?>/company/my_scholarship">Halaman Beasiswa Saya</a></p>
 
           
         </form>

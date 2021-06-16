@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Public;
+namespace App\Controllers\Company;
 
 use App\Controllers\BaseController;
 use App\Models\Scholarship;
@@ -23,7 +23,7 @@ class ScholarshipController extends BaseController
 			->getResultArray();
 
 		// dd($scholarships);
-		return view('public/scholarship',[
+		return view('company/scholarship',[
 			'scholarships' => $scholarships,
 			'title' => 'Daftar Beasiswa',
 			'page_id' => 'scholarship'
@@ -55,7 +55,7 @@ class ScholarshipController extends BaseController
 			->getResultArray();
 		// dd($comments);
 		
-		return view('public/scholarship_show', [
+		return view('company/scholarship_show', [
 			'title' => 'Detail Beasiswa',
 			'page_id' => 'scholarship',
 			'scholarship' => $scholarship,
@@ -74,7 +74,7 @@ class ScholarshipController extends BaseController
 
 		// dd($scholarships);
 
-		return view('public/my_scholarship',[
+		return view('company/my_scholarship',[
 			'title' => 'Beasiswa Saya',
 			'page_id' => 'my_scholarship',
 			'scholarships' => $scholarships
@@ -83,7 +83,7 @@ class ScholarshipController extends BaseController
 
 	public function showCreateScholarship()
 	{
-		return view('public/create_scholarship', [
+		return view('company/create_scholarship', [
 			'title' => 'Tambah Beasiswa',
 			'page_id' => 'create_scholarship'
 		]);
@@ -131,7 +131,7 @@ class ScholarshipController extends BaseController
 				'rating' => 0
 			]);
 
-		return redirect('public.create_scholarship');
+		return redirect('company.create_scholarship');
 	}
 
 	public function createComment($id)
@@ -157,7 +157,7 @@ class ScholarshipController extends BaseController
 
 		// dd($scholarship);
 
-		return view('public/edit_scholarship',[
+		return view('company/edit_scholarship',[
 			'title' => 'Edit Beasiswa',
 			'page_id' => 'edit_scholarship',
 			'scholarship' => $scholarship
@@ -201,7 +201,7 @@ class ScholarshipController extends BaseController
 		$scholarship = Scholarship::ins()->find($id);
 		// dd($scholarship);
 
-		return view('public/verify_scholarship', [
+		return view('company/verify_scholarship', [
 			'title' => 'Verifikasi Beasiswa',
 			'page_id' => 'verify_scholarship',
 			'scholarship' => $scholarship
@@ -246,7 +246,7 @@ class ScholarshipController extends BaseController
 
 	public function showVerificationHelp()
 	{
-		return view('public/scholarship_verification_help',[
+		return view('company/scholarship_verification_help',[
 			'title' => 'Informasi Verifikasi Beasiswa',
 			'page_id' => 'verify_scholarship',
 		]);

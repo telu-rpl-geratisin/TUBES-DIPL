@@ -1,4 +1,4 @@
-<?= $this->extend('public/public_layout') ?>
+<?= $this->extend('company/company_layout') ?>
 
 <?= $this->section('custom_style') ?>
 <style type="text/css">
@@ -28,11 +28,11 @@
             </button>
           </div>
         <?php endif; ?>
-        <h3 class="font-weight-bolder">Form Verifikasi Beasiswa</h3>
-        <h5>Untuk <?= $scholarship['name'] ?></h5>
-        <span>Lihat petunjuk terkait dokumen verifikasi beasiswa <a href="<?= base_url() ?>/pub/scholarship_verification_instruction">disini</a></span>
+        <h3 class="font-weight-bolder">Form Verifikasi Perusahaan</h3>
+        <h5>Untuk <?= $company_name ?></h5>
+        <span>Lihat petunjuk terkait dokumen verifikasi perusahaan <a href="<?= base_url() ?>/company/company_verification_instruction">Disini</a>.</span>
 
-        <form class="mt-4" action="<?= base_url() ?>/pub/verify_scholarship/<?= $scholarship['id'] ?>" method="post" enctype="multipart/form-data">
+        <form class="mt-4" action="<?= base_url() ?>/company/verify_company/<?= $company_id ?>" method="post" enctype="multipart/form-data">
           <?= csrf_field() ?>
 
           <div class="form-group mb-3">
@@ -40,9 +40,9 @@
             <input name="document" type="file" class="form-control-file" id="uploadDoc">
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Ajukan Verifikasi Beasiswa</button>
+          <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Ajukan Verifikasi Perusahaan</button>
           
-          <p>Kembali ke <a href="<?= base_url() ?>/pub/my_scholarship">Halaman Beasiswa Saya</a></p>
+          <p>Kembali ke <a href="<?= base_url() ?>/company/profile">Halaman Profil</a></p>
 
           
         </form>

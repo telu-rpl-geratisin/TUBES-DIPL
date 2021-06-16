@@ -1,4 +1,4 @@
-<?= $this->extend('public/public_layout') ?>
+<?= $this->extend('company/company_layout') ?>
 
 <?= $this->section('custom_style') ?>
 <style type="text/css">
@@ -118,7 +118,7 @@
         </div>
         <div class="comment-respond">
           <h3 class="comment-reply-title">Tulis Komentar</h3>
-          <form action="<?= base_url() ?>/pub/scholarship/<?= $scholarship['id'] ?>/comment" method="post">
+          <form action="<?= base_url() ?>/company/scholarship/<?= $scholarship['id'] ?>/comment" method="post">
             <?= csrf_field() ?>
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">

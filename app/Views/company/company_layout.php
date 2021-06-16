@@ -30,8 +30,9 @@
   <?= $this->renderSection('import_style') ?>
   <style type="text/css">
     .logo h1 {
-      line-height: 61px!important;
+      /*line-height: 61px!important;*/
       vertical-align: middle;
+      margin-bottom: 0;
     }
     .header-image img {
       width: 100vw;
@@ -50,58 +51,59 @@
 
       <div class="logo">
         <h1>
-          <a href="<?= base_url() ?>/pub/home">
+          <a href="<?= base_url() ?>/company/home">
             <span>G</span>eratisin
           </a>
         </h1>
+        <h5 class="text-light">Perusahaan</h5>
       </div>
 
       <nav id="navbar" class="navbar" style="margin-right: 130px;">
-        <ul>
-          <li><a class="nav-link <?= $page_id == 'home' ? 'active' : '' ?>" href="<?= base_url() ?>/pub/home">Home</a></li>
-          <li><a class="nav-link <?= $page_id == 'scholarship' ? 'active' : '' ?>" href="<?= base_url() ?>/pub/scholarship/all/1">Beasiswa</a></li>
-          
-          <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-            <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!-- <img src="<?= base_url() ?>/public/storage/images/<?= session('photo') ?>" class="user-image" alt="User Image"> -->
-                <span class="hidden-xs"><?= session('name') ?></span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- User image -->
-                <li class="user-header">
-                  <img src="<?= base_url() ?>/public/storage/images/<?= session('photo') ?>" class="img-circle" alt="User Image">
-                  <p>
-                    <?= session('name') ?>
-                  </p>
-                </li>
-                <!-- Menu Body -->
-                <li class="user-body">
-                  <div class="row">
-                    <span class="col-xs-4 text-center">
-                      <a class="btn btn-default btn-flat" href="<?= base_url() ?>/pub/my_scholarship">Beasiswa Saya</a>
-                    </span>
-                  </div>
-                  <div class="row">
-                    <span class="col-xs-4 text-center">
-                      <a class="btn btn-default btn-flat" href="<?= base_url() ?>/pub/create_scholarship">Tambah Beasiswa</a>
-                    </span>
-                  </div>
-                </li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                  <div class="col-xs-4 text-center">
-                    <a href="<?= base_url() ?>/pub/profile" class="btn btn-default btn-flat">Profile</a>
-                  </div>
-                  <div class="pull-right">
-                    <a href="<?= base_url() ?>/pub/logout" class="btn btn-default btn-flat">Log out</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
+      <ul>
+        <li><a class="nav-link <?= $page_id == 'home' ? 'active' : '' ?>" href="<?= base_url() ?>/company/home">Home</a></li>
+        <li><a class="nav-link <?= $page_id == 'scholarship' ? 'active' : '' ?>" href="<?= base_url() ?>/company/scholarship/all/1">Beasiswa</a></li>
+        
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- <img src="<?= base_url() ?>/public/storage/images/<?= session('photo') ?>" class="user-image" alt="User Image"> -->
+              <span class="hidden-xs"><?= session('name') ?></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="<?= base_url() ?>/public/storage/images/<?= session('photo') ?>" class="img-circle" alt="User Image">
+                <p>
+                  <?= session('name') ?>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <span class="col-xs-4 text-center">
+                    <a class="btn btn-default btn-flat" href="<?= base_url() ?>/company/my_scholarship">Beasiswa Saya</a>
+                  </span>
+                </div>
+                <div class="row">
+                  <span class="col-xs-4 text-center">
+                    <a class="btn btn-default btn-flat" href="<?= base_url() ?>/company/create_scholarship">Tambah Beasiswa</a>
+                  </span>
+                </div>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="col-xs-4 text-center">
+                  <a href="<?= base_url() ?>/company/profile" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="<?= base_url() ?>/company/logout" class="btn btn-default btn-flat">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
         </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </ul>
       </nav>
       <!-- .navbar -->
     </div>
