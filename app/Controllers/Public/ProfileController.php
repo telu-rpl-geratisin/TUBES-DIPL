@@ -13,7 +13,9 @@ class ProfileController extends BaseController
 		$user = User::ins()->where('username', $username)->get()->getResultArray()[0];
 
 		return view('public/profile', [
-			'user_data' => $user
+			'user_data' => $user,
+			'title' => 'Profil',
+        	'page_id' => 'profile'
 		]);
 	}
 
@@ -23,7 +25,9 @@ class ProfileController extends BaseController
 		$user = User::ins()->where('username', $username)->get()->getResultArray()[0];
 
 		return view('public/edit_profile', [
-			'user_data' => $user
+			'user_data' => $user,
+			'title' => 'Edit Profil',
+        	'page_id' => 'profile'
 		]);
 	}
 
@@ -38,7 +42,7 @@ class ProfileController extends BaseController
 
 		$photo = $this->request->getFile('photo');
 
-		// dd($photo->getFileName());
+		dd($photo->getFileName());
 
 		if($photo->getFileName() != '') {
 			$name = str_replace(" ", "_", $data['name']);

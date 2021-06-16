@@ -89,6 +89,14 @@ $routes->group('pub', ['filter' => 'loginCheck'], function($routes)
     $routes->get('profile', 'Public\ProfileController::index', ['as' => 'public.profile']);
     $routes->get('edit_profile', 'Public\ProfileController::showEditProfile', ['as' => 'public.edit_profile']);
     $routes->post('edit_profile/(:num)', 'Public\ProfileController::editProfile/$1');
+
+    $routes->get('scholarship/all/(:num)', 'Public\ScholarshipController::index/$1');
+    $routes->get('scholarship/(:num)', 'Public\ScholarshipController::show/$1', ['as' => 'public.scholarship.show']);
+    $routes->post('scholarship/(:num)/comment', 'Public\ScholarshipController::createComment/$1');
+
+    $routes->get('my_scholarship', 'Public\ScholarshipController::showMyScholarship');
+    $routes->get('create_scholarship', 'Public\ScholarshipController::showCreateScholarship', ['as' => 'public.create_scholarship']);
+    $routes->post('create_scholarship', 'Public\ScholarshipController::create');
 });
 
 // PUBLIC ROUTES END

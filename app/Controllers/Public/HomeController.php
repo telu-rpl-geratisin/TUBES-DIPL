@@ -8,6 +8,9 @@ class HomeController extends BaseController
 {
 	public function index()
 	{
-        return view('public/home');
+        return view('public/home', [
+        	'title' => 'Home',
+        	'page_id' => 'home'
+        ]);
 	}
 }
