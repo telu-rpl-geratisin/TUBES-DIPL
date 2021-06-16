@@ -18,7 +18,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Public\LoginController');
+$routes->setDefaultController('Pblc\LoginController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -32,7 +32,7 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Public\LoginController::index');
+$routes->get('/', 'Pblc\LoginController::index');
 $routes->get('/select_type', 'SelectTypeController::index');
 
 
@@ -78,33 +78,33 @@ $routes->post('admin/verify_company/(:num)', 'Admin\CompanyuserController::verif
 
 // PUBLIC ROUTES START
 
-$routes->get('/pub/login', 'Public\LoginController::index', ['as' => 'public.login.index']);
-$routes->post('/pub/login', 'Public\LoginController::login');
-$routes->get('/pub/logout', 'Public\LoginController::logout', ['as' => 'public.logout']);
-$routes->get('/pub/register', 'Public\RegisterController::index', ['as' => 'public.register']);
-$routes->post('/pub/register', 'Public\RegisterController::register');
+$routes->get('/pub/login', 'Pblc/LoginController::index', ['as' => 'public.login.index']);
+$routes->post('/pub/login', 'Pblc/LoginController::login');
+$routes->get('/pub/logout', 'Pblc/LoginController::logout', ['as' => 'public.logout']);
+$routes->get('/pub/register', 'Pblc/RegisterController::index', ['as' => 'public.register']);
+$routes->post('/pub/register', 'Pblc/RegisterController::register');
 $routes->group('pub', ['filter' => 'loginCheck'], function($routes)
 {
-    $routes->get('home', 'Public\HomeController::index', ['as' => 'public.home']);
-    $routes->get('profile', 'Public\ProfileController::index', ['as' => 'public.profile']);
-    $routes->get('edit_profile', 'Public\ProfileController::showEditProfile', ['as' => 'public.edit_profile']);
-    $routes->post('edit_profile/(:num)', 'Public\ProfileController::editProfile/$1');
+    $routes->get('home', 'Pblc/HomeController::index', ['as' => 'public.home']);
+    $routes->get('profile', 'Pblc/ProfileController::index', ['as' => 'public.profile']);
+    $routes->get('edit_profile', 'Pblc/ProfileController::showEditProfile', ['as' => 'public.edit_profile']);
+    $routes->post('edit_profile/(:num)', 'Pblc/ProfileController::editProfile/$1');
 
-    $routes->get('scholarship/all/(:num)', 'Public\ScholarshipController::index/$1');
-    $routes->get('scholarship/(:num)', 'Public\ScholarshipController::show/$1', ['as' => 'public.scholarship.show']);
-    $routes->post('scholarship/(:num)/comment', 'Public\ScholarshipController::createComment/$1');
+    $routes->get('scholarship/all/(:num)', 'Pblc/ScholarshipController::index/$1');
+    $routes->get('scholarship/(:num)', 'Pblc/ScholarshipController::show/$1', ['as' => 'public.scholarship.show']);
+    $routes->post('scholarship/(:num)/comment', 'Pblc/ScholarshipController::createComment/$1');
 
-    $routes->get('my_scholarship', 'Public\ScholarshipController::showMyScholarship');
-    $routes->get('create_scholarship', 'Public\ScholarshipController::showCreateScholarship', ['as' => 'public.create_scholarship']);
-    $routes->post('create_scholarship', 'Public\ScholarshipController::create');
+    $routes->get('my_scholarship', 'Pblc/ScholarshipController::showMyScholarship');
+    $routes->get('create_scholarship', 'Pblc/ScholarshipController::showCreateScholarship', ['as' => 'public.create_scholarship']);
+    $routes->post('create_scholarship', 'Pblc/ScholarshipController::create');
     
-    $routes->get('edit_scholarship/(:num)', 'Public\ScholarshipController::edit/$1');
-    $routes->post('edit_scholarship/(:num)', 'Public\ScholarshipController::update/$1');
+    $routes->get('edit_scholarship/(:num)', 'Pblc/ScholarshipController::edit/$1');
+    $routes->post('edit_scholarship/(:num)', 'Pblc/ScholarshipController::update/$1');
 
-    $routes->get('verify_scholarship/(:num)', 'Public\ScholarshipController::showVerify/$1');
-    $routes->post('verify_scholarship/(:num)', 'Public\ScholarshipController::verify/$1');
+    $routes->get('verify_scholarship/(:num)', 'Pblc/ScholarshipController::showVerify/$1');
+    $routes->post('verify_scholarship/(:num)', 'Pblc/ScholarshipController::verify/$1');
 
-    $routes->get('scholarship_verification_instruction', 'Public\ScholarshipController::showVerificationHelp');
+    $routes->get('scholarship_verification_instruction', 'Pblc/ScholarshipController::showVerificationHelp');
 
 });
 

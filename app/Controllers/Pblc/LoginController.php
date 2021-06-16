@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Public;
+namespace App\Controllers\Pblc;
 
 use App\Controllers\BaseController;
 use App\Models\User;
@@ -9,7 +9,7 @@ class LoginController extends BaseController
 {
     public function index()
 	{
-		return view('public\login', [
+		return view('public/login', [
             'title' => 'Login'
         ]);
 	}

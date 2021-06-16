@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Public;
+namespace App\Controllers\Pblc;
 
 use App\Controllers\BaseController;
 use App\Models\Scholarship;
