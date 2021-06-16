@@ -36,8 +36,11 @@ class ScholarshipController extends BaseController
 		$db = Database::connect();
 
 		$scholarship = Scholarship::ins()->find($id);
-		$author = User::ins()->find($scholarship['user_id'])['name'];
-		$author_verif = User::ins()->find($scholarship['user_id'])['status'];
+		$user = User::ins()->find($scholarship['user_id']);
+
+		$author = $user['name'];
+		$author_verif = $user['status'];
+		$author_photo = $user['photo'];
 		$rating = $db->table('scholarship_rating')
 			->where('scholarship_id', $scholarship['id'])
 			->get()
@@ -47,6 +50,7 @@ class ScholarshipController extends BaseController
 			->join('user', 'user.id = scholarship_comment.user_id', 'left')
 			->select('scholarship_comment.*')
 			->select('user.name as author, user.photo as author_photo')
+			->where('scholarship_comment.scholarship_id', $id)
 			->get()
 			->getResultArray();
 		// dd($comments);
@@ -57,6 +61,7 @@ class ScholarshipController extends BaseController
 			'scholarship' => $scholarship,
 			'author' => $author,
 			'author_verif' => $author_verif,
+			'author_photo' => $author_photo,
 			'rating' => $rating,
 			'comments' => $comments
 		]);
@@ -67,7 +72,13 @@ class ScholarshipController extends BaseController
 		$user_id = User::ins()->where('username', $this->session->get('username'))->first()['id'];
 		$scholarships = Scholarship::ins()->where('user_id', $user_id)->findAll();
 
-		dd($scholarships);
+		// dd($scholarships);
+
+		return view('public/my_scholarship',[
+			'title' => 'Beasiswa Saya',
+			'page_id' => 'my_scholarship',
+			'scholarships' => $scholarships
+		]);
 	}
 
 	public function showCreateScholarship()
@@ -102,7 +113,7 @@ class ScholarshipController extends BaseController
 		$scholarship = new Scholarship();
 		$res = $scholarship->insert($data);
 
-		// dd($scholarship->errors());
+		// dd($res);
 
 		if(boolval($res)) {
 			$this->session->setFlashdata('msg', 'Anda telah sukses menambahkan beasiswa.');
@@ -110,6 +121,15 @@ class ScholarshipController extends BaseController
 			$this->session->setFlashdata('data_error', $scholarship->errors());
         	return redirect()->back()->withInput();
 		}
+
+		// connect to db
+		$db = Database::connect();
+
+		$res_rating = $db->table('scholarship_rating')
+			->insert([
+				'scholarship_id' => $res,
+				'rating' => 0
+			]);
 
 		return redirect('public.create_scholarship');
 	}
@@ -128,6 +148,99 @@ class ScholarshipController extends BaseController
 		
 		$res = $db->table('scholarship_comment')->insert($data)->getResultArray();
 		$this->session->setFlashdata('msg', 'Komentar berhasil diposting');
+		return redirect()->back();
+	}
+
+	public function edit($id)
+	{
+		$scholarship = Scholarship::ins()->find($id);
+
+		// dd($scholarship);
+
+		return view('public/edit_scholarship',[
+			'title' => 'Edit Beasiswa',
+			'page_id' => 'edit_scholarship',
+			'scholarship' => $scholarship
+		]);
+	}
+
+	public function update($id)
+	{
+		$data['name'] = $this->request->getPost('name');
+		$data['description'] = $this->request->getPost('description');
+		$data['end_date'] = $this->request->getPost('end_date');
+		$data['link'] = $this->request->getPost('link');
+
+		$photo = $this->request->getFile('brochure');
+
+		if($photo->getFileName() != '') {
+			$name = str_replace(" ", "_", $data['name']);
+			$name = strtolower($name);
+			$new_name = $name.'_'.random_string('numeric', 16).'.'.$photo->getExtension();
+			$data['photo'] = $new_name;
+			$photo->move(ROOTPATH.'public/storage/images', $new_name);
+		}
+
+		$scholarship = new Scholarship();
+		$res = $scholarship->update($id, $data);
+
+		// dd($res);
+
+		if(boolval($res)) {
+			$this->session->setFlashdata('msg', 'Anda telah sukses mengedit data beasiswa.');
+		}else{
+			$this->session->setFlashdata('data_error', $scholarship->errors());
+        	return redirect()->back()->withInput();
+		}
+
+		return redirect()->back();
+	}
+
+	public function showVerify($id)
+	{
+		$scholarship = Scholarship::ins()->find($id);
+		// dd($scholarship);
+
+		return view('public/verify_scholarship', [
+			'title' => 'Verifikasi Beasiswa',
+			'page_id' => 'verify_scholarship',
+			'scholarship' => $scholarship
+		]);
+	}
+
+	public function verify($id)
+	{
+		$scholarship = Scholarship::ins()->find($id);
+		$document = $this->request->getFile('document');
+
+		if($document->getFileName() != '') {
+			$name = str_replace(" ", "_", $scholarship['name']);
+			$name = strtolower($name);
+			$new_name = $name.'_verification_'.random_string('numeric', 16).'.'.$document->getExtension();
+			$data['document'] = $new_name;
+			$document->move(ROOTPATH.'/storage/document', $new_name);
+		}
+
+		// dd($data);
+
+		// connect to db
+		$db = Database::connect();
+
+		$res = $db->table('scholarship_verification_doc')
+			->insert([
+				'scholarship_id' => $id,
+				'document' => $data['document']
+			]);
+
+		// dd($res->resultID);
+
+		if($res->resultID) {
+			$this->session->setFlashdata('msg', 'Anda telah sukses mengajukan verifikasi beasiswa.');
+		}else{
+			$this->session->setFlashdata('data_error', $scholarship->errors());
+        	return redirect()->back()->withInput();
+		}
+
 		return redirect()->back();
 	}
 }

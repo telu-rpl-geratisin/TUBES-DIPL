@@ -47,6 +47,7 @@ class LoginController extends BaseController
         $this->session->set('auth_pub', true);
         $this->session->set('username', $user['username']);
         $this->session->set('name', $user['name']);
+        $this->session->set('photo', $user['photo']);
         
         return redirect('public.home');
 	}

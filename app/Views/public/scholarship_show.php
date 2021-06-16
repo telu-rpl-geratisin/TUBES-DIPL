@@ -30,9 +30,9 @@
   </div>
   <div class="container pt-5">
     <!-- single-blog start -->
-    <article class="blog-post-wrapper">
+    <article class="blog-post-wrapper mb-5">
     <div class="row">
-      <h2><?= $scholarship['name'] ?></h2>
+      <h2 class="mb-4"><?= $scholarship['name'] ?></h2>
       <div class="col-md-6">
         <div class="post-thumbnail">
           <a data-toggle="modal" data-target="#brochureModal">
@@ -41,16 +41,19 @@
         </div>
       </div>
       <div class="col-md-6 col-sm-12 col-xs-12">
-          <div class="post-information">
-            <div class="entry-meta flex-col">
+          <div class="post-information p-0">
+            <div class="entry-meta flex-col mt-0">
               <table class="scholarship-meta-table">
                 <tr>
                   <th>Dipost Oleh</th>
-                  <td><?= $author ?> <span class="fas fa-check-circle text-info"></span></td>
+                  <td>
+                    <img src="<?= base_url() ?>/public/storage/images/<?= $author_photo ?>" style="border-radius: 16px; width: 32px;"/>
+                    &nbsp;&nbsp;<?= $author ?> <?= $author_verif == 'verified' ? '<span class="fas fa-check-circle text-info"></span>' : '' ?>    
+                  </td>
                 </tr>
                 <tr>
                   <th>Rating</th>
-                  <td><span class="fas fa-star text-warning"></span> <?= $rating ?></td>
+                  <td><span class="fas fa-star text-warning"></span> <?= $rating ?> / 5</td>
                 </tr>
                 <tr>
                   <th>Batas Akhir Pendaftaran</th>

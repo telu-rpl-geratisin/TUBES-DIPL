@@ -97,6 +97,13 @@ $routes->group('pub', ['filter' => 'loginCheck'], function($routes)
     $routes->get('my_scholarship', 'Public\ScholarshipController::showMyScholarship');
     $routes->get('create_scholarship', 'Public\ScholarshipController::showCreateScholarship', ['as' => 'public.create_scholarship']);
     $routes->post('create_scholarship', 'Public\ScholarshipController::create');
+    
+    $routes->get('edit_scholarship/(:num)', 'Public\ScholarshipController::edit/$1');
+    $routes->post('edit_scholarship/(:num)', 'Public\ScholarshipController::update/$1');
+
+    $routes->get('verify_scholarship/(:num)', 'Public\ScholarshipController::showVerify/$1');
+    $routes->post('verify_scholarship/(:num)', 'Public\ScholarshipController::verify/$1');
+
 });
 
 // PUBLIC ROUTES END
