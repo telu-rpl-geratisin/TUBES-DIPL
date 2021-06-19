@@ -106,6 +106,8 @@ $routes->group('pub', ['filter' => 'loginCheck'], function($routes)
 
     $routes->get('scholarship_verification_instruction', 'Pblc\ScholarshipController::showVerificationHelp');
 
+    $routes->post('insert_rating', 'All\ScholarshipController::insertRating');
+    $routes->get('delete_comment/(:num)', 'All\ScholarshipController::deleteComment/$1');
 });
 
 // PUBLIC ROUTES END
@@ -144,6 +146,9 @@ $routes->group('company', ['filter' => 'loginCheck'], function($routes)
 
     $routes->get('company_verification_instruction', 'Company\CompanyController::showVerificationHelp');
     $routes->get('scholarship_verification_instruction', 'Company\ScholarshipController::showVerificationHelp');
+
+    $routes->post('insert_rating', 'All\ScholarshipController::insertRating');
+    $routes->get('delete_comment/(:num)', 'All\ScholarshipController::deleteComment/$1');
 });
 
 // COMPANY ROUTES END

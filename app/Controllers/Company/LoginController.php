@@ -46,6 +46,7 @@ class LoginController extends BaseController
 
         $this->session->set('auth_company', true);
         $this->session->set('username', $user['username']);
+        $this->session->set('user_id', $user['id']);
         $this->session->set('name', $user['name']);
         $this->session->set('photo', $user['photo']);
         

@@ -35,6 +35,8 @@ class ScholarshipController extends BaseController
 		// connect to db
 		$db = Database::connect();
 
+		$current_user_id = User::ins()->where('username', $this->session->get('username'))->first()['id'];
+
 		$scholarship = Scholarship::ins()->find($id);
 		$user = User::ins()->find($scholarship['user_id']);
 
@@ -42,14 +44,27 @@ class ScholarshipController extends BaseController
 		$author_verif = $user['status'];
 		$author_photo = $user['photo'];
 		$rating = $db->table('scholarship_rating')
-			->where('scholarship_id', $scholarship['id'])
+			->where('scholarship_id', $id)
+			->selectAvg('rating')
 			->get()
-			->getFirstRow('array')['rating'];
+			->getResultObject()[0]->rating;
+		$rating = (float)$rating;
+		$rating = number_format($rating, 2, '.', '');
+
+		$rating_count = $db->table('scholarship_rating')
+			->where('scholarship_id', $id)
+			->where('user_id', $current_user_id)
+			->get()
+			->getResultObject();
+		$rating_count = count($rating_count);
+		$allow_rating = $rating_count == 0 ? true : false;
+		
+		// dd($allow_rating);
 
 		$comments = $db->table('scholarship_comment')
 			->join('user', 'user.id = scholarship_comment.user_id', 'left')
 			->select('scholarship_comment.*')
-			->select('user.name as author, user.photo as author_photo')
+			->select('user.id as author_id, user.name as author, user.photo as author_photo')
 			->where('scholarship_comment.scholarship_id', $id)
 			->get()
 			->getResultArray();
@@ -63,6 +78,7 @@ class ScholarshipController extends BaseController
 			'author_verif' => $author_verif,
 			'author_photo' => $author_photo,
 			'rating' => $rating,
+			'allow_rating' => $allow_rating,
 			'comments' => $comments
 		]);
 	}

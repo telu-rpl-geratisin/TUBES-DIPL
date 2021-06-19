@@ -15,6 +15,10 @@ class AddScholarshipRating extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true
             ],
+            'user_id' => [
+                'type'       => 'INT',
+                'unsigned' => true
+            ],
             'scholarship_id' => [
                 'type'       => 'INT',
                 'unsigned' => true
@@ -35,6 +39,8 @@ class AddScholarshipRating extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('scholarship_id', 'scholarship', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('user_id', 'user', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addUniqueKey(['user_id', 'scholarship_id']);
         $this->forge->createTable('scholarship_rating');
 	}
 

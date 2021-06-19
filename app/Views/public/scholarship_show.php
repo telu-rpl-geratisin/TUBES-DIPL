@@ -15,7 +15,15 @@
 <?= $this->section('alerts') ?>
 <?php if(!empty(session('msg'))): ?>
   <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index: 1000; position: fixed; top: 100px; right: 25px;">
-    <strong><?= session('msg') ?>!</strong>
+    <strong><?= session('msg') ?></strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<?php endif; ?>
+<?php if(!empty(session('error_msg'))): ?>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" style="z-index: 1000; position: fixed; top: 100px; right: 25px;">
+    <strong><?= session('error_msg') ?>!</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -53,7 +61,12 @@
                 </tr>
                 <tr>
                   <th>Rating</th>
-                  <td><span class="fas fa-star text-warning"></span> <?= $rating ?> / 5</td>
+                  <td>
+                    <span class="fas fa-star text-warning"></span> <?= $rating ?> / 5&nbsp;&nbsp;
+                    <?php if($allow_rating): ?>
+                      <a data-toggle="modal" data-target="#ratingModal" class="btn btn-primary">Beri Rating</a>
+                    <?php endif; ?>
+                  </td>
                 </tr>
                 <tr>
                   <th>Batas Akhir Pendaftaran</th>
@@ -107,7 +120,10 @@
                     <span>
                       <b><a href="#"><?= $comment['author'] ?></a></b>
                       Diposting pada 
-                      <span class="post-time"><?= $comment['created_at'] ?></span>
+                      <span class="post-time"><?= $comment['created_at'] ?></span> 
+                      <?php if($comment['user_id'] == session('user_id')): ?>
+                        <button data-toggle="modal" data-target="#deleteCommentModal" class="btn btn-danger btn-sm text-light" data-comment-id="<?= $comment['id'] ?>">hapus</button>
+                      <?php endif; ?>
                     </span>
                     <p><?= $comment['comment'] ?></p>
                   </div>
@@ -135,4 +151,66 @@
     <!-- single-blog end -->
   </div>
 </main>
+
+<!-- Rating Modal -->
+<div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ratingModalLabel">Beri Rating</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="<?= base_url() ?>/pub/insert_rating" method="post">
+          <?= csrf_field() ?>
+          <input type="hidden" name="scholarship_id" value="<?= $scholarship['id'] ?>">
+          <input type="hidden" name="user_id" value="<?= session('user_id') ?>">
+          <div class="form-group">
+            <label for="inputRating">Rating</label>
+            <input name="rating" type="number" class="form-control" id="inputRating" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">Masukkan angka 1 - 5</small>
+          </div>
+          <button class="btn btn-secondary" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Input</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteCommentModalLabel">Hapus Komentar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+          Anda yakin ingin menghapus komentar ini?
+      </div>
+      <div class="modal-footer justify-content-center">
+          <button class="btn btn-secondary" data-dismiss="modal">Batal</button>
+          <a id="btnDeleteComment" href="" class="btn btn-danger">Hapus</a>
+      </div>
+    </div>
+  </div>
+</div>
+<?= $this->endSection() ?>
+
+<?= $this->section('custom_script') ?>
+<script type="text/javascript">
+$('#deleteCommentModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+  var commentId = button.data('comment-id'); // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this);
+  modal.find('.modal-footer #btnDeleteComment').attr('href', '<?= base_url() ?>/pub/delete_comment/'+commentId);
+})
+</script>
 <?= $this->endSection() ?>

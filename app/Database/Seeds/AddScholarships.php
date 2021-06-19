@@ -17,8 +17,9 @@ class AddScholarships extends Seeder
         ]);
 
         $this->db->table('scholarship_rating')->insert([
+            'user_id' => 3,
             'scholarship_id' => 1,
-            'rating' => 4.5
+            'rating' => 4
         ]);
 	}
 }

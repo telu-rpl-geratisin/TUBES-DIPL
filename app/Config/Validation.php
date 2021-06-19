@@ -45,14 +45,24 @@ class Validation
         'username' => [
         	'rules' => 'required',
         	'errors' => [
-        		'required' => 'filed username wajib diisi'
+        		'required' => 'field username wajib diisi'
         	]
         ],
         'password' => [
         	'rules' => 'required',
         	'errors' => [
-        		'required' => 'filed password wajib diisi'
+        		'required' => 'field password wajib diisi'
         	]
         ]
+    ];
+
+    public $rating = [
+    	'rating' => [
+    		'rules' => 'required|regex_match[/^[1-5]$/]',
+    		'errors' => [
+    			'required' => 'field rating wajib diisi',
+    			'regex_match' => 'angka harus salah satu dari 1 - 5'
+    		]
+    	]
     ];
 }
