@@ -9,6 +9,25 @@
     padding-left: 0;
     padding-right: 1rem
   }
+  .loading-overlay-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.3);
+    z-index: 1001;
+  }
+  .loading-overlay-wrapper .spinner-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .hidden {
+    /*visibility: hidden;*/
+    display: none!important;
+  }
 </style>
 <?= $this->endSection() ?>
 
@@ -29,6 +48,13 @@
     </button>
   </div>
 <?php endif; ?>
+
+<div class="loading-overlay-wrapper d-block hidden">
+  <div class="spinner-wrapper d-flex align-items-center" style="width: 250px;">
+    <strong>Detecting Comment...</strong>
+    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+  </div>
+</div>
 <?= $this->endSection() ?>
 
 <?= $this->section('main') ?>
@@ -134,17 +160,20 @@
         </div>
         <div class="comment-respond">
           <h3 class="comment-reply-title">Tulis Komentar</h3>
-          <form action="<?= base_url() ?>/company/scholarship/<?= $scholarship['id'] ?>/comment" method="post">
+          <form id="comment-form" action="<?= base_url() ?>/company/scholarship/<?= $scholarship['id'] ?>/comment" method="post">
             <?= csrf_field() ?>
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
                 <p>Isi Komentar</p>
+                <p class="text-danger toxic-warning d-block hidden">Komentar ini mengandung kata toxic!<br>
+                  <span>Mohon gunakan kata yang bijak.</span>
+                </p>
                 <input type="hidden" name="author_username" value="<?= session('username') ?>">
                 <textarea id="message-box" name="comment_text" cols="30" rows="10"></textarea>
-                <input type="submit" value="Posting Komentar">
               </div>
             </div>
           </form>
+          <button class="btn btn-primary" onclick="javascript:postComment()">Posting Komentar</button>
         </div>
       </div>
     </div>
@@ -202,8 +231,33 @@
 </div>
 <?= $this->endSection() ?>
 
+<?= $this->section('import_script') ?>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity"></script>
+<?= $this->endSection() ?>
+
 <?= $this->section('custom_script') ?>
 <script type="text/javascript">
+function postComment() {
+  $('.loading-overlay-wrapper').toggleClass('hidden');
+  const sentence = document.getElementById('message-box').value;
+  let predictions = null;
+
+  toxicity.load(0.9).then(model => {
+    model.classify(sentence).then(result => {
+      $('.loading-overlay-wrapper').toggleClass('hidden');
+      const isToxic = result[6].results[0].match;
+      if(isToxic) {
+        $('.toxic-warning').removeClass('hidden');
+      }else{
+        $('.toxic-warning').addClass('hidden');
+        console.log('submitting comment...');
+        $('#comment-form').submit();
+      }
+    })
+  });
+}
+
 $('#deleteCommentModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
   var commentId = button.data('comment-id'); // Extract info from data-* attributes

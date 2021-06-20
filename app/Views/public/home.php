@@ -65,116 +65,35 @@
           </div>
         </div>
         <div class="row">
-          <!-- Start Left Blog -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a href="blog.html">
-                  <img src="<?= base_url() ?>/public/template3/assets/img/blog/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="blog-meta">
-                <span class="comments-type">
-                  <i class="fa fa-comment-o"></i>
-                  <a href="#">13 comments</a>
+          <?php foreach($scholarships as $scholarship): ?>
+            <!-- single blog -->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="single-blog">
+                <div class="single-blog-img">
+                  <a href="blog.html">
+                    <img src="<?= base_url() ?>/public/storage/images/<?= $scholarship['photo'] ?>" alt="">
+                  </a>
+                </div>
+                <div class="blog-text">
+                  <?php if($scholarship['type'] == 'company'): ?>
+                    <span class="badge badge-primary my-2">Perusahaan</span>
+                  <?php elseif($scholarship['type'] == 'public'): ?>
+                    <span class="badge badge-success my-2">Publik</span>
+                  <?php endif; ?>
+                  <h4>
+                    <a href="<?= base_url() ?>/pub/scholarship/<?= $scholarship['id'] ?>"><?= $scholarship["name"] ?></a>
+                  </h4>
+                  <p>
+                    <?= word_limiter($scholarship['description'], 200) ?>
+                  </p>
+                </div>
+                <span>
+                  <a href="<?= base_url() ?>/pub/scholarship/<?= $scholarship['id'] ?>" class="ready-btn">Lihat</a>
                 </span>
-                <span class="comments-type">
-                  <i class="fa fa-comment-o"></i>
-                  <a href="#">rating</a>
-                </span>
-                <span class="date-type">
-                  <i class="fa fa-calendar"></i>2016-03-05
-                </span>
               </div>
-              <div class="blog-text">
-                <h4>
-                  <a href="blog.html">HAA ? Beasiswa</a>
-                </h4>
-                <p>
-                  Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
-                </p>
-              </div>
-              <span>
-                <a href="blog.html" class="ready-btn">Lihat</a>
-              </span>
             </div>
-            <!-- Start single blog -->
-          </div>
-          <!-- End Left Blog-->
-          <!-- Start Left Blog -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a href="blog.html">
-                  <img src="<?= base_url() ?>/public/template3/assets/img/blog/2.jpg" alt="">
-                </a>
-              </div>
-              <div class="blog-meta">
-                <span class="comments-type">
-                  <i class="fa fa-comment-o"></i>
-                  <a href="#">130 comments</a>
-                </span>
-                <span class="comments-type">
-                  <i class="fa fa-comment-o"></i>
-                  <a href="#">rating</a>
-                </span>
-                <span class="date-type">
-                  <i class="fa fa-calendar"></i>2016-03-05
-                </span>
-              </div>
-              <div class="blog-text">
-                <h4>
-                  <a href="blog.html">Program Biasiswa Pemerintah</a>
-                </h4>
-                <p>
-                  Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
-                </p>
-              </div>
-              <span>
-                <a href="blog.html" class="ready-btn">Lihat</a>
-              </span>
-            </div>
-            <!-- Start single blog -->
-          </div>
-          <!-- End Left Blog-->
-          <!-- Start Right Blog-->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a href="blog.html">
-                  <img src="<?= base_url() ?>/public/template3/assets/img/blog/3.jpg" alt="">
-                </a>
-              </div>
-              <div class="blog-meta">
-                <span class="comments-type">
-                  <i class="fa fa-comment-o"></i>
-                  <a href="#">10 comments</a>
-                </span>
-                <span class="comments-type">
-                  <i class="fa fa-comment-o"></i>
-                  <a href="#">rating</a>
-                </span>
-                <span class="date-type">
-                  <i class="fa fa-calendar"></i>2016-03-05
-                </span>
-              </div>
-              <div class="blog-text">
-                <h4>
-                  <a href="blog.html">Beasiawa PT Brazzer.id</a>
-                </h4>
-                <p>
-                  Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
-                </p>
-              </div>
-              <span>
-                <a href="blog.html" class="ready-btn">Lihat</a>
-              </span>
-            </div>
-              <span>
-                  <a href="<?= base_url() ?>/Beasiswa" class="ready-btn">Lihat Lebih Banyak</a>
-              </span>
-          </div>
-          <!-- End Right Blog-->
+            <!-- end single blog -->
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
