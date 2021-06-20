@@ -166,7 +166,7 @@ $( document ).ready(function() {
             url: "<?= base_url() ?>"+"/api/user/"+userId, 
             success: function(result){
                 let userData = result;
-                modal.find('.modal-body #ud-photo').html('<img src="<?= base_url() ?>/public/storage/image/'+userData.photo+'" alt="foto profil" style="width: 100px" />');
+                modal.find('.modal-body #ud-photo').html('<img src="<?= base_url() ?>/public/storage/images/'+userData.photo+'" alt="foto profil" style="width: 100px" />');
                 modal.find('.modal-body #ud-username').text(userData.username);
                 modal.find('.modal-body #ud-email').text(userData.email);
                 modal.find('.modal-body #ud-fullname').text(userData.name);

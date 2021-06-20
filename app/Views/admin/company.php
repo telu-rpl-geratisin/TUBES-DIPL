@@ -173,7 +173,7 @@ $( document ).ready(function() {
             url: "<?= base_url() ?>"+"/api/user/"+companyId, 
             success: function(result){
                 let companyData = result;
-                modal.find('.modal-body #cd-photo').html('<img src="<?= base_url() ?>/public/storage/image/'+companyData.photo+'" alt="foto profil" style="width: 100px" />');
+                modal.find('.modal-body #cd-photo').html('<img src="<?= base_url() ?>/public/storage/images/'+companyData.photo+'" alt="foto profil" style="width: 100px" />');
                 modal.find('.modal-body #cd-username').text(companyData.username);
                 modal.find('.modal-body #cd-email').text(companyData.email);
                 modal.find('.modal-body #cd-name').text(companyData.name);
