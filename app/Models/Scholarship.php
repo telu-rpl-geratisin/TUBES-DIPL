@@ -40,8 +40,11 @@ class Scholarship extends Model
         	->join('user', 'user.id = scholarship.user_id', 'left')
             ->join('scholarship_rating', 'scholarship_rating.scholarship_id = scholarship.id', 'left')
             ->select('scholarship.*')
+            ->select('scholarship.id as scholarship_id')
             ->select('user.name as user_name')
-            ->select('scholarship_rating.rating');
+            // ->select('scholarship_rating.rating');
+            ->selectAvg('scholarship_rating.rating')
+            ->groupBy('scholarship.id');
 
         return $builder;
     }

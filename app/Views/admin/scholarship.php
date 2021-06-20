@@ -194,7 +194,11 @@ $( document ).ready(function() {
                 modal.find('.modal-body #sd-name').text(scholarshipData.name);
                 modal.find('.modal-body #sd-user').text(scholarshipData.user_name);
                 modal.find('.modal-body #sd-end-date').text(scholarshipData.end_date);
-                modal.find('.modal-body #sd-rating').text(scholarshipData.rating);
+                modal.find('.modal-body #sd-rating').text(
+                    scholarshipData.rating != null ?
+                    parseFloat(scholarshipData.rating).toFixed(2)
+                    : '0.00'
+                );
                 modal.find('.modal-body #sd-link').text(scholarshipData.link);
 
                 let text = '';

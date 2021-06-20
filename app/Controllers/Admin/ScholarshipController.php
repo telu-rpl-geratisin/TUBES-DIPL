@@ -11,6 +11,8 @@ class ScholarshipController extends BaseController
 {
 	public function index()
     {
+        // $model = new Scholarship();
+        // dd($model->noticeTable()->get()->getResultArray());
         return view('admin/scholarship', [
             'title' => 'List Beasiswa'
         ]);
@@ -28,12 +30,16 @@ class ScholarshipController extends BaseController
         $model = new Scholarship();
         $table = new TablesIgniter();
 
+        $buttonInfo = "";
+        $buttonDel = "";
+
         $table->setTable($model->noticeTable())
             ->setDefaultOrder('name', 'DESC')
             ->setSearch(['name', 'user_name', 'end_date', 'rating'])
-            ->setOrder(['name', 'user_name', 'end_date', 'rating', null, 'status', null])
+            ->setOrder(['name', 'user_name', 'end_date', 'rating', 'status'])
             ->setOutput([
-                'name', 'user_name', 'end_date', 'rating',
+                'name', 'user_name', 'end_date',
+                function($row) { return number_format((float)$row['rating'], 2, '.', ''); },
                 function($row) { return '<a href="'.$row['link'].'" target="_blank">'.$row['link'].'</a>'; },
                 function($row) {
                     $badge = '';
@@ -54,8 +60,8 @@ class ScholarshipController extends BaseController
                 },
                 function($row)
                 {
-                    $buttonInfo = '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#scholarshipInfoModal" data-scholarship-id="'.$row["id"].'"><i class="fas fa-info-circle"></i></button>';
-                    $buttonDel = '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmModal" data-scholarship-id="'.$row["id"].'" data-name="'.$row["name"].'"><i class="fas fa-trash"></i></button>';
+                    $buttonInfo = '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#scholarshipInfoModal" data-scholarship-id="'.$row['id'].'"><i class="fas fa-info-circle"></i></button>';
+                    $buttonDel = '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmModal" data-scholarship-id="'.$row['id'].'" data-name="'.$row["name"].'"><i class="fas fa-trash"></i></button>';
                     return  $buttonInfo.' '.$buttonDel;
                 }
             ]);

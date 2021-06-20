@@ -40,6 +40,15 @@
   <h1 class="mb-5 font-weight-bolder">Geratisin</h1>
   <h1 class="h3 mb-3 font-weight-normal">Silahkan login</h1>
   
+  <?php if(!empty(session('msg'))): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <?= session('msg') ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <?php endif; ?>
+  
   <?php 
       $val_errors = session('val_errors');
       $data_error = session('data_error');

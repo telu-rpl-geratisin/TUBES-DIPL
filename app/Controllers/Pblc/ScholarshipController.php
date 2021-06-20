@@ -138,15 +138,6 @@ class ScholarshipController extends BaseController
         	return redirect()->back()->withInput();
 		}
 
-		// connect to db
-		$db = Database::connect();
-
-		$res_rating = $db->table('scholarship_rating')
-			->insert([
-				'scholarship_id' => $res,
-				'rating' => 0
-			]);
-
 		return redirect('public.create_scholarship');
 	}
 

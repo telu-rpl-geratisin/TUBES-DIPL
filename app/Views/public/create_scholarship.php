@@ -53,15 +53,15 @@
             <input name="end_date" type="text" class="form-control" placeholder="TTTT-BB-HH" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" id="end_date" value="">
           </div>
 
-          <div class="mb-3">
+          <div class="mb-4">
             <label for="link">Link Beasiswa</label>
             <input name="link" type="text" class="form-control" id="link" value="">
           </div>
 
-          <div class="form-group mb-4">
+          <!-- <div class="form-group mb-4">
             <label for="uploadDocument">Upload Dokumen Verifikasi <span class="text-muted">(Opsional)</span>, <a href="<?= base_url() ?>/pub/scholarship_verification_help">petunjuk</a></label>
             <input name="document" type="file" class="form-control-file" id="uploadDocument">
-          </div>
+          </div> -->
 
           <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Tambah Beasiswa</button>
           

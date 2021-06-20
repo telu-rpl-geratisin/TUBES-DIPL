@@ -23,7 +23,10 @@ class Scholarship extends ResourceController
             ->join('scholarship_rating', 'scholarship_rating.scholarship_id = scholarship.id', 'left')
             ->select('scholarship.*')
             ->select('user.name as user_name')
-            ->select('scholarship_rating.rating')
+            // ->select('scholarship_rating.rating');
+            ->selectAvg('scholarship_rating.rating')
+            ->groupBy('scholarship.id')
+            ->where('scholarship.id', $id)
             ->get()
             ->getResultArray()[0];
         // dd($res);
