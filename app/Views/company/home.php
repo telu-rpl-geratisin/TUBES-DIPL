@@ -81,14 +81,14 @@
                     <span class="badge badge-success my-2">Publik</span>
                   <?php endif; ?>
                   <h4>
-                    <a href="<?= base_url() ?>/pub/scholarship/<?= $scholarship['id'] ?>"><?= $scholarship["name"] ?></a>
+                    <a href="<?= base_url() ?>/company/scholarship/<?= $scholarship['id'] ?>"><?= $scholarship["name"] ?></a>
                   </h4>
                   <p>
                     <?= word_limiter($scholarship['description'], 200) ?>
                   </p>
                 </div>
                 <span>
-                  <a href="<?= base_url() ?>/pub/scholarship/<?= $scholarship['id'] ?>" class="ready-btn">Lihat</a>
+                  <a href="<?= base_url() ?>/company/scholarship/<?= $scholarship['id'] ?>" class="ready-btn">Lihat</a>
                 </span>
               </div>
             </div>
