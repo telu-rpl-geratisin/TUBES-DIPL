@@ -229,7 +229,7 @@ $( document ).ready(function() {
         let name = button.data('name');
 
         let modal = $(this);
-        modal.find('.modal-body img').attr('src', '<?= base_url() ?>/storage/image/'+photo);
+        modal.find('.modal-body img').attr('src', '<?= base_url() ?>/public/storage/image/'+photo);
         modal.find('.modal-header .modal-title').text('Brosur '+name);
     });
 
