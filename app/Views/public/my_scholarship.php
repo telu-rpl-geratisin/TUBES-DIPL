@@ -90,7 +90,7 @@
 <script src="<?= base_url('public/template/plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
 <?= $this->endSection() ?>
 
-<?= $this->section('custom_style') ?>
+<?= $this->section('custom_script') ?>
 <script type="text/javascript">
 $( document ).ready(function() {
 	const table = $("#scholarship-table").DataTable();
