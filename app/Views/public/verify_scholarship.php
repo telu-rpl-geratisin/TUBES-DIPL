@@ -32,12 +32,15 @@
         <h5>Untuk <?= $scholarship['name'] ?></h5>
         <span>Lihat petunjuk terkait dokumen verifikasi beasiswa <a href="<?= base_url() ?>/pub/scholarship_verification_instruction">disini</a></span>
 
-        <form class="mt-4" action="<?= base_url() ?>/pub/verify_scholarship/<?= $scholarship['id'] ?>" method="post" enctype="multipart/form-data">
+        <form id="verify-scholarship-form" class="mt-4" action="<?= base_url() ?>/pub/verify_scholarship/<?= $scholarship['id'] ?>" method="post" enctype="multipart/form-data" novalidate>
           <?= csrf_field() ?>
 
           <div class="form-group mb-3">
             <label for="uploadDoc">Upload Dokumen Verifikasi</label>
-            <input name="document" type="file" class="form-control-file" id="uploadDoc">
+            <input name="document" type="file" class="form-control-file" id="uploadDoc" required>
+            <div class="invalid-feedback">
+              dokumen verifikasi tidak boleh kosong
+            </div>
           </div>
 
           <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Ajukan Verifikasi Beasiswa</button>
@@ -50,4 +53,17 @@
     </div>
   </div>
 </main>
+<?= $this->endSection() ?>
+
+<?= $this->section('custom_script') ?>
+<script>
+  const VSForm = document.querySelector('#verify-scholarship-form');
+  VSForm.addEventListener('submit', function(event) {
+    if (this.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.classList.add('was-validated');
+  }, false);
+</script>
 <?= $this->endSection() ?>

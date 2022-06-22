@@ -31,11 +31,14 @@
         
         <h3 class="font-weight-bolder mb-5">Form Edit Beasiswa</h3>
 
-        <form action="<?= base_url() ?>/pub/edit_scholarship/<?= $scholarship['id'] ?>" method="post" enctype="multipart/form-data">
+        <form id="edit-scholarship-form" action="<?= base_url() ?>/pub/edit_scholarship/<?= $scholarship['id'] ?>" method="post" enctype="multipart/form-data" novalidate>
           <?= csrf_field() ?>
           <div class="mb-3">
             <label for="name">Nama Beasiswa</label>
-            <input name="name" type="text" class="form-control" id="name" value="<?= $scholarship['name'] ?>">
+            <input name="name" type="text" class="form-control" id="name" value="<?= $scholarship['name'] ?>" required>
+            <div class="invalid-feedback">
+              nama tidak boleh kosong
+            </div>
           </div>
 
           <div class="form-group mb-3">
@@ -45,17 +48,28 @@
 
           <div class="mb-3">
             <label for="description">Deskripsi Beasiswa</label>
-            <input name="description" type="text" class="form-control" id="description" value="<?= $scholarship['description'] ?>">
+            <input name="description" type="text" class="form-control" id="description" value="<?= $scholarship['description'] ?>" required>
+            <div class="invalid-feedback">
+              deskripsi tidak boleh kosong
+            </div>
           </div>
 
           <div class="mb-3">
             <label for="end_date">Tanggal Akhir Pendaftaran</label>
-            <input name="end_date" type="text" class="form-control" placeholder="TTTT-BB-HH" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" id="end_date" value="<?= $scholarship['end_date'] ?>">
+            <input name="end_date" type="text" class="form-control" placeholder="TTTT-BB-HH" 
+              pattern="(?:19|20)(?:[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:29|30))|(?:(?:0[13578]|1[02])-31))|(?:[13579][26]|[02468][048])-02-29)"
+              id="end_date" value="<?= $scholarship['end_date'] ?>" required>
+            <div class="invalid-feedback">
+              tanggal akhir pendaftaran tidak boleh kosong atau format salah
+            </div>
           </div>
 
           <div class="mb-3">
             <label for="link">Link Beasiswa</label>
-            <input name="link" type="text" class="form-control" id="link" value="<?= $scholarship['link'] ?>">
+            <input name="link" type="text" class="form-control" id="link" value="<?= $scholarship['link'] ?>" required>
+            <div class="invalid-feedback">
+              link tidak boleh kosong
+            </div>
           </div>
 
           <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Edit Beasiswa</button>
@@ -68,4 +82,17 @@
     </div>
   </div>
 </main>
+<?= $this->endSection() ?>
+
+<?= $this->section('custom_script') ?>
+<script>
+  const ESForm = document.querySelector('#edit-scholarship-form');
+  ESForm.addEventListener('submit', function(event) {
+    if (this.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.classList.add('was-validated');
+  }, false);
+</script>
 <?= $this->endSection() ?>

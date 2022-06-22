@@ -25,7 +25,7 @@
           <?= csrf_field() ?>
           <div class="mb-3">
             <label for="fullname">Nama Lengkap</label>
-            <input name="name" type="text" class="form-control" id="fullname" value="<?= $user_data['name'] ?>">
+            <input name="name" type="text" class="form-control" id="fullname" value="<?= $user_data['name'] ?>" required>
           </div>
 
           <div class="form-group mb-3">
